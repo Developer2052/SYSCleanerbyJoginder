@@ -1,0 +1,12 @@
+D:\Jcleaner\Jcleaner\obj\Debug\Jcleaner.Properties.Resources.resources
+D:\Jcleaner\Jcleaner\obj\Debug\Jcleaner.csproj.GenerateResource.Cache
+D:\Jcleaner\Jcleaner\bin\Debug\Jcleaner.exe.config
+D:\Jcleaner\Jcleaner\bin\Debug\Jcleaner.exe
+D:\Jcleaner\Jcleaner\bin\Debug\Jcleaner.pdb
+D:\Jcleaner\Jcleaner\bin\Debug\Common.dll
+D:\Jcleaner\Jcleaner\bin\Debug\Common.pdb
+D:\Jcleaner\Jcleaner\obj\Debug\Jcleaner.csprojResolveAssemblyReference.cache
+D:\Jcleaner\Jcleaner\obj\Debug\Jcleaner.exe
+D:\Jcleaner\Jcleaner\obj\Debug\Jcleaner.pdb
+D:\Jcleaner\Jcleaner\obj\Debug\Jcleaner.HomeOLD.resources
+D:\Jcleaner\Jcleaner\obj\Debug\syscleaner.Home.resources
