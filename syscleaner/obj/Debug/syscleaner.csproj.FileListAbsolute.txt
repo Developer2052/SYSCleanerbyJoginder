@@ -22,3 +22,6 @@ D:\syscleaner\syscleaner\obj\Debug\syscleaner.HomeOLD.resources
 D:\syscleaner\syscleaner\obj\Debug\syscleaner.Properties.Resources.resources
 D:\syscleaner\syscleaner\bin\Debug\Common.dll
 D:\syscleaner\syscleaner\obj\Debug\syscleaner.CleanAnalyze.resources
+D:\Projects\SYSCleaner\syscleaner\bin\Debug\Jcleaner.exe.config
+D:\Projects\SYSCleaner\syscleaner\obj\Debug\Jcleaner.exe
+D:\Projects\SYSCleaner\syscleaner\obj\Debug\Jcleaner.pdb
