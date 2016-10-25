@@ -14,6 +14,9 @@ namespace syscleaner
         public CleanAnalyze()
         {
             InitializeComponent();
+         
+           
+            //this.lblPercentCount.ForeColor = Color.FromArgb(40, 129, 187);
         }
     }
 }

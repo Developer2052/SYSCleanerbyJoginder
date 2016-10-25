@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.LblHomeAbovePageText = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.CloseButton = new System.Windows.Forms.PictureBox();
             this.OuterPannel = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -53,15 +49,8 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.LblSizeOfRam = new System.Windows.Forms.Label();
-            this.LblSoftwareVersion = new System.Windows.Forms.Label();
-            this.lblWindowsVersion = new System.Windows.Forms.Label();
-            this.LblNameofWindows = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
+            this.headerControl2 = new CustomControl.HeaderControl();
+            this.headerControl1 = new CustomControl.HeaderControl();
             this.OuterPannel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel4.SuspendLayout();
@@ -73,49 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.LblHomeAbovePageText);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.CloseButton);
-            this.panel1.Location = new System.Drawing.Point(1, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(627, 42);
-            this.panel1.TabIndex = 0;
-            // 
-            // LblHomeAbovePageText
-            // 
-            this.LblHomeAbovePageText.AutoSize = true;
-            this.LblHomeAbovePageText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblHomeAbovePageText.Location = new System.Drawing.Point(44, 11);
-            this.LblHomeAbovePageText.Name = "LblHomeAbovePageText";
-            this.LblHomeAbovePageText.Size = new System.Drawing.Size(78, 17);
-            this.LblHomeAbovePageText.TabIndex = 2;
-            this.LblHomeAbovePageText.Text = "Title define";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::syscleaner.Properties.Resources.logo;
-            this.pictureBox2.Location = new System.Drawing.Point(3, -2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(38, 44);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.Image = global::syscleaner.Properties.Resources.ClosedButton;
-            this.CloseButton.Location = new System.Drawing.Point(582, 0);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(49, 25);
-            this.CloseButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.CloseButton.TabIndex = 0;
-            this.CloseButton.TabStop = false;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // OuterPannel
             // 
@@ -124,7 +71,6 @@
             this.OuterPannel.Controls.Add(this.pictureBox3);
             this.OuterPannel.Controls.Add(this.panel4);
             this.OuterPannel.Controls.Add(this.panel3);
-            this.OuterPannel.Controls.Add(this.panel2);
             this.OuterPannel.Location = new System.Drawing.Point(4, 46);
             this.OuterPannel.Name = "OuterPannel";
             this.OuterPannel.Size = new System.Drawing.Size(624, 505);
@@ -325,69 +271,21 @@
             this.panel3.Size = new System.Drawing.Size(624, 38);
             this.panel3.TabIndex = 1;
             // 
-            // panel2
+            // headerControl2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.LblSizeOfRam);
-            this.panel2.Controls.Add(this.LblSoftwareVersion);
-            this.panel2.Controls.Add(this.lblWindowsVersion);
-            this.panel2.Controls.Add(this.LblNameofWindows);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(-1, -1);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(624, 82);
-            this.panel2.TabIndex = 0;
+            this.headerControl2.BackColor = System.Drawing.Color.White;
+            this.headerControl2.Location = new System.Drawing.Point(415, 40);
+            this.headerControl2.Name = "headerControl2";
+            this.headerControl2.Size = new System.Drawing.Size(8, 8);
+            this.headerControl2.TabIndex = 3;
             // 
-            // LblSizeOfRam
+            // headerControl1
             // 
-            this.LblSizeOfRam.AutoSize = true;
-            this.LblSizeOfRam.ForeColor = System.Drawing.Color.White;
-            this.LblSizeOfRam.Location = new System.Drawing.Point(21, 36);
-            this.LblSizeOfRam.Name = "LblSizeOfRam";
-            this.LblSizeOfRam.Size = new System.Drawing.Size(82, 13);
-            this.LblSizeOfRam.TabIndex = 5;
-            this.LblSizeOfRam.Text = "ProcessorName";
-            // 
-            // LblSoftwareVersion
-            // 
-            this.LblSoftwareVersion.AutoSize = true;
-            this.LblSoftwareVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblSoftwareVersion.ForeColor = System.Drawing.Color.White;
-            this.LblSoftwareVersion.Location = new System.Drawing.Point(424, 56);
-            this.LblSoftwareVersion.Name = "LblSoftwareVersion";
-            this.LblSoftwareVersion.Size = new System.Drawing.Size(147, 20);
-            this.LblSoftwareVersion.TabIndex = 4;
-            this.LblSoftwareVersion.Text = "Software Version";
-            // 
-            // lblWindowsVersion
-            // 
-            this.lblWindowsVersion.AutoSize = true;
-            this.lblWindowsVersion.ForeColor = System.Drawing.Color.White;
-            this.lblWindowsVersion.Location = new System.Drawing.Point(21, 15);
-            this.lblWindowsVersion.Name = "lblWindowsVersion";
-            this.lblWindowsVersion.Size = new System.Drawing.Size(89, 13);
-            this.lblWindowsVersion.TabIndex = 2;
-            this.lblWindowsVersion.Text = "Windows Version";
-            // 
-            // LblNameofWindows
-            // 
-            this.LblNameofWindows.AutoSize = true;
-            this.LblNameofWindows.ForeColor = System.Drawing.Color.White;
-            this.LblNameofWindows.Location = new System.Drawing.Point(21, 56);
-            this.LblNameofWindows.Name = "LblNameofWindows";
-            this.LblNameofWindows.Size = new System.Drawing.Size(82, 13);
-            this.LblNameofWindows.TabIndex = 1;
-            this.LblNameofWindows.Text = "Name of system";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::syscleaner.Properties.Resources.Sys_Clear_With_White_Name;
-            this.pictureBox1.Location = new System.Drawing.Point(422, -1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(201, 50);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.headerControl1.BackColor = System.Drawing.Color.White;
+            this.headerControl1.Location = new System.Drawing.Point(2, 3);
+            this.headerControl1.Name = "headerControl1";
+            this.headerControl1.Size = new System.Drawing.Size(632, 136);
+            this.headerControl1.TabIndex = 4;
             // 
             // Home
             // 
@@ -395,17 +293,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(634, 551);
+            this.Controls.Add(this.headerControl1);
+            this.Controls.Add(this.headerControl2);
             this.Controls.Add(this.OuterPannel);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Home_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
             this.OuterPannel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel4.ResumeLayout(false);
@@ -420,22 +315,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox CloseButton;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label LblHomeAbovePageText;
         private System.Windows.Forms.Panel OuterPannel;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -455,10 +341,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblPercentCount;
         private System.Windows.Forms.Label lblFreeSpaceCount;
-        private System.Windows.Forms.Label LblNameofWindows;
-        private System.Windows.Forms.Label lblWindowsVersion;
-        private System.Windows.Forms.Label LblSoftwareVersion;
-        private System.Windows.Forms.Label LblSizeOfRam;
+        private CustomControl.HeaderControl headerControl2;
+        private CustomControl.HeaderControl headerControl1;
+       
+
     }
 }
 
