@@ -166,6 +166,11 @@ namespace Common
         }
 
         #endregion
+
+
+
+
+
         /// <summary>
         /// Get Size of RAM 
         /// </summary>
@@ -173,51 +178,20 @@ namespace Common
         /// <returns></returns>
         /// 
 
-        public static string GetSizeOfRAM()
+
+        public static void GetAllInforationAboutSystem()
         {
-            string Query = "SELECT Capacity FROM Win32_PhysicalMemory";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher(Query);
+            CommonInformation.MechineName = Environment.MachineName;
+            CommonInformation.SoftwareVersionName = CommonConstantProperty.VersionType.Test.ToString();
+            CommonInformation.WindowsBit = System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
+            CommonInformation.SoftwareVersionNo = "1.K1P1";
 
-            UInt64 Capacity = 0;
-            foreach (ManagementObject WniPART in searcher.Get())
-            {
-                Capacity += Convert.ToUInt64(WniPART.Properties["Capacity"].Value);
-            }
-            return GetSizeOfRAM(Capacity).ToString();
-        }
-        private static UInt64 RAMSize = 0;
-        public static UInt64 GetSizeOfRAM(UInt64 sizeOfRam)
-        {
-            if (sizeOfRam > (int)CommonConstantProperty.IsDefaultValue.Zero)
-            {
-                if (sizeOfRam > 1024)
-                {
-                    RAMSize = sizeOfRam / 1024;
-                    GetSizeOfRAM(RAMSize);
+           
 
-                }
-            }
 
-            return RAMSize;
-
+             
         }
 
-
-        private static string Processor()
-        {
-            string NameOfProcessorName = string.Empty;
-            ManagementObjectSearcher mos =
-            new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Processor");
-            foreach (ManagementObject mo in mos.Get())
-            {
-                NameOfProcessorName = Convert.ToString(mo["Name"]);
-            }
-            return NameOfProcessorName;
-        }
-
-        public static string GetProcessorName()
-        {
-            return Processor();
-        }
+       
     }
 }

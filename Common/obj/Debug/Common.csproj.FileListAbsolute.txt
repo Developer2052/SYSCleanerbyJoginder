@@ -6,3 +6,7 @@ D:\syscleaner\Common\bin\Debug\Common.dll
 D:\syscleaner\Common\bin\Debug\Common.pdb
 D:\syscleaner\Common\obj\Debug\Common.dll
 D:\syscleaner\Common\obj\Debug\Common.pdb
+F:\cleaner\Common\bin\Debug\Common.dll
+F:\cleaner\Common\bin\Debug\Common.pdb
+F:\cleaner\Common\obj\Debug\Common.dll
+F:\cleaner\Common\obj\Debug\Common.pdb
