@@ -33,6 +33,7 @@ namespace syscleaner
             try
             {
                 CommonFunction.GetAllInforationAboutSystem();
+                CommonInformation.ListApplicationName = CommonFunction.GetAllApplicationList();
 
                
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Management;
@@ -171,12 +172,48 @@ namespace Common
 
 
 
-        /// <summary>
         /// Get Size of RAM 
+        /// 
         /// </summary>
         /// <param name="SizeOf"></param>
         /// <returns></returns>
         /// 
+
+        public static void exectAmountOfData(UInt64 AmountValues)
+        {
+            if (AmountValues > 1024)
+            {
+              
+                    AmountValues = AmountValues / 1024;
+                    
+              //  }
+               
+            }
+            else
+            {
+
+            }
+
+            CommonInformation.SizeOfRam = AmountValues.ToString();
+            
+
+
+        }
+
+
+        public static UInt64 SizeOfRam()
+        {
+            string Query = "SELECT Capacity FROM Win32_PhysicalMemory";
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(Query);
+
+            UInt64 Capacity = 0;
+            foreach (ManagementObject WniPART in searcher.Get())
+            {
+                Capacity += Convert.ToUInt64(WniPART.Properties["Capacity"].Value);
+            }
+
+            return Capacity;
+        }
 
 
         public static void GetAllInforationAboutSystem()
@@ -186,12 +223,77 @@ namespace Common
             CommonInformation.WindowsBit = System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
             CommonInformation.SoftwareVersionNo = "1.K1P1";
 
-           
-
-
-             
         }
 
-       
+
+        /// Get All Application List
+        /// 
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetAllApplicationList()
+        {
+            return GetInstalledApps();
+
+        }
+        static List<string> ApplicationList = null;
+        /// <summary>
+        /// Get All Install Apps
+        /// Worked By JSB
+        /// Dated : 25-10-2016
+        /// </summary>
+        /// <returns></returns>
+        private static List<string> GetInstalledApps()
+        {
+
+            try
+            {
+
+                ApplicationList = new List<string>();
+                const string CurrentUserInLocalMechile = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+                const string INLocalMechile = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
+                string displayName = string.Empty;
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(CurrentUserInLocalMechile))
+                {
+                    GetKey(key);
+                }
+                //using (RegistryKey key = Registry.LocalMachine.OpenSubKey(CurrentUserInLocalMechile))
+                //{
+                //    GetKey(key);
+                //}
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(INLocalMechile))
+                {
+                    GetKey(key);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            return ApplicationList;
+        }
+
+        private static void GetKey(RegistryKey key)
+        {
+            foreach (string skName in key.GetSubKeyNames())
+            {
+                using (RegistryKey sk = key.OpenSubKey(skName))
+                {
+                    try
+                    {
+                        if (sk.GetValue("DisplayName") != null)
+                        {                           
+                        if(!ApplicationList.Exists(e=>e.Contains(sk.GetValue("DisplayName").ToString())))
+                                ApplicationList.Add(sk.GetValue("DisplayName").ToString());
+                        }
+                    }
+                    catch (Exception ex)
+                    { }
+                }
+            }
+        }
+
+
     }
 }

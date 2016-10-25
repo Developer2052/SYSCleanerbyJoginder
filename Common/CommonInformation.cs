@@ -41,6 +41,8 @@ namespace Common
 
         public static string ProcessorName { get; set; }
 
+        public static List<string> ListApplicationName { get; set; }
+
 
     }
 }
