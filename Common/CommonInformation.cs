@@ -43,15 +43,19 @@ namespace Common
 
         public static List<string> ListApplicationName { get; set; }
 
+
         /// <summary>
-        /// Below Constant values are used for Hide and Show the panel of Analize of Page...
+        /// Below Constant values are used for Hide and Show the panel on Analize Page...
         /// </summary>
         /// 
         public const int GapPanelForCeanAnalyzePage = 105;
         public const int GapPannelInnerX = 46;
         public const int GapPannelInnerY = 44;
 
-
+        /// <summary>
+        /// All below Property are using for hold the space of data find...Develp By Joginder singh 26-10-2016
+        /// </summary>
+        public int TempraroyFileSpaceCount{get;set;}
 
 
     }

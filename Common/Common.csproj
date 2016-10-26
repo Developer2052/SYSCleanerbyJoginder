@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="ActionContainers.cs" />
     <Compile Include="CommonDllImport.cs" />
+    <Compile Include="CommonFunction.cs" />
     <Compile Include="CommonInformation.cs" />
     <Compile Include="CommonProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
