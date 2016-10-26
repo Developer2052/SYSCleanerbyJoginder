@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>8XYRICkselIpnDPZnxvVhiVwFLg=</dsig:DigestValue>
+        <dsig:DigestValue>FldcFRmL+sq2PVV8VK45e1cb6DM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -61,19 +61,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>/E3ku1w5LWPoRMyD+WoIdeo1YGI=</dsig:DigestValue>
+        <dsig:DigestValue>GMFtora+V3/bi7rvif83BgzHV9Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Jcleaner.exe" size="371712">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Jcleaner.exe" size="374272">
       <assemblyIdentity name="Jcleaner" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>wWTUEHeJ2rXJJOdTaBTRByPd7Ko=</dsig:DigestValue>
+        <dsig:DigestValue>C1D2O0S0uYUN200WIMFL1E7vTps=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Management;
-using System.Text;
 
 
 namespace Common
@@ -292,6 +291,34 @@ namespace Common
                     { }
                 }
             }
+        }
+
+        public static string [] GetControlId(string controlId)
+        {
+           return GetControlIds(controlId);
+            
+        }
+
+        private static string [] GetControlIds(string controlId)
+        {
+            try
+            {
+                string[] SplitsControlsId = controlId.Split('_');
+                if (SplitsControlsId.Length == (int)CommonProperty.IsDefaultValue.Zero)
+                {
+                    throw new Exception("Please check Valid Control ID");
+
+                }
+                return SplitsControlsId;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+          
+  
+          
         }
 
 
