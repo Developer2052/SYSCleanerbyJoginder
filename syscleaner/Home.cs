@@ -43,7 +43,7 @@ namespace syscleaner
 
         }
 
-        int i = 0;
+       
         private void btnClean_Click(object sender, EventArgs e)
         {
           

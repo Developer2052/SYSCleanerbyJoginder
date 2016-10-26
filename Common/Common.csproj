@@ -37,6 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionContainers.cs" />
     <Compile Include="CommonDllImport.cs" />
     <Compile Include="CommonInformation.cs" />
     <Compile Include="CommonProperty.cs" />

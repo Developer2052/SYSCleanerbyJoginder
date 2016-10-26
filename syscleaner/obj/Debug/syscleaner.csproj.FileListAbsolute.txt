@@ -50,10 +50,6 @@ D:\Projects\SYSCleaner\syscleaner\obj\Debug\syscleaner.Home.resources
 D:\Projects\SYSCleaner\syscleaner\obj\Debug\syscleaner.HomeOLD.resources
 D:\Projects\SYSCleaner\syscleaner\obj\Debug\syscleaner.Properties.Resources.resources
 D:\Projects\SYSCleaner\syscleaner\obj\Debug\syscleaner.csproj.GenerateResource.Cache
-D:\Projects\SYSCleaner\syscleaner\bin\Debug\Jcleaner.exe.manifest
-D:\Projects\SYSCleaner\syscleaner\bin\Debug\Jcleaner.application
-D:\Projects\SYSCleaner\syscleaner\obj\Debug\Jcleaner.exe.manifest
-D:\Projects\SYSCleaner\syscleaner\obj\Debug\Jcleaner.application
 F:\cleaner\syscleaner\bin\Debug\Jcleaner.exe.manifest
 F:\cleaner\syscleaner\bin\Debug\Jcleaner.application
 F:\cleaner\syscleaner\obj\Debug\Jcleaner.exe.manifest

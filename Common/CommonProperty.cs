@@ -82,7 +82,7 @@ namespace Common
 
         #region Delete the file after check locked or Not
 
-        public static bool DeleteFileGetTheDirecotry(string filePath)
+        public static bool DeleteFileGetTheDirecotry(string filePath,bool isScanOnlyForSpaceCount)
         {
             bool isDeleteFile = false;
 

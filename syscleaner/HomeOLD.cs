@@ -35,7 +35,7 @@ namespace syscleaner
         {
             
             string path = @"C:\Users\JOGIND~1\AppData\Local\Temp";
-            CommonFunction.DeleteFileGetTheDirecotry(path);
+            CommonFunction.DeleteFileGetTheDirecotry(path,false);
 
         }
 
@@ -65,7 +65,7 @@ namespace syscleaner
         private void button2_Click(object sender, EventArgs e)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.History);
-            CommonFunction.DeleteFileGetTheDirecotry(path);
+            CommonFunction.DeleteFileGetTheDirecotry(path,false);
 
         }
 

@@ -15,3 +15,4 @@ D:\Projects\SYSCleaner\Common\bin\Debug\Common.pdb
 D:\Projects\SYSCleaner\Common\obj\Debug\Common.dll
 D:\Projects\SYSCleaner\Common\obj\Debug\Common.pdb
 F:\cleaner\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+D:\Projects\SYSCleaner\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

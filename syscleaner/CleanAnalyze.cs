@@ -12,7 +12,7 @@ namespace syscleaner
 {
     public partial class CleanAnalyze : Form
     {
-        private CustomToolTip tip;
+
 
         /// <summary>
         /// Scan All folder information about this...
@@ -22,9 +22,7 @@ namespace syscleaner
         public CleanAnalyze()
         {
             InitializeComponent();
-            this.tip = new CustomToolTip();
 
-            //this.lblPercentCount.ForeColor = Color.FromArgb(40, 129, 187);
         }
 
         private void pictureBox12_Click(object sender, EventArgs e)
@@ -39,45 +37,98 @@ namespace syscleaner
 
         private void CleanAnalyze_Load(object sender, EventArgs e)
         {
-            CommonFunction.exectAmountOfData(CommonFunction.SizeOfRam());
 
-            this.tip.SetToolTip(pnl_Left_Outer_1, "this is a test : 400" + Environment.NewLine + "have : 500 ");
 
         }
 
+        bool IsButtonClick = false;
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            PictureBox ObjPictureBox = (PictureBox)sender;
-            string [] ControlId =CommonFunction.GetControlId(ObjPictureBox.Name);
+            if (!IsButtonClick)
+            {
+                DisplayOrHideDetails((PictureBox)sender, IsButtonClick);
+                IsButtonClick = true;
+            }
+            else
+            {
+                IsButtonClick = true;
+                DisplayOrHideDetails((PictureBox)sender, IsButtonClick);
+                IsButtonClick = false;
+            }
+        }
+
+        private void DisplayOrHideDetails(PictureBox objPictureBox, bool isHide)
+        {
+
+            string[] ControlId = CommonFunction.GetControlId(objPictureBox.Name);
+            Control ParentControl = objPictureBox.Parent;
             int ID = 0;
-            string startingPnl=string.Empty;
+            string startingPnl = string.Empty;
             string Outers = string.Empty;
             string LeftOrRightPanel = string.Empty;
             if (ControlId.Length == 4)
             {
-                 ID = Convert.ToInt32(ControlId[3]);
-                 Outers = ControlId[2];
-                 LeftOrRightPanel = ControlId[1];
-                startingPnl=ControlId[0];
+                ID = Convert.ToInt32(ControlId[3]);
+                Outers = ControlId[2];
+                LeftOrRightPanel = ControlId[1];
+                startingPnl = ControlId[0];
             }
-
-
-             
             foreach (var Controls in this.PnlContainer.Controls)
             {
                 Type ControlsType = Controls.GetType();
-                if(ControlsType.FullName.Contains("Panel"))
+                if (ControlsType.FullName.Contains("Panel"))
                 {
                     Panel ObjPanel = (Panel)Controls;
-                    if (ObjPanel.Name.ToLower() == ("pnl_"+LeftOrRightPanel+"_Inner"+"_"+ID).ToLower())
-                    {
-                        ObjPanel.Visible = true;
+                    string[] PanelControlId = CommonFunction.GetControlId(ObjPanel.Name.ToLower());
 
+                    if (ObjPanel.Name.ToLower() == ("pnl_" + LeftOrRightPanel + "_Inner" + "_" + ID).ToLower())
+                    {
+                        if (isHide)
+                        {
+
+                            ObjPanel.Visible = false;
+                        }
+                        else
+                        {
+
+                            ObjPanel.Location = new Point(((ParentControl.Location.X) + CommonInformation.GapPannelInnerX), ((ParentControl.Location.Y) + CommonInformation.GapPannelInnerY));
+                            ObjPanel.Visible = true;
+                        }
+                    }
+                    if (Convert.ToInt32(PanelControlId[3]) > ID)
+                    {
+
+                        if (ObjPanel.Name.ToLower().Contains((LeftOrRightPanel + "_outer").ToLower()))
+                        {
+                            if (isHide)
+                            {
+                                var Temp = ObjPanel.Location;
+                                ObjPanel.Location = new Point(Temp.X, (Temp.Y - CommonInformation.GapPanelForCeanAnalyzePage));
+                            }
+                            else
+                            {
+                                var Temp = ObjPanel.Location;
+                                ObjPanel.Location = new Point(Temp.X, (Temp.Y + CommonInformation.GapPanelForCeanAnalyzePage));
+                            }
+                        }
                     }
 
                 }
+            }
+        }
 
-
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            if (!IsButtonClick)
+            {
+                DisplayOrHideDetails((PictureBox)sender, IsButtonClick);
+                IsButtonClick = true;
+            }
+            else
+            {
+                IsButtonClick = true;
+                DisplayOrHideDetails((PictureBox)sender, IsButtonClick);
+                IsButtonClick = false;
             }
         }
     }

@@ -41,6 +41,19 @@
             this.CloseButton = new System.Windows.Forms.PictureBox();
             this.headerControl1 = new CustomControl.HeaderControl();
             this.PnlContainer = new System.Windows.Forms.GroupBox();
+            this.pnl_left_inner_2 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.pnl_left_outer_3 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pnl_left_inner_1 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -50,19 +63,19 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Pnl_Right_2 = new System.Windows.Forms.Panel();
+            this.pnl_right_outer_2 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.Pnl_Left_outer_2 = new System.Windows.Forms.Panel();
+            this.pnl_left_outer_2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.Pnl_Right_1 = new System.Windows.Forms.Panel();
+            this.Picture_Left_inner_2 = new System.Windows.Forms.PictureBox();
+            this.pnl_right_outer_1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pnl_Left_Outer_1 = new System.Windows.Forms.Panel();
+            this.pnl_left_outer_1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Picture_Left_inner_1 = new System.Windows.Forms.PictureBox();
@@ -74,14 +87,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
             this.PnlContainer.SuspendLayout();
+            this.pnl_left_inner_2.SuspendLayout();
+            this.pnl_left_outer_3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.pnl_left_inner_1.SuspendLayout();
-            this.Pnl_Right_2.SuspendLayout();
+            this.pnl_right_outer_2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            this.Pnl_Left_outer_2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            this.Pnl_Right_1.SuspendLayout();
+            this.pnl_left_outer_2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture_Left_inner_2)).BeginInit();
+            this.pnl_right_outer_1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            this.pnl_Left_Outer_1.SuspendLayout();
+            this.pnl_left_outer_1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Picture_Left_inner_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
@@ -201,10 +217,12 @@
             // 
             this.PnlContainer.BackColor = System.Drawing.Color.White;
             this.PnlContainer.Controls.Add(this.pnl_left_inner_1);
-            this.PnlContainer.Controls.Add(this.Pnl_Right_2);
-            this.PnlContainer.Controls.Add(this.Pnl_Left_outer_2);
-            this.PnlContainer.Controls.Add(this.Pnl_Right_1);
-            this.PnlContainer.Controls.Add(this.pnl_Left_Outer_1);
+            this.PnlContainer.Controls.Add(this.pnl_left_inner_2);
+            this.PnlContainer.Controls.Add(this.pnl_left_outer_3);
+            this.PnlContainer.Controls.Add(this.pnl_right_outer_2);
+            this.PnlContainer.Controls.Add(this.pnl_left_outer_2);
+            this.PnlContainer.Controls.Add(this.pnl_right_outer_1);
+            this.PnlContainer.Controls.Add(this.pnl_left_outer_1);
             this.PnlContainer.Controls.Add(this.pictureBox3);
             this.PnlContainer.Location = new System.Drawing.Point(2, 142);
             this.PnlContainer.Name = "PnlContainer";
@@ -212,6 +230,135 @@
             this.PnlContainer.TabIndex = 5;
             this.PnlContainer.TabStop = false;
             this.PnlContainer.Text = "n";
+            // 
+            // pnl_left_inner_2
+            // 
+            this.pnl_left_inner_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_left_inner_2.Controls.Add(this.label19);
+            this.pnl_left_inner_2.Controls.Add(this.label20);
+            this.pnl_left_inner_2.Controls.Add(this.label21);
+            this.pnl_left_inner_2.Controls.Add(this.label22);
+            this.pnl_left_inner_2.Controls.Add(this.label23);
+            this.pnl_left_inner_2.Controls.Add(this.label24);
+            this.pnl_left_inner_2.Controls.Add(this.label25);
+            this.pnl_left_inner_2.Controls.Add(this.label26);
+            this.pnl_left_inner_2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnl_left_inner_2.Location = new System.Drawing.Point(355, 299);
+            this.pnl_left_inner_2.Name = "pnl_left_inner_2";
+            this.pnl_left_inner_2.Size = new System.Drawing.Size(258, 120);
+            this.pnl_left_inner_2.TabIndex = 18;
+            this.pnl_left_inner_2.Visible = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(164, 88);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(44, 13);
+            this.label19.TabIndex = 21;
+            this.label19.Text = "100 MB";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(42, 88);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(71, 13);
+            this.label20.TabIndex = 20;
+            this.label20.Text = "Registry Junk";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(165, 62);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(44, 13);
+            this.label21.TabIndex = 19;
+            this.label21.Text = "100 MB";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(43, 62);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(71, 13);
+            this.label22.TabIndex = 18;
+            this.label22.Text = "Registry Junk";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(168, 36);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(44, 13);
+            this.label23.TabIndex = 17;
+            this.label23.Text = "100 MB";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(43, 36);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(70, 13);
+            this.label24.TabIndex = 16;
+            this.label24.Text = "Mind Blowing";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(165, 13);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(44, 13);
+            this.label25.TabIndex = 15;
+            this.label25.Text = "100 MB";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(43, 13);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(80, 13);
+            this.label26.TabIndex = 14;
+            this.label26.Text = "Inneral Registry";
+            // 
+            // pnl_left_outer_3
+            // 
+            this.pnl_left_outer_3.Controls.Add(this.label17);
+            this.pnl_left_outer_3.Controls.Add(this.label18);
+            this.pnl_left_outer_3.Controls.Add(this.pictureBox4);
+            this.pnl_left_outer_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnl_left_outer_3.Location = new System.Drawing.Point(6, 119);
+            this.pnl_left_outer_3.Name = "pnl_left_outer_3";
+            this.pnl_left_outer_3.Size = new System.Drawing.Size(303, 39);
+            this.pnl_left_outer_3.TabIndex = 16;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(165, 13);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(48, 17);
+            this.label17.TabIndex = 14;
+            this.label17.Text = "20 MB";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(43, 13);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(86, 17);
+            this.label18.TabIndex = 13;
+            this.label18.Text = "History Junk";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.Image = global::syscleaner.Properties.Resources.Icon_RegEntry;
+            this.pictureBox4.Location = new System.Drawing.Point(6, 6);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(29, 27);
+            this.pictureBox4.TabIndex = 12;
+            this.pictureBox4.TabStop = false;
             // 
             // pnl_left_inner_1
             // 
@@ -224,9 +371,10 @@
             this.pnl_left_inner_1.Controls.Add(this.label6);
             this.pnl_left_inner_1.Controls.Add(this.label4);
             this.pnl_left_inner_1.Controls.Add(this.label3);
-            this.pnl_left_inner_1.Location = new System.Drawing.Point(6, 50);
+            this.pnl_left_inner_1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnl_left_inner_1.Location = new System.Drawing.Point(355, 156);
             this.pnl_left_inner_1.Name = "pnl_left_inner_1";
-            this.pnl_left_inner_1.Size = new System.Drawing.Size(303, 120);
+            this.pnl_left_inner_1.Size = new System.Drawing.Size(258, 120);
             this.pnl_left_inner_1.TabIndex = 17;
             this.pnl_left_inner_1.Visible = false;
             // 
@@ -302,15 +450,15 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "Inneral Registry";
             // 
-            // Pnl_Right_2
+            // pnl_right_outer_2
             // 
-            this.Pnl_Right_2.Controls.Add(this.label11);
-            this.Pnl_Right_2.Controls.Add(this.label12);
-            this.Pnl_Right_2.Controls.Add(this.pictureBox9);
-            this.Pnl_Right_2.Location = new System.Drawing.Point(309, 65);
-            this.Pnl_Right_2.Name = "Pnl_Right_2";
-            this.Pnl_Right_2.Size = new System.Drawing.Size(313, 40);
-            this.Pnl_Right_2.TabIndex = 16;
+            this.pnl_right_outer_2.Controls.Add(this.label11);
+            this.pnl_right_outer_2.Controls.Add(this.label12);
+            this.pnl_right_outer_2.Controls.Add(this.pictureBox9);
+            this.pnl_right_outer_2.Location = new System.Drawing.Point(309, 65);
+            this.pnl_right_outer_2.Name = "pnl_right_outer_2";
+            this.pnl_right_outer_2.Size = new System.Drawing.Size(313, 40);
+            this.pnl_right_outer_2.TabIndex = 16;
             // 
             // label11
             // 
@@ -340,16 +488,16 @@
             this.pictureBox9.TabIndex = 12;
             this.pictureBox9.TabStop = false;
             // 
-            // Pnl_Left_outer_2
+            // pnl_left_outer_2
             // 
-            this.Pnl_Left_outer_2.Controls.Add(this.label9);
-            this.Pnl_Left_outer_2.Controls.Add(this.label10);
-            this.Pnl_Left_outer_2.Controls.Add(this.pictureBox8);
-            this.Pnl_Left_outer_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pnl_Left_outer_2.Location = new System.Drawing.Point(6, 185);
-            this.Pnl_Left_outer_2.Name = "Pnl_Left_outer_2";
-            this.Pnl_Left_outer_2.Size = new System.Drawing.Size(303, 39);
-            this.Pnl_Left_outer_2.TabIndex = 15;
+            this.pnl_left_outer_2.Controls.Add(this.label9);
+            this.pnl_left_outer_2.Controls.Add(this.label10);
+            this.pnl_left_outer_2.Controls.Add(this.Picture_Left_inner_2);
+            this.pnl_left_outer_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnl_left_outer_2.Location = new System.Drawing.Point(6, 65);
+            this.pnl_left_outer_2.Name = "pnl_left_outer_2";
+            this.pnl_left_outer_2.Size = new System.Drawing.Size(303, 39);
+            this.pnl_left_outer_2.TabIndex = 15;
             // 
             // label9
             // 
@@ -369,26 +517,27 @@
             this.label10.TabIndex = 13;
             this.label10.Text = "History Junk";
             // 
-            // pictureBox8
+            // Picture_Left_inner_2
             // 
-            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox8.Image = global::syscleaner.Properties.Resources.Icon_RegEntry;
-            this.pictureBox8.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(29, 27);
-            this.pictureBox8.TabIndex = 12;
-            this.pictureBox8.TabStop = false;
+            this.Picture_Left_inner_2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Picture_Left_inner_2.Image = global::syscleaner.Properties.Resources.Icon_RegEntry;
+            this.Picture_Left_inner_2.Location = new System.Drawing.Point(6, 6);
+            this.Picture_Left_inner_2.Name = "Picture_Left_inner_2";
+            this.Picture_Left_inner_2.Size = new System.Drawing.Size(29, 27);
+            this.Picture_Left_inner_2.TabIndex = 12;
+            this.Picture_Left_inner_2.TabStop = false;
+            this.Picture_Left_inner_2.Click += new System.EventHandler(this.pictureBox8_Click);
             // 
-            // Pnl_Right_1
+            // pnl_right_outer_1
             // 
-            this.Pnl_Right_1.Controls.Add(this.label7);
-            this.Pnl_Right_1.Controls.Add(this.label8);
-            this.Pnl_Right_1.Controls.Add(this.pictureBox7);
-            this.Pnl_Right_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pnl_Right_1.Location = new System.Drawing.Point(309, 11);
-            this.Pnl_Right_1.Name = "Pnl_Right_1";
-            this.Pnl_Right_1.Size = new System.Drawing.Size(313, 40);
-            this.Pnl_Right_1.TabIndex = 14;
+            this.pnl_right_outer_1.Controls.Add(this.label7);
+            this.pnl_right_outer_1.Controls.Add(this.label8);
+            this.pnl_right_outer_1.Controls.Add(this.pictureBox7);
+            this.pnl_right_outer_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnl_right_outer_1.Location = new System.Drawing.Point(309, 11);
+            this.pnl_right_outer_1.Name = "pnl_right_outer_1";
+            this.pnl_right_outer_1.Size = new System.Drawing.Size(313, 40);
+            this.pnl_right_outer_1.TabIndex = 14;
             // 
             // label7
             // 
@@ -418,16 +567,16 @@
             this.pictureBox7.TabIndex = 12;
             this.pictureBox7.TabStop = false;
             // 
-            // pnl_Left_Outer_1
+            // pnl_left_outer_1
             // 
-            this.pnl_Left_Outer_1.Controls.Add(this.label1);
-            this.pnl_Left_Outer_1.Controls.Add(this.label2);
-            this.pnl_Left_Outer_1.Controls.Add(this.Picture_Left_inner_1);
-            this.pnl_Left_Outer_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnl_Left_Outer_1.Location = new System.Drawing.Point(6, 11);
-            this.pnl_Left_Outer_1.Name = "pnl_Left_Outer_1";
-            this.pnl_Left_Outer_1.Size = new System.Drawing.Size(303, 39);
-            this.pnl_Left_Outer_1.TabIndex = 13;
+            this.pnl_left_outer_1.Controls.Add(this.label1);
+            this.pnl_left_outer_1.Controls.Add(this.label2);
+            this.pnl_left_outer_1.Controls.Add(this.Picture_Left_inner_1);
+            this.pnl_left_outer_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnl_left_outer_1.Location = new System.Drawing.Point(6, 11);
+            this.pnl_left_outer_1.Name = "pnl_left_outer_1";
+            this.pnl_left_outer_1.Size = new System.Drawing.Size(303, 39);
+            this.pnl_left_outer_1.TabIndex = 13;
             // 
             // label1
             // 
@@ -500,19 +649,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
             this.PnlContainer.ResumeLayout(false);
+            this.pnl_left_inner_2.ResumeLayout(false);
+            this.pnl_left_inner_2.PerformLayout();
+            this.pnl_left_outer_3.ResumeLayout(false);
+            this.pnl_left_outer_3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.pnl_left_inner_1.ResumeLayout(false);
             this.pnl_left_inner_1.PerformLayout();
-            this.Pnl_Right_2.ResumeLayout(false);
-            this.Pnl_Right_2.PerformLayout();
+            this.pnl_right_outer_2.ResumeLayout(false);
+            this.pnl_right_outer_2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            this.Pnl_Left_outer_2.ResumeLayout(false);
-            this.Pnl_Left_outer_2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            this.Pnl_Right_1.ResumeLayout(false);
-            this.Pnl_Right_1.PerformLayout();
+            this.pnl_left_outer_2.ResumeLayout(false);
+            this.pnl_left_outer_2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture_Left_inner_2)).EndInit();
+            this.pnl_right_outer_1.ResumeLayout(false);
+            this.pnl_right_outer_1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            this.pnl_Left_Outer_1.ResumeLayout(false);
-            this.pnl_Left_Outer_1.PerformLayout();
+            this.pnl_left_outer_1.ResumeLayout(false);
+            this.pnl_left_outer_1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Picture_Left_inner_1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
@@ -534,22 +688,22 @@
         private System.Windows.Forms.PictureBox CloseButton;
         private CustomControl.HeaderControl headerControl1;
         private System.Windows.Forms.GroupBox PnlContainer;
-        private System.Windows.Forms.Panel Pnl_Right_1;
+        private System.Windows.Forms.Panel pnl_right_outer_1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.Panel pnl_Left_Outer_1;
+        private System.Windows.Forms.Panel pnl_left_outer_1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox Picture_Left_inner_1;
-        private System.Windows.Forms.Panel Pnl_Right_2;
+        private System.Windows.Forms.Panel pnl_right_outer_2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.Panel Pnl_Left_outer_2;
+        private System.Windows.Forms.Panel pnl_left_outer_2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox Picture_Left_inner_2;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel pnl_left_inner_1;
         private System.Windows.Forms.Label label4;
@@ -560,6 +714,19 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel pnl_left_outer_3;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Panel pnl_left_inner_2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
 
     }
 }
