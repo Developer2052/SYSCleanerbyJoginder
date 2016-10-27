@@ -10,12 +10,12 @@ namespace Common
     {
         public void GetTemporaryFileDetails()
         {
-            string TempraryFolderPath = @"F:\Testing";// Path.GetTempPath();
+            string TempraryFolderPath = Path.GetTempPath();
             if (Directory.Exists(TempraryFolderPath))
             {
                 List<string> ListOfFileName = new List<string>();
                 string FileOfSize = string.Empty;
-                CommonFunction.DeleteFileGetTheDirecotry(TempraryFolderPath,false,out ListOfFileName,out FileOfSize);
+                CommonFunction.DeleteFileGetTheDirecotry(TempraryFolderPath, false, out ListOfFileName, out FileOfSize);
             }
 
         }

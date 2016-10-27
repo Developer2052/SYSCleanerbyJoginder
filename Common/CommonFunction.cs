@@ -48,40 +48,51 @@ namespace Common
 
         #region Delete the file after check locked or Not
         static List<string> DeleteListTempFile = null;
+
+       static string TempFilePath = string.Empty;
+
+
         public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, out List<string> deleteFileRecords, out string sizeOfFile)
         {
             try
             {
+                TempFilePath = filePath;
                 DeleteListTempFile = new List<string>();
                 CommonInformation.TempraroyFileSpaceCount = new long();
+
                 DirectoryInfo TempDirectoryInfo = new DirectoryInfo(filePath);
+
 
                 // Check In Direcotory Files is there
                 if (IsFileAvailable(TempDirectoryInfo))
                 {
                     DeleteFiles(TempDirectoryInfo, isScanOnlyForSpaceCount);
                 }
-
-                foreach (DirectoryInfo dir in TempDirectoryInfo.GetDirectories())
+                if (IsDirectoryAvailable(TempDirectoryInfo))
                 {
-                    if (IsFileAvailable(dir))
+                    foreach (DirectoryInfo dir in TempDirectoryInfo.GetDirectories())
                     {
-                        DeleteFiles(dir, isScanOnlyForSpaceCount);
-                    }
-                    if(IsDirectoryAvailable(dir))
-                    {
-                        IsDeleteFile(dir, isScanOnlyForSpaceCount);
-                    }
-                    if (Directory.Exists(dir.FullName))
-                    {
-                        if ((!IsFileAvailable(dir)) && (!IsDirectoryAvailable(dir)))
+                        if (IsFileAvailable(dir))
                         {
-                            if (!isScanOnlyForSpaceCount)
-                                dir.Delete();
+                            DeleteFiles(dir, isScanOnlyForSpaceCount);
+                        }
+                        if (IsDirectoryAvailable(dir))
+                        {
+                            IsDeleteFile(dir, isScanOnlyForSpaceCount);
+                        }
+                        if (Directory.Exists(dir.FullName))
+                        {
+                            if ((!IsFileAvailable(dir)) && (!IsDirectoryAvailable(dir)))
+                            {
+                                if (!isScanOnlyForSpaceCount)
+                                    dir.Delete(true);
+                            }
                         }
                     }
-
                 }
+
+
+
                 deleteFileRecords = DeleteListTempFile;
 
                 sizeOfFile = GetFileSize(CommonInformation.TempraroyFileSpaceCount);
@@ -114,11 +125,32 @@ namespace Common
                             {
                                 IsDeleteFile(innerDirectoryInfo, isScanOnlyForSpaceCount);
                             }
+                            if ((!IsFileAvailable(innerDirectoryInfo)) && (!IsDirectoryAvailable(innerDirectoryInfo)))
+                            {
+                                if (Directory.Exists(innerDirectoryInfo.FullName))
+                                {
+                                    if (TempFilePath != innerDirectoryInfo.FullName)
+                                    {
+                                        innerDirectoryInfo.Delete();
+                                        IsDeleteFile(innerDirectoryInfo.Parent, isScanOnlyForSpaceCount);
+                                    }
+                                }
+                            }
                         }
                     }
                     else
                     {
-                        DeleteFiles(directoryInfo, isScanOnlyForSpaceCount);
+                        if ((!IsFileAvailable(directoryInfo)) && (!IsDirectoryAvailable(directoryInfo)))
+                        {
+                            if (Directory.Exists(directoryInfo.FullName))
+                            {
+                                if (TempFilePath != directoryInfo.FullName)
+                                {
+                                    directoryInfo.Delete();
+                                    IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount);
+                                }
+                            }
+                        }
 
                     }
                 }
@@ -133,7 +165,9 @@ namespace Common
         private static void DeleteFiles(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount)
         {
             try
-            {// Check Direcotry exists here... JSB 26-10-2016
+            {
+                
+                // Check Direcotry exists here... JSB 26-10-2016
                 if (Directory.Exists(directoryInfo.FullName))
                 {
                     /// In this IF condition we are checked here, in Direcotory have no files or sub direcotory or Folder 
@@ -152,9 +186,12 @@ namespace Common
                                 // check User want scan or delete file..
                                 if (!isScanOnlyForSpaceCount)
                                 {
-                                    DeleteListTempFile.Add(file.Name);
-                                    CommonInformation.TempraroyFileSpaceCount += file.Length;
-                                    file.Delete();
+                                    if (File.Exists(file.FullName))
+                                    {
+                                        DeleteListTempFile.Add(file.Name);
+                                        CommonInformation.TempraroyFileSpaceCount += file.Length;
+                                        file.Delete();
+                                    }
                                 }
                                 else
                                 {
@@ -162,13 +199,18 @@ namespace Common
                                     CommonInformation.TempraroyFileSpaceCount += file.Length;
 
                                 }
-                                if (directoryInfo.GetFiles().Length == (int)CommonConstantProperty.IsDefaultValue.Zero && directoryInfo.GetDirectories().Length == (int)CommonConstantProperty.IsDefaultValue.Zero)
-                                {
-                                    directoryInfo.Delete();
-                                    DeleteFiles(directoryInfo.Parent, isScanOnlyForSpaceCount);
-                                }
+                               
                             }
                         }
+                        if ((!IsFileAvailable(directoryInfo)) && (!IsDirectoryAvailable(directoryInfo)))
+                        {
+                            if (Directory.Exists(directoryInfo.FullName))
+                            {
+                                directoryInfo.Delete();
+                                IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount);
+                            }
+                        }
+                       
                     }
                 }
             }
@@ -181,18 +223,27 @@ namespace Common
 
         private static bool IsFileAvailable(DirectoryInfo direcotoryInfo)
         {
-            if (direcotoryInfo.GetFiles().Length != (int)CommonConstantProperty.IsDefaultValue.Zero)
-                return true;
+            if (Directory.Exists(direcotoryInfo.FullName))
+            {
+                if (direcotoryInfo.GetFiles().Length != (int)CommonConstantProperty.IsDefaultValue.Zero)
+                    return true;
+                else
+                    return false;
+            }
             else
                 return false;
         }
         private static bool IsDirectoryAvailable(DirectoryInfo direcotoryInfo)
         {
-            if (direcotoryInfo.GetDirectories().Length != (int)CommonConstantProperty.IsDefaultValue.Zero)
-                return true;
+            if (Directory.Exists(direcotoryInfo.FullName))
+            {
+                if (direcotoryInfo.GetDirectories().Length != (int)CommonConstantProperty.IsDefaultValue.Zero)
+                    return true;
+                else
+                    return false;
+            }
             else
                 return false;
-
         }
 
         #endregion
