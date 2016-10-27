@@ -16,3 +16,8 @@ D:\Projects\SYSCleaner\Common\obj\Debug\Common.dll
 D:\Projects\SYSCleaner\Common\obj\Debug\Common.pdb
 F:\cleaner\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 D:\Projects\SYSCleaner\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+F:\syscleaner\Common\bin\Debug\Common.dll
+F:\syscleaner\Common\bin\Debug\Common.pdb
+F:\syscleaner\Common\obj\Debug\Common.dll
+F:\syscleaner\Common\obj\Debug\Common.pdb
+F:\syscleaner\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

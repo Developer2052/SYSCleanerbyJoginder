@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,72 +47,152 @@ namespace Common
         #endregion
 
         #region Delete the file after check locked or Not
-
-        public static bool DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount)
+        static List<string> DeleteListTempFile = null;
+        public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, out List<string> deleteFileRecords, out string sizeOfFile)
         {
-            bool isDeleteFile = false;
-
-            DirectoryInfo di = new DirectoryInfo(filePath);
-            IsDeleteFiles(di);
-            foreach (DirectoryInfo dir in di.GetDirectories())
+            try
             {
-                IsDeleteFile(dir);
+                DeleteListTempFile = new List<string>();
+                CommonInformation.TempraroyFileSpaceCount = new long();
+                DirectoryInfo TempDirectoryInfo = new DirectoryInfo(filePath);
 
-                if (dir.GetDirectories().Length == (int)CommonConstantProperty.IsDefaultValue.Zero)
-                    dir.Delete();
+                // Check In Direcotory Files is there
+                if (IsFileAvailable(TempDirectoryInfo))
+                {
+                    DeleteFiles(TempDirectoryInfo, isScanOnlyForSpaceCount);
+                }
 
+                foreach (DirectoryInfo dir in TempDirectoryInfo.GetDirectories())
+                {
+                    if (IsFileAvailable(dir))
+                    {
+                        DeleteFiles(dir, isScanOnlyForSpaceCount);
+                    }
+                    if(IsDirectoryAvailable(dir))
+                    {
+                        IsDeleteFile(dir, isScanOnlyForSpaceCount);
+                    }
+                    if (Directory.Exists(dir.FullName))
+                    {
+                        if ((!IsFileAvailable(dir)) && (!IsDirectoryAvailable(dir)))
+                        {
+                            if (!isScanOnlyForSpaceCount)
+                                dir.Delete();
+                        }
+                    }
+
+                }
+                deleteFileRecords = DeleteListTempFile;
+
+                sizeOfFile = GetFileSize(CommonInformation.TempraroyFileSpaceCount);
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
-            return isDeleteFile;
+
         }
 
-        private static void IsDeleteFile(DirectoryInfo directoryInfo)
+        private static void IsDeleteFile(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount)
         {
-
-            if (Directory.Exists(directoryInfo.FullName))
+            try
             {
-                if (directoryInfo.GetDirectories().Length > (int)CommonConstantProperty.IsDefaultValue.Zero)
+
+                if (Directory.Exists(directoryInfo.FullName))
                 {
-                    foreach (DirectoryInfo innerDirectoryInfo in directoryInfo.GetDirectories())
+                    if (IsDirectoryAvailable(directoryInfo))
                     {
-                        IsDeleteFiles(innerDirectoryInfo);
-                        IsDeleteFile(innerDirectoryInfo);
+                        foreach (DirectoryInfo innerDirectoryInfo in directoryInfo.GetDirectories())
+                        {
+                            if (IsFileAvailable(innerDirectoryInfo))
+                            {
+                                DeleteFiles(innerDirectoryInfo, isScanOnlyForSpaceCount);
+                            }
+                            if (IsDirectoryAvailable(innerDirectoryInfo))
+                            {
+                                IsDeleteFile(innerDirectoryInfo, isScanOnlyForSpaceCount);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DeleteFiles(directoryInfo, isScanOnlyForSpaceCount);
+
                     }
                 }
-                else
-                {
-                    IsDeleteFiles(directoryInfo);
+            }
+            catch (Exception)
+            {
 
-                }
+                throw;
             }
         }
 
-        private static void IsDeleteFiles(DirectoryInfo directoryInfo)
+        private static void DeleteFiles(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount)
         {
-            if (Directory.Exists(directoryInfo.FullName))
-            {
-                if (directoryInfo.GetFiles().Length == (int)CommonConstantProperty.IsDefaultValue.Zero &&
-                    directoryInfo.GetDirectories().Length == (int)CommonConstantProperty.IsDefaultValue.Zero)
+            try
+            {// Check Direcotry exists here... JSB 26-10-2016
+                if (Directory.Exists(directoryInfo.FullName))
                 {
-                    directoryInfo.Delete();
-                }
-                else
-                {
-
-                    foreach (FileInfo file in directoryInfo.GetFiles())
+                    /// In this IF condition we are checked here, in Direcotory have no files or sub direcotory or Folder 
+                    if ((!IsFileAvailable(directoryInfo)) && (!IsDirectoryAvailable(directoryInfo)))
                     {
-                        if (CommonFunction.IsFileLocked(file) == CommonProperty.IsDelete)
+                        if (!isScanOnlyForSpaceCount)
+                            directoryInfo.Delete();
+                    }
+                    else
+                    {
+
+                        foreach (FileInfo file in directoryInfo.GetFiles())
                         {
-                            file.Delete();
-                            if (directoryInfo.GetFiles().Length == (int)CommonConstantProperty.IsDefaultValue.Zero)
+                            if (CommonFunction.IsFileLocked(file) == CommonProperty.IsDelete)
                             {
-                                directoryInfo.Delete();
-                                IsDeleteFiles(directoryInfo.Parent);
+                                // check User want scan or delete file..
+                                if (!isScanOnlyForSpaceCount)
+                                {
+                                    DeleteListTempFile.Add(file.Name);
+                                    CommonInformation.TempraroyFileSpaceCount += file.Length;
+                                    file.Delete();
+                                }
+                                else
+                                {
+                                    DeleteListTempFile.Add(file.Name);
+                                    CommonInformation.TempraroyFileSpaceCount += file.Length;
+
+                                }
+                                if (directoryInfo.GetFiles().Length == (int)CommonConstantProperty.IsDefaultValue.Zero && directoryInfo.GetDirectories().Length == (int)CommonConstantProperty.IsDefaultValue.Zero)
+                                {
+                                    directoryInfo.Delete();
+                                    DeleteFiles(directoryInfo.Parent, isScanOnlyForSpaceCount);
+                                }
                             }
                         }
                     }
                 }
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private static bool IsFileAvailable(DirectoryInfo direcotoryInfo)
+        {
+            if (direcotoryInfo.GetFiles().Length != (int)CommonConstantProperty.IsDefaultValue.Zero)
+                return true;
+            else
+                return false;
+        }
+        private static bool IsDirectoryAvailable(DirectoryInfo direcotoryInfo)
+        {
+            if (direcotoryInfo.GetDirectories().Length != (int)CommonConstantProperty.IsDefaultValue.Zero)
+                return true;
+            else
+                return false;
+
         }
 
         #endregion
@@ -290,6 +371,57 @@ namespace Common
 
         }
         #endregion
+
+
+        // Returns the human-readable file size for an arbitrary, 64-bit file size 
+        // The default format is "0.### XB", e.g. "4.2 KB" or "1.434 GB"
+
+        private static string GetFileSize(long i)
+        {
+            // Get absolute value
+            long absolute_i = (i < 0 ? -i : i);
+            // Determine the suffix and readable value
+            string suffix;
+            double readable;
+            if (absolute_i >= 0x1000000000000000) // Exabyte
+            {
+                suffix = "EB";
+                readable = (i >> 50);
+            }
+            else if (absolute_i >= 0x4000000000000) // Petabyte
+            {
+                suffix = "PB";
+                readable = (i >> 40);
+            }
+            else if (absolute_i >= 0x10000000000) // Terabyte
+            {
+                suffix = "TB";
+                readable = (i >> 30);
+            }
+            else if (absolute_i >= 0x40000000) // Gigabyte
+            {
+                suffix = "GB";
+                readable = (i >> 20);
+            }
+            else if (absolute_i >= 0x100000) // Megabyte
+            {
+                suffix = "MB";
+                readable = (i >> 10);
+            }
+            else if (absolute_i >= 0x400) // Kilobyte
+            {
+                suffix = "KB";
+                readable = i;
+            }
+            else
+            {
+                return i.ToString("0 B"); // Byte
+            }
+            // Divide by 1024 to get fractional value
+            readable = (readable / 1024);
+            // Return formatted number with suffix
+            return readable.ToString("0.### ") + suffix;
+        }
 
 
     }

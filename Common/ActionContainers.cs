@@ -6,14 +6,16 @@ using System.IO;
 
 namespace Common
 {
-    class ActionContainers
+  public  class ActionContainers
     {
-        private void GetTemporaryFileDetails()
+        public void GetTemporaryFileDetails()
         {
-            string TempraryFolderPath = Path.GetTempPath();
+            string TempraryFolderPath = @"F:\Testing";// Path.GetTempPath();
             if (Directory.Exists(TempraryFolderPath))
             {
-                CommonFunction.DeleteFileGetTheDirecotry(TempraryFolderPath,true);
+                List<string> ListOfFileName = new List<string>();
+                string FileOfSize = string.Empty;
+                CommonFunction.DeleteFileGetTheDirecotry(TempraryFolderPath,false,out ListOfFileName,out FileOfSize);
             }
 
         }

@@ -87,9 +87,6 @@
     <Compile Include="CleanAnalyze.Designer.cs">
       <DependentUpon>CleanAnalyze.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomToolTip.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>

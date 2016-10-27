@@ -55,7 +55,7 @@ namespace Common
         /// <summary>
         /// All below Property are using for hold the space of data find...Develp By Joginder singh 26-10-2016
         /// </summary>
-        public int TempraroyFileSpaceCount{get;set;}
+        public static long TempraroyFileSpaceCount{get;set;}
 
 
     }

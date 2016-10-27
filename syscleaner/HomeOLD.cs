@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-
-using System.Text;
-
 using Common;
 using System.Windows.Forms;
-using System.Management;
 
 namespace syscleaner
 {
@@ -35,7 +26,7 @@ namespace syscleaner
         {
             
             string path = @"C:\Users\JOGIND~1\AppData\Local\Temp";
-            CommonFunction.DeleteFileGetTheDirecotry(path,false);
+            //CommonFunction.DeleteFileGetTheDirecotry(path,false);
 
         }
 
@@ -65,7 +56,7 @@ namespace syscleaner
         private void button2_Click(object sender, EventArgs e)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.History);
-            CommonFunction.DeleteFileGetTheDirecotry(path,false);
+            //CommonFunction.DeleteFileGetTheDirecotry(path,false);
 
         }
 

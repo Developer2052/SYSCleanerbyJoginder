@@ -46,7 +46,8 @@ namespace syscleaner
        
         private void btnClean_Click(object sender, EventArgs e)
         {
-          
+            ActionContainers ObjAction = new ActionContainers();
+            ObjAction.GetTemporaryFileDetails();
 
 
         }
