@@ -49,7 +49,7 @@ namespace Common
         #region Delete the file after check locked or Not
         static List<string> DeleteListTempFile = null;
 
-       static string TempFilePath = string.Empty;
+        static string TempFilePath = string.Empty;
 
 
         public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, out List<string> deleteFileRecords, out string sizeOfFile)
@@ -166,7 +166,7 @@ namespace Common
         {
             try
             {
-                
+
                 // Check Direcotry exists here... JSB 26-10-2016
                 if (Directory.Exists(directoryInfo.FullName))
                 {
@@ -199,7 +199,7 @@ namespace Common
                                     CommonInformation.TempraroyFileSpaceCount += file.Length;
 
                                 }
-                               
+
                             }
                         }
                         if ((!IsFileAvailable(directoryInfo)) && (!IsDirectoryAvailable(directoryInfo)))
@@ -210,7 +210,7 @@ namespace Common
                                 IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount);
                             }
                         }
-                       
+
                     }
                 }
             }

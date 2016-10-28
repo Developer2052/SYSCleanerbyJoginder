@@ -52,6 +52,12 @@ namespace Common
         public const int GapPannelInnerX = 46;
         public const int GapPannelInnerY = 44;
 
+        public readonly string Cookies = Environment.GetFolderPath(Environment.SpecialFolder.Cookies);
+        public readonly string WindowsHistroy = Environment.GetFolderPath(Environment.SpecialFolder.History);
+       
+           
+
+
         /// <summary>
         /// All below Property are using for hold the space of data find...Develp By Joginder singh 26-10-2016
         /// </summary>

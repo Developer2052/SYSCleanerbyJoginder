@@ -282,9 +282,9 @@
             // headerControl1
             // 
             this.headerControl1.BackColor = System.Drawing.Color.White;
-            this.headerControl1.Location = new System.Drawing.Point(2, 3);
+            this.headerControl1.Location = new System.Drawing.Point(4, 0);
             this.headerControl1.Name = "headerControl1";
-            this.headerControl1.Size = new System.Drawing.Size(632, 136);
+            this.headerControl1.Size = new System.Drawing.Size(628, 136);
             this.headerControl1.TabIndex = 4;
             // 
             // Home
