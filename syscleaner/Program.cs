@@ -1,9 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-
 using System.Windows.Forms;
-
 namespace syscleaner
 {
     static class Program
@@ -16,7 +13,7 @@ namespace syscleaner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartUpPrograjm());
+            Application.Run(new CleanAnalyze ());
         }
     }
 }

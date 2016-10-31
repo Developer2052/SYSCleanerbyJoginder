@@ -1,17 +1,15 @@
-﻿
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Management;
 using System.Text;
-
+using System.Data;
 namespace Common
 {
     public class CommonFunction
     {
-
         #region File Status Check Is locked OR Not
         /// <summary>
         /// Develop By Joginder Singh 
@@ -22,7 +20,6 @@ namespace Common
         public static bool IsFileLocked(FileInfo file)
         {
             FileStream stream = null;
-
             try
             {
                 stream = file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
@@ -40,18 +37,13 @@ namespace Common
                 if (stream != null)
                     stream.Close();
             }
-
             //file is not locked
             return true;
         }
         #endregion
-
         #region Delete the file after check locked or Not
         static List<string> DeleteListTempFile = null;
-
         static string TempFilePath = string.Empty;
-
-
         public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, out List<string> deleteFileRecords, out string sizeOfFile)
         {
             try
@@ -59,10 +51,7 @@ namespace Common
                 TempFilePath = filePath;
                 DeleteListTempFile = new List<string>();
                 CommonInformation.TempraroyFileSpaceCount = new long();
-
                 DirectoryInfo TempDirectoryInfo = new DirectoryInfo(filePath);
-
-
                 // Check In Direcotory Files is there
                 if (IsFileAvailable(TempDirectoryInfo))
                 {
@@ -90,27 +79,18 @@ namespace Common
                         }
                     }
                 }
-
-
-
                 deleteFileRecords = DeleteListTempFile;
-
                 sizeOfFile = GetFileSize(CommonInformation.TempraroyFileSpaceCount);
             }
             catch (Exception)
             {
-
                 throw;
             }
-
-
         }
-
         private static void IsDeleteFile(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount)
         {
             try
             {
-
                 if (Directory.Exists(directoryInfo.FullName))
                 {
                     if (IsDirectoryAvailable(directoryInfo))
@@ -151,22 +131,18 @@ namespace Common
                                 }
                             }
                         }
-
                     }
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
-
         private static void DeleteFiles(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount)
         {
             try
             {
-
                 // Check Direcotry exists here... JSB 26-10-2016
                 if (Directory.Exists(directoryInfo.FullName))
                 {
@@ -178,7 +154,6 @@ namespace Common
                     }
                     else
                     {
-
                         foreach (FileInfo file in directoryInfo.GetFiles())
                         {
                             if (CommonFunction.IsFileLocked(file) == CommonProperty.IsDelete)
@@ -197,9 +172,7 @@ namespace Common
                                 {
                                     DeleteListTempFile.Add(file.Name);
                                     CommonInformation.TempraroyFileSpaceCount += file.Length;
-
                                 }
-
                             }
                         }
                         if ((!IsFileAvailable(directoryInfo)) && (!IsDirectoryAvailable(directoryInfo)))
@@ -210,17 +183,14 @@ namespace Common
                                 IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount);
                             }
                         }
-
                     }
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
-
         private static bool IsFileAvailable(DirectoryInfo direcotoryInfo)
         {
             if (Directory.Exists(direcotoryInfo.FullName))
@@ -245,83 +215,54 @@ namespace Common
             else
                 return false;
         }
-
         #endregion
-
         #region Check Validate Text Values
-
         public static bool IsValidateTextValues(string values)
         {
-
             if (!string.IsNullOrEmpty(values) && !string.IsNullOrWhiteSpace(values))
             {
                 return true;
             }
             else
-
                 return false;
         }
-
         #endregion
-
-
-
-
-
         /// Get Size of RAM 
         /// 
         /// </summary>
         /// <param name="SizeOf"></param>
         /// <returns></returns>
         /// 
-
         public static void exectAmountOfData(UInt64 AmountValues)
         {
             if (AmountValues > 1024)
             {
-
                 AmountValues = AmountValues / 1024;
-
                 //  }
-
             }
             else
             {
-
             }
-
             CommonInformation.SizeOfRam = AmountValues.ToString();
-
-
-
         }
-
-
         public static UInt64 SizeOfRam()
         {
             string Query = "SELECT Capacity FROM Win32_PhysicalMemory";
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(Query);
-
             UInt64 Capacity = 0;
             foreach (ManagementObject WniPART in searcher.Get())
             {
                 Capacity += Convert.ToUInt64(WniPART.Properties["Capacity"].Value);
             }
-
             return Capacity;
         }
-
-
         public static void GetAllInforationAboutSystem()
         {
             CommonInformation.MechineName = Environment.MachineName;
             CommonInformation.SoftwareVersionName = CommonConstantProperty.VersionType.Test.ToString();
             CommonInformation.WindowsBit = System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
             CommonInformation.SoftwareVersionNo = "1.K1P1";
-
         }
-
-
         #region Get All Application list Jogi 26-10-2016
         /// Get All Application List
         /// 
@@ -331,7 +272,6 @@ namespace Common
         public static List<string> GetAllApplicationList()
         {
             return GetInstalledApps();
-
         }
         static List<string> ApplicationList = null;
         /// <summary>
@@ -342,15 +282,12 @@ namespace Common
         /// <returns></returns>
         private static List<string> GetInstalledApps()
         {
-
             try
             {
-
                 ApplicationList = new List<string>();
-                const string CurrentUserInLocalMechile = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-                const string INLocalMechile = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
                 string displayName = string.Empty;
-                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(CurrentUserInLocalMechile))
+                string CurrentUserInLocationMechine = AllPath.CurrentUserInLocalMechile;
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(CurrentUserInLocationMechine))
                 {
                     GetKey(key);
                 }
@@ -358,7 +295,7 @@ namespace Common
                 //{
                 //    GetKey(key);
                 //}
-                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(INLocalMechile))
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(AllPath.INLocalMechile))
                 {
                     GetKey(key);
                 }
@@ -366,11 +303,9 @@ namespace Common
             catch (Exception ex)
             {
                 throw ex;
-
             }
             return ApplicationList;
         }
-
         private static void GetKey(RegistryKey key)
         {
             foreach (string skName in key.GetSubKeyNames())
@@ -391,15 +326,11 @@ namespace Common
             }
         }
         #endregion
-
         #region Split the Control ID for Hide and Show panel...26-10-2016
-
         public static string[] GetControlId(string controlId)
         {
             return GetControlIds(controlId);
-
         }
-
         private static string[] GetControlIds(string controlId)
         {
             try
@@ -408,25 +339,17 @@ namespace Common
                 if (SplitsControlsId.Length == (int)CommonProperty.IsDefaultValue.Zero)
                 {
                     throw new Exception("Please check Valid Control ID");
-
                 }
                 return SplitsControlsId;
             }
             catch (Exception)
             {
-
                 throw;
             }
-
-
-
         }
         #endregion
-
-
         // Returns the human-readable file size for an arbitrary, 64-bit file size 
         // The default format is "0.### XB", e.g. "4.2 KB" or "1.434 GB"
-
         private static string GetFileSize(long i)
         {
             // Get absolute value
@@ -473,7 +396,52 @@ namespace Common
             // Return formatted number with suffix
             return readable.ToString("0.### ") + suffix;
         }
+        public static int Zero()
+        {
+            return (int)CommonProperty.IsDefaultValue.Zero;
+        }
+        static DataTable Temptable = null;
+        private static void ReturnDataTableWithColumns(List<ColumnsForDataTable> ObjListofColumn)
+        {
+            if (ObjListofColumn == null)
+                throw new ArgumentNullException("No Allowed list of Columns");
+            if (Temptable != null)
+                foreach (ColumnsForDataTable item in ObjListofColumn)
+                {
+                    Temptable.Columns.Add(item.ColumnsName);
+                }
+        }
 
+        public static DataTable ConvertDictionaryToTable(Dictionary<string, string> ObjDictionary)
+        {
+            return ConvertDictionaryToDataTable(ObjDictionary);
+        }
 
+        private static DataTable ConvertDictionaryToDataTable(Dictionary<string, string> ObjDictionary)
+        {
+            DataTable ReturnDataTable = new DataTable("CreateTempTable");
+            if (ObjDictionary == null)
+            {
+                throw new ArgumentNullException("No allowed of Parameters");
+
+            }
+
+            if (ObjDictionary.Count > Zero())
+            {
+                Temptable = new DataTable();
+                List<ColumnsForDataTable> listColumnsForTable = new List<ColumnsForDataTable>();
+                listColumnsForTable.Add(new ColumnsForDataTable { ColumnsName = "ProgramName" });
+                listColumnsForTable.Add(new ColumnsForDataTable { ColumnsName = "ProgramPath" });
+                ReturnDataTableWithColumns(listColumnsForTable);
+                foreach (var item in ObjDictionary)
+                {
+                    Temptable.Rows.Add(new Object[]{
+                item.Key,
+                item.Value
+           });
+                }
+            }
+            return Temptable;
+        }
     }
 }

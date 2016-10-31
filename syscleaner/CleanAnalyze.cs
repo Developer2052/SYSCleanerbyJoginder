@@ -7,40 +7,107 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Common;
-
 namespace syscleaner
 {
     public partial class CleanAnalyze : Form
     {
-
-
         /// <summary>
         /// Scan All folder information about this...
         /// Outer Panel must be define ID... pnl_left_outer_1
         /// Inner Panel must be define ID .... pnl_left_inner_1
         /// </summary>
+        /// 
+        int ControlId = 0;
+       
         public CleanAnalyze()
         {
             InitializeComponent();
+            AllPath.getvalues();
+            CleanProgressbar.Increment(100);
+            int PanelLocationY = 0;
+            int PanelLocationX = 0;
+            int TempCount = 0;
+            bool isreset = true;
+            foreach (var item in CommonFunction.GetAllApplicationList())
+            {
+                ControlId++;
+                TempCount++;
+                if(TempCount>10)
+                {
+                    if(isreset)
+                    {
+                        isreset = false;
+                        PanelLocationY = 0;
+                    }
+                    PanelLocationX = 363;
+                    PanelLocationY += 40;
+                }
+                else
+                {
+                    PanelLocationX = 6;
+                    PanelLocationY += 40;
 
+                }
+               
+               
+                bindsControls(ControlId, PanelLocationX, PanelLocationY, item);
+
+            }
         }
 
+        private void bindsControls(int ID, int panelLoctionX,int panelLocationY,string programName)
+        {
+            Panel ObjPanel = new Panel();
+            ObjPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ObjPanel.Location = new System.Drawing.Point(panelLoctionX, panelLocationY);
+            ObjPanel.Name = "pnl_left_outer_" + ID;
+            ObjPanel.Size = new System.Drawing.Size(348, 39);
+
+
+
+            PictureBox picturebox = new PictureBox();
+           
+            picturebox.Location = new System.Drawing.Point(6, 6);
+            picturebox.Name = "picture_"+ID;
+            picturebox.Size = new System.Drawing.Size(29, 27);
+          
+
+            picturebox.Image = Image.FromFile(@"F:\syscleaner\syscleaner\Image\Google Chrome.png");
+            
+
+           
+
+            Label lblProgramName = new Label();
+            lblProgramName.AutoSize = true;
+            lblProgramName.Location = new System.Drawing.Point(43, 13);
+            lblProgramName.Name = "ProgramName_"+ID;
+            lblProgramName.Size = new System.Drawing.Size(94, 17);
+
+            lblProgramName.Text = programName;
+            Label lblAmount = new Label();
+            lblAmount.AutoSize = true;
+            lblAmount.Location = new System.Drawing.Point(165, 13);
+            lblAmount.Name = "ProgramAmount_" + ID;
+            lblAmount.Size = new System.Drawing.Size(56, 17);
+           
+            lblAmount.Text = "asdfasdf";
+            ObjPanel.Visible = true;
+            ObjPanel.Controls.Add(lblProgramName);
+            ObjPanel.Controls.Add(lblAmount);
+         
+            ObjPanel.Controls.Add(picturebox);
+            PnlContainer.Controls.Add(ObjPanel);
+
+        }
         private void pictureBox12_Click(object sender, EventArgs e)
         {
-
         }
-
         private void pictureBox10_Click(object sender, EventArgs e)
         {
-
         }
-
         private void CleanAnalyze_Load(object sender, EventArgs e)
         {
-
-
         }
-
         bool IsButtonClick = false;
         private void pictureBox4_Click(object sender, EventArgs e)
         {
@@ -56,10 +123,8 @@ namespace syscleaner
                 IsButtonClick = false;
             }
         }
-
         private void DisplayOrHideDetails(PictureBox objPictureBox, bool isHide)
         {
-
             string[] ControlId = CommonFunction.GetControlId(objPictureBox.Name);
             Control ParentControl = objPictureBox.Parent;
             int ID = 0;
@@ -80,24 +145,20 @@ namespace syscleaner
                 {
                     Panel ObjPanel = (Panel)Controls;
                     string[] PanelControlId = CommonFunction.GetControlId(ObjPanel.Name.ToLower());
-
                     if (ObjPanel.Name.ToLower() == ("pnl_" + LeftOrRightPanel + "_Inner" + "_" + ID).ToLower())
                     {
                         if (isHide)
                         {
-
                             ObjPanel.Visible = false;
                         }
                         else
                         {
-
                             ObjPanel.Location = new Point(((ParentControl.Location.X) + CommonInformation.GapPannelInnerX), ((ParentControl.Location.Y) + CommonInformation.GapPannelInnerY));
                             ObjPanel.Visible = true;
                         }
                     }
                     if (Convert.ToInt32(PanelControlId[3]) > ID)
                     {
-
                         if (ObjPanel.Name.ToLower().Contains((LeftOrRightPanel + "_outer").ToLower()))
                         {
                             if (isHide)
@@ -112,11 +173,9 @@ namespace syscleaner
                             }
                         }
                     }
-
                 }
             }
         }
-
         private void pictureBox8_Click(object sender, EventArgs e)
         {
             if (!IsButtonClick)
