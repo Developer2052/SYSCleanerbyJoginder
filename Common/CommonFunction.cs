@@ -286,7 +286,7 @@ namespace Common
             {
                 ApplicationList = new List<string>();
                 string displayName = string.Empty;
-                string CurrentUserInLocationMechine = AllPath.CurrentUserInLocalMechile;
+                string CurrentUserInLocationMechine = AllPath.CurrentUserInLocalMechine;
                 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(CurrentUserInLocationMechine))
                 {
                     GetKey(key);
