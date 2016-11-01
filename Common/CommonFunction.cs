@@ -350,7 +350,7 @@ namespace Common
         #endregion
         // Returns the human-readable file size for an arbitrary, 64-bit file size 
         // The default format is "0.### XB", e.g. "4.2 KB" or "1.434 GB"
-        private static string GetFileSize(long i)
+        public static string GetFileSize(long i)
         {
             // Get absolute value
             long absolute_i = (i < 0 ? -i : i);

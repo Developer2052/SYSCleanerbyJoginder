@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Common;
+using Shell32;
+using System.Runtime.InteropServices;
 namespace syscleaner
 {
     public partial class CleanAnalyze : Form
@@ -18,11 +20,13 @@ namespace syscleaner
         /// </summary>
         /// 
         int ControlId = 0;
-       
+
         public CleanAnalyze()
         {
+
+
             InitializeComponent();
-            AllPath.getvalues();
+
             CleanProgressbar.Increment(100);
             int PanelLocationY = 0;
             int PanelLocationX = 0;
@@ -32,9 +36,9 @@ namespace syscleaner
             {
                 ControlId++;
                 TempCount++;
-                if(TempCount>10)
+                if (TempCount > 10)
                 {
-                    if(isreset)
+                    if (isreset)
                     {
                         isreset = false;
                         PanelLocationY = 0;
@@ -48,15 +52,20 @@ namespace syscleaner
                     PanelLocationY += 40;
 
                 }
-               
-               
+
+
                 bindsControls(ControlId, PanelLocationX, PanelLocationY, item);
 
             }
         }
 
-        private void bindsControls(int ID, int panelLoctionX,int panelLocationY,string programName)
+        private void bindsControls(int ID, int panelLoctionX, int panelLocationY, string programName)
         {
+
+
+       string SK=   CommonFunction.GetFileSize(  GetRecycleBinFiles.GetRecycleBinItems().CountOfSize);
+       int i = GetRecycleBinFiles.GetRecycleBinItems().CountOfFile;
+           
             Panel ObjPanel = new Panel();
             ObjPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ObjPanel.Location = new System.Drawing.Point(panelLoctionX, panelLocationY);
@@ -66,35 +75,46 @@ namespace syscleaner
 
 
             PictureBox picturebox = new PictureBox();
-           
+
             picturebox.Location = new System.Drawing.Point(6, 6);
-            picturebox.Name = "picture_"+ID;
+            picturebox.Name = "picture_" + ID;
             picturebox.Size = new System.Drawing.Size(29, 27);
-          
+
 
             picturebox.Image = Image.FromFile(@"F:\syscleaner\syscleaner\Image\Google Chrome.png");
-            
 
-           
+
+
 
             Label lblProgramName = new Label();
             lblProgramName.AutoSize = true;
             lblProgramName.Location = new System.Drawing.Point(43, 13);
-            lblProgramName.Name = "ProgramName_"+ID;
+            lblProgramName.Name = "ProgramName_" + ID;
             lblProgramName.Size = new System.Drawing.Size(94, 17);
 
             lblProgramName.Text = programName;
+
+            Label lblCountOfFile = new Label();
+            lblCountOfFile.AutoSize = true;
+            lblCountOfFile.Location = new System.Drawing.Point(165, 13);
+            lblCountOfFile.Name = "lblCountOfFile_" + ID;
+            lblCountOfFile.Size = new System.Drawing.Size(56, 17);
+
+            lblCountOfFile.Text = "Total Fiile";
+            ObjPanel.Controls.Add(lblCountOfFile);
+
+
             Label lblAmount = new Label();
             lblAmount.AutoSize = true;
-            lblAmount.Location = new System.Drawing.Point(165, 13);
+            lblAmount.Location = new System.Drawing.Point(270, 13);
             lblAmount.Name = "ProgramAmount_" + ID;
             lblAmount.Size = new System.Drawing.Size(56, 17);
-           
+
             lblAmount.Text = "asdfasdf";
             ObjPanel.Visible = true;
             ObjPanel.Controls.Add(lblProgramName);
             ObjPanel.Controls.Add(lblAmount);
-         
+
             ObjPanel.Controls.Add(picturebox);
             PnlContainer.Controls.Add(ObjPanel);
 
