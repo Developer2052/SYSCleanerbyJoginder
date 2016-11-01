@@ -24,7 +24,7 @@ namespace syscleaner
         public CleanAnalyze()
         {
 
-
+           string Name=;
             InitializeComponent();
 
             CleanProgressbar.Increment(100);
@@ -81,7 +81,7 @@ namespace syscleaner
             picturebox.Size = new System.Drawing.Size(29, 27);
 
 
-            picturebox.Image = Image.FromFile(@"F:\syscleaner\syscleaner\Image\Google Chrome.png");
+            picturebox.Image = Image.FromFile(@"D:\Projects\SYSCleaner\syscleaner\Image\Firefox.png");
 
 
 

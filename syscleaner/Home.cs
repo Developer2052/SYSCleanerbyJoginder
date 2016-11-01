@@ -44,8 +44,8 @@ namespace syscleaner
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            StartUpPrograjm pp = new StartUpPrograjm();
-            pp.Show();
+            //StartUpPrograjm pp = new StartUpPrograjm();
+            //pp.Show();
         }
     }
 }

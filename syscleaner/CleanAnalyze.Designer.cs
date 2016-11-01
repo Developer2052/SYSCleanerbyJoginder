@@ -178,7 +178,7 @@
             this.headerControl1.BackColor = System.Drawing.Color.White;
             this.headerControl1.Location = new System.Drawing.Point(2, 0);
             this.headerControl1.Name = "headerControl1";
-            this.headerControl1.Size = new System.Drawing.Size(727, 90);
+            this.headerControl1.Size = new System.Drawing.Size(723, 90);
             this.headerControl1.TabIndex = 4;
             // 
             // PnlContainer
