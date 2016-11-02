@@ -44,7 +44,9 @@ namespace Common
         #region Delete the file after check locked or Not
         static List<string> DeleteListTempFile = null;
         static string TempFilePath = string.Empty;
-        public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, out List<string> deleteFileRecords, out string sizeOfFile)
+        
+
+        public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, ref List<string> deleteFileRecords, ref string sizeOfFile, List<string> ExtensionOfFile=null )
         {
             try
             {
@@ -87,7 +89,7 @@ namespace Common
                 throw;
             }
         }
-        private static void IsDeleteFile(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount)
+        private static void IsDeleteFile(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount, List<string> ExtensionOfFile = null)
         {
             try
             {
@@ -139,7 +141,7 @@ namespace Common
                 throw;
             }
         }
-        private static void DeleteFiles(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount)
+        private static void DeleteFiles(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount, List<string> ExtensionOfFile = null)
         {
             try
             {
@@ -163,15 +165,49 @@ namespace Common
                                 {
                                     if (File.Exists(file.FullName))
                                     {
-                                        DeleteListTempFile.Add(file.Name);
-                                        CommonInformation.TempraroyFileSpaceCount += file.Length;
-                                        file.Delete();
+                                        if (ExtensionOfFile.Count> CommonFunction.Zero())
+                                        {
+                                            foreach (string FileExtension in ExtensionOfFile)
+                                            {
+                                                if (file.Extension.ToLower() == FileExtension.ToLower())
+                                                {
+
+                                                    DeleteListTempFile.Add(file.Name);
+                                                    CommonInformation.TempraroyFileSpaceCount += file.Length;
+                                                    file.Delete();
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            DeleteListTempFile.Add(file.Name);
+                                            CommonInformation.TempraroyFileSpaceCount += file.Length;
+                                            file.Delete();
+
+                                        }
                                     }
                                 }
                                 else
                                 {
-                                    DeleteListTempFile.Add(file.Name);
-                                    CommonInformation.TempraroyFileSpaceCount += file.Length;
+                                    if(ExtensionOfFile.Count>CommonFunction.Zero())
+                                    {
+                                        foreach (string FileExtension in ExtensionOfFile)
+                                        {
+                                            if(file.Extension.ToLower()==FileExtension.ToLower())
+                                            {
+
+                                                DeleteListTempFile.Add(file.Name);
+                                                CommonInformation.TempraroyFileSpaceCount += file.Length;
+                                            }
+                                            
+                                        }
+                                    }
+                                    else
+                                    {
+                                        DeleteListTempFile.Add(file.Name);
+                                        CommonInformation.TempraroyFileSpaceCount += file.Length;
+                                    }
+                                    
                                 }
                             }
                         }
@@ -286,7 +322,7 @@ namespace Common
             {
                 ApplicationList = new List<string>();
                 string displayName = string.Empty;
-                string CurrentUserInLocationMechine = AllPath.CurrentUserInLocalMechile;
+                string CurrentUserInLocationMechine = AllPath.CurrentUserInLocalMechine;
                 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(CurrentUserInLocationMechine))
                 {
                     GetKey(key);

@@ -16,8 +16,5 @@ namespace Common
         public static string WindowsTemp { set; get; }
         public static string RecentItems { set; get; }
         public static string DesktopShortCut { set; get; }
-
-
-
     }
 }

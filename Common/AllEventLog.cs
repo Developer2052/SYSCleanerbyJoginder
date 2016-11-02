@@ -14,47 +14,40 @@ namespace Common
         static int sizeKB = 0;
 
 
-        public static string GetEventLogsSize()
+        public static void GetEventLogsSize(ref int countOfLogDelete, ref long sizeOfLogsFile)
         {
-           
-
-            int SizeOfEventLogFiles = 0;
+            sizeOfLogsFile = 0;
+            countOfLogDelete = 0;
             try
             {
 
-
-                var sss = EventLog.GetEventLogs(System.Environment.MachineName);
-
-              
-                if (EventLog.SourceExists("Setup"))
-                {
-                }
                 foreach (var item in EventLog.GetEventLogs(System.Environment.MachineName).Where(x => x.Log != "Security").Select(x => x))
                 {
                     if (item.Entries.Count > (int)CommonConstantProperty.IsDefaultValue.Zero)
                     {
                         foreach (EventLogEntry entry in item.Entries)
                         {
-                           
+
                             byte[] bt = entry.Data;
                             if (bt.Count() > 0)
                             {
-                                SizeOfEventLogFiles += bt.Count();
+                                countOfLogDelete += 1;
+                                sizeOfLogsFile += bt.Count();
 
                             }
                         }
                     }
                 }
-                return CommonFunction.GetFileSize(SizeOfEventLogFiles);
+
             }
             catch (Exception EX)
             {
                 throw EX;
             }
         }
-        public static CommonProperty.IsDefaultValue DeleteEventsLog()
+        public static void DeleteEventsLog(ref int countOfLogDelete, bool isDeleteLogs)
         {
-            int SizeOfEventLogFiles = 0;
+            countOfLogDelete = 0;
             try
             {
 
@@ -62,16 +55,17 @@ namespace Common
                 {
                     if (item.Entries.Count > (int)CommonConstantProperty.IsDefaultValue.Zero)
                     {
-                        item.Clear();
-                       
+                        countOfLogDelete += 1;
+
+                        if (isDeleteLogs)
+                            item.Clear();
                     }
                 }
-               return CommonProperty.IsDefaultValue.One;
+
             }
             catch (Exception EX)
             {
-              return  CommonProperty.IsDefaultValue.Zero;
-                
+                throw EX;
             }
         }
     }

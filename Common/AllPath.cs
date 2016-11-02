@@ -62,10 +62,5 @@ namespace Common
         //*********************** Desktop Shortcut File ************************//
         string DesktopShortcut = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-
-
-
-
-
     }
 }

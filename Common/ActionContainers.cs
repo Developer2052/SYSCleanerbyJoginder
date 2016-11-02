@@ -14,11 +14,11 @@ namespace Common
             string TEst = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache);
             if (Directory.Exists(TEst))
             {
-                List<string> ListOfFileName = new List<string>();
-                string FileOfSize = string.Empty;
-                string St = DateTime.Now.ToLongTimeString();
-                CommonFunction.DeleteFileGetTheDirecotry(TEst, false, out ListOfFileName, out FileOfSize);
-                string Stt = DateTime.Now.ToLongTimeString();
+                //List<string> ListOfFileName = new List<string>();
+                //string FileOfSize = string.Empty;
+                //string St = DateTime.Now.ToLongTimeString();
+                //CommonFunction.DeleteFileGetTheDirecotry(TEst, false, out ListOfFileName, out FileOfSize);
+                //string Stt = DateTime.Now.ToLongTimeString();
             }
         }
     }
