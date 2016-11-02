@@ -191,7 +191,7 @@ namespace Common
                 throw;
             }
         }
-        private static bool IsFileAvailable(DirectoryInfo direcotoryInfo)
+        public static bool IsFileAvailable(DirectoryInfo direcotoryInfo)
         {
             if (Directory.Exists(direcotoryInfo.FullName))
             {
@@ -286,7 +286,7 @@ namespace Common
             {
                 ApplicationList = new List<string>();
                 string displayName = string.Empty;
-                string CurrentUserInLocationMechine = AllPath.CurrentUserInLocalMechine;
+                string CurrentUserInLocationMechine = AllPath.CurrentUserInLocalMechile;
                 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(CurrentUserInLocationMechine))
                 {
                     GetKey(key);

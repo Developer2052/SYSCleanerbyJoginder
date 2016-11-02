@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Common;
 using Shell32;
 using System.Runtime.InteropServices;
+using System.IO;
 namespace syscleaner
 {
     public partial class CleanAnalyze : Form
@@ -23,8 +24,9 @@ namespace syscleaner
 
         public CleanAnalyze()
         {
+          var IsRun=  GoogleChormeContainer.CheckGoogleRuning();
+         int Run = (int)CommonProperty.IsDefaultValue.Zero;
 
-           string Name=;
             InitializeComponent();
 
             CleanProgressbar.Increment(100);
