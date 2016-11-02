@@ -24,11 +24,11 @@ namespace syscleaner
 
         public CleanAnalyze()
         {
-          var IsRun=  GoogleChormeContainer.CheckGoogleRuning();
-         int Run = (int)CommonProperty.IsDefaultValue.Zero;
-
+            List<string> listOfRecentFile = new List<string>();
+            string sizeoffile = string.Empty;
+           
+            RecentOpenProgram.GetRecentCountAndSize(ref listOfRecentFile, ref sizeoffile);
             InitializeComponent();
-
             CleanProgressbar.Increment(100);
             int PanelLocationY = 0;
             int PanelLocationX = 0;
@@ -54,7 +54,6 @@ namespace syscleaner
                     PanelLocationY += 40;
 
                 }
-
 
                 bindsControls(ControlId, PanelLocationX, PanelLocationY, item);
 
