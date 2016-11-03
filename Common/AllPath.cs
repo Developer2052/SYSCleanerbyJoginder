@@ -8,6 +8,12 @@ namespace Common
 {
     public class AllPath
     {
+        public static readonly string MemoryDumps = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\CrashDumps";
+
+        public static readonly string MemoryDumpsWindows = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+
+        //********************** Remote Desktop Cache ********************//
+        public static readonly string RemoteDesktopCache = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Terminal Server Client\Cache";
 
         //**********************Google Chrome Path***********************//
         public static readonly string GooglePath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Google\Chrome\User Data\Default\";

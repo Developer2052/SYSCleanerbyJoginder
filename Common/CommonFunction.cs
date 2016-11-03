@@ -57,7 +57,7 @@ namespace Common
                 // Check In Direcotory Files is there
                 if (IsFileAvailable(TempDirectoryInfo))
                 {
-                    DeleteFiles(TempDirectoryInfo, isScanOnlyForSpaceCount);
+                    DeleteFiles(TempDirectoryInfo, isScanOnlyForSpaceCount, ExtensionOfFile);
                 }
                 if (IsDirectoryAvailable(TempDirectoryInfo))
                 {
@@ -65,11 +65,11 @@ namespace Common
                     {
                         if (IsFileAvailable(dir))
                         {
-                            DeleteFiles(dir, isScanOnlyForSpaceCount);
+                            DeleteFiles(dir, isScanOnlyForSpaceCount, ExtensionOfFile);
                         }
                         if (IsDirectoryAvailable(dir))
                         {
-                            IsDeleteFile(dir, isScanOnlyForSpaceCount);
+                            IsDeleteFile(dir, isScanOnlyForSpaceCount, ExtensionOfFile);
                         }
                         if (Directory.Exists(dir.FullName))
                         {
@@ -101,11 +101,11 @@ namespace Common
                         {
                             if (IsFileAvailable(innerDirectoryInfo))
                             {
-                                DeleteFiles(innerDirectoryInfo, isScanOnlyForSpaceCount);
+                                DeleteFiles(innerDirectoryInfo, isScanOnlyForSpaceCount, ExtensionOfFile);
                             }
                             if (IsDirectoryAvailable(innerDirectoryInfo))
                             {
-                                IsDeleteFile(innerDirectoryInfo, isScanOnlyForSpaceCount);
+                                IsDeleteFile(innerDirectoryInfo, isScanOnlyForSpaceCount, ExtensionOfFile);
                             }
                             if ((!IsFileAvailable(innerDirectoryInfo)) && (!IsDirectoryAvailable(innerDirectoryInfo)))
                             {
@@ -114,7 +114,7 @@ namespace Common
                                     if (TempFilePath != innerDirectoryInfo.FullName)
                                     {
                                         innerDirectoryInfo.Delete();
-                                        IsDeleteFile(innerDirectoryInfo.Parent, isScanOnlyForSpaceCount);
+                                        IsDeleteFile(innerDirectoryInfo.Parent, isScanOnlyForSpaceCount, ExtensionOfFile);
                                     }
                                 }
                             }
@@ -129,7 +129,7 @@ namespace Common
                                 if (TempFilePath != directoryInfo.FullName)
                                 {
                                     directoryInfo.Delete();
-                                    IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount);
+                                    IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount, ExtensionOfFile);
                                 }
                             }
                         }
@@ -165,7 +165,7 @@ namespace Common
                                 {
                                     if (File.Exists(file.FullName))
                                     {
-                                        if (ExtensionOfFile.Count> CommonFunction.Zero())
+                                        if (ExtensionOfFile!=null)
                                         {
                                             foreach (string FileExtension in ExtensionOfFile)
                                             {
@@ -189,7 +189,7 @@ namespace Common
                                 }
                                 else
                                 {
-                                    if(ExtensionOfFile.Count>CommonFunction.Zero())
+                                    if(ExtensionOfFile!=null)
                                     {
                                         foreach (string FileExtension in ExtensionOfFile)
                                         {
@@ -216,7 +216,7 @@ namespace Common
                             if (Directory.Exists(directoryInfo.FullName))
                             {
                                 directoryInfo.Delete();
-                                IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount);
+                                IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount,ExtensionOfFile);
                             }
                         }
                     }
