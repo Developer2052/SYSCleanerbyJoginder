@@ -34,7 +34,7 @@ namespace syscleaner
             int PanelLocationX = 0;
             int TempCount = 0;
             bool isreset = true;
-            foreach (var item in CommonFunction.GetAllApplicationList())
+            foreach (var item in GetAllApplicationLists.GetAllApplicationList())
             {
                 ControlId++;
                 TempCount++;

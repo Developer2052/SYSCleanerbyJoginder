@@ -29,36 +29,35 @@
             this.OuterPannel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnlCenter = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.lblPercentCount = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblFreeSpaceCount = new System.Windows.Forms.Label();
-            this.btnClean = new System.Windows.Forms.Button();
-            this.btnScan = new System.Windows.Forms.Button();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.LblAwardWinning = new System.Windows.Forms.Label();
             this.LblFasterComputer = new System.Windows.Forms.Label();
             this.LblQuickerStartup = new System.Windows.Forms.Label();
             this.lblSafeBrowsing = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnClean = new System.Windows.Forms.Button();
+            this.btnScan = new System.Windows.Forms.Button();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.headerControl1 = new CustomControl.HeaderControl();
             this.OuterPannel.SuspendLayout();
             this.panel4.SuspendLayout();
             this.pnlCenter.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,22 +103,11 @@
             this.pnlCenter.TabIndex = 8;
             this.pnlCenter.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Image = global::syscleaner.Properties.Resources.buttonclean;
-            this.button1.Location = new System.Drawing.Point(592, 249);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 30);
-            this.button1.TabIndex = 6;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // lblPercentCount
             // 
             this.lblPercentCount.AutoSize = true;
             this.lblPercentCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentCount.Location = new System.Drawing.Point(616, 65);
+            this.lblPercentCount.Location = new System.Drawing.Point(517, 79);
             this.lblPercentCount.Name = "lblPercentCount";
             this.lblPercentCount.Size = new System.Drawing.Size(49, 22);
             this.lblPercentCount.TabIndex = 5;
@@ -147,46 +135,6 @@
             this.lblFreeSpaceCount.Size = new System.Drawing.Size(174, 25);
             this.lblFreeSpaceCount.TabIndex = 5;
             this.lblFreeSpaceCount.Text = "TOTAL : 1170 MB";
-            // 
-            // btnClean
-            // 
-            this.btnClean.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClean.Image = global::syscleaner.Properties.Resources.buttonclean;
-            this.btnClean.Location = new System.Drawing.Point(203, 22);
-            this.btnClean.Name = "btnClean";
-            this.btnClean.Size = new System.Drawing.Size(114, 30);
-            this.btnClean.TabIndex = 2;
-            this.btnClean.UseVisualStyleBackColor = true;
-            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
-            // 
-            // btnScan
-            // 
-            this.btnScan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnScan.Image = global::syscleaner.Properties.Resources.buttonscan;
-            this.btnScan.Location = new System.Drawing.Point(24, 22);
-            this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(114, 30);
-            this.btnScan.TabIndex = 1;
-            this.btnScan.UseVisualStyleBackColor = true;
-            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = global::syscleaner.Properties.Resources.Double_Circle_Loading;
-            this.pictureBox9.Location = new System.Drawing.Point(576, 10);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(130, 125);
-            this.pictureBox9.TabIndex = 3;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::syscleaner.Properties.Resources.CenterCollection;
-            this.pictureBox8.Location = new System.Drawing.Point(0, 7);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(374, 178);
-            this.pictureBox8.TabIndex = 0;
-            this.pictureBox8.TabStop = false;
             // 
             // LblAwardWinning
             // 
@@ -223,6 +171,65 @@
             this.lblSafeBrowsing.Size = new System.Drawing.Size(75, 13);
             this.lblSafeBrowsing.TabIndex = 4;
             this.lblSafeBrowsing.Text = "Safe Browsing";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.pictureBox3);
+            this.panel3.Location = new System.Drawing.Point(-1, 425);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(716, 33);
+            this.panel3.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Image = global::syscleaner.Properties.Resources.buttonclean;
+            this.button1.Location = new System.Drawing.Point(592, 249);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 30);
+            this.button1.TabIndex = 6;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnClean
+            // 
+            this.btnClean.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClean.Image = global::syscleaner.Properties.Resources.buttonclean;
+            this.btnClean.Location = new System.Drawing.Point(203, 22);
+            this.btnClean.Name = "btnClean";
+            this.btnClean.Size = new System.Drawing.Size(114, 30);
+            this.btnClean.TabIndex = 2;
+            this.btnClean.UseVisualStyleBackColor = true;
+            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
+            // 
+            // btnScan
+            // 
+            this.btnScan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnScan.Image = global::syscleaner.Properties.Resources.buttonscan;
+            this.btnScan.Location = new System.Drawing.Point(24, 22);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(114, 30);
+            this.btnScan.TabIndex = 1;
+            this.btnScan.UseVisualStyleBackColor = true;
+            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::syscleaner.Properties.Resources.Double_Circle_Loading;
+            this.pictureBox9.Location = new System.Drawing.Point(480, 30);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox9.TabIndex = 3;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::syscleaner.Properties.Resources.CenterCollection;
+            this.pictureBox8.Location = new System.Drawing.Point(0, 7);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(374, 178);
+            this.pictureBox8.TabIndex = 0;
+            this.pictureBox8.TabStop = false;
             // 
             // pictureBox7
             // 
@@ -264,14 +271,6 @@
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.pictureBox3);
-            this.panel3.Location = new System.Drawing.Point(-1, 425);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(716, 33);
-            this.panel3.TabIndex = 1;
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::syscleaner.Properties.Resources.FooterImage;
@@ -281,21 +280,12 @@
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
             // 
-            // headerControl1
-            // 
-            this.headerControl1.BackColor = System.Drawing.Color.White;
-            this.headerControl1.Location = new System.Drawing.Point(4, 2);
-            this.headerControl1.Name = "headerControl1";
-            this.headerControl1.Size = new System.Drawing.Size(719, 90);
-            this.headerControl1.TabIndex = 6;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(721, 507);
-            this.Controls.Add(this.headerControl1);
             this.Controls.Add(this.OuterPannel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -310,13 +300,13 @@
             this.pnlCenter.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
@@ -342,7 +332,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblPercentCount;
         private System.Windows.Forms.Label lblFreeSpaceCount;
-        private CustomControl.HeaderControl headerControl1;
         private System.Windows.Forms.Button button1;
     }
 }

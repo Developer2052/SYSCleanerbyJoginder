@@ -24,7 +24,7 @@ namespace syscleaner
             try
             {
                 CommonFunction.GetAllInforationAboutSystem();
-                CommonInformation.ListApplicationName = CommonFunction.GetAllApplicationList();
+                CommonInformation.ListApplicationName = GetAllApplicationLists.GetAllApplicationList();
             }
             catch (Exception)
             {
