@@ -299,69 +299,7 @@ namespace Common
             CommonInformation.WindowsBit = System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
             CommonInformation.SoftwareVersionNo = "1.K1P1";
         }
-        #region Get All Application list Jogi 26-10-2016
-        /// Get All Application List
-        /// 
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static List<string> GetAllApplicationList()
-        {
-            return GetInstalledApps();
-        }
-        static List<string> ApplicationList = null;
-        /// <summary>
-        /// Get All Install Apps
-        /// Worked By JSB
-        /// Dated : 25-10-2016
-        /// </summary>
-        /// <returns></returns>
-        private static List<string> GetInstalledApps()
-        {
-            try
-            {
-                ApplicationList = new List<string>();
-                string displayName = string.Empty;
-                string CurrentUserInLocationMechine = AllPath.CurrentUserInLocalMechine;
-                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(CurrentUserInLocationMechine))
-                {
-                    GetKey(key);
-                }
-                //using (RegistryKey key = Registry.LocalMachine.OpenSubKey(CurrentUserInLocalMechile))
-                //{
-                //    GetKey(key);
-                //}
-                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(AllPath.INLocalMechile))
-                {
-                    GetKey(key);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return ApplicationList;
-        }
-        private static void GetKey(RegistryKey key)
-        {
-            foreach (string skName in key.GetSubKeyNames())
-            {
-                using (RegistryKey sk = key.OpenSubKey(skName))
-                {
-                    try
-                    {
-                        if (sk.GetValue("DisplayName") != null)
-                        {
-                            if (!ApplicationList.Exists(e => e.Contains(sk.GetValue("DisplayName").ToString())))
-                                ApplicationList.Add(sk.GetValue("DisplayName").ToString());
-                        }
-                    }
-                    catch (Exception ex)
-                    { }
-                }
-            }
-        }
-        #endregion
+       
         #region Split the Control ID for Hide and Show panel...26-10-2016
         public static string[] GetControlId(string controlId)
         {
@@ -479,5 +417,6 @@ namespace Common
             }
             return Temptable;
         }
+
     }
 }
