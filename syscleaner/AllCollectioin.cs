@@ -11,21 +11,17 @@ namespace syscleaner
 {
     public partial class AllCollectioin : Form
     {
-        CheckedListBox ListInterNetExplorer;
-        CheckedListBox ChkListApplication;
-
-
         public AllCollectioin()
         {
 
             InitializeComponent();
             PicFooter.BackColor = Color.FromArgb(40, 129, 187);
-            this.BtnApplication.BackColor = Color.FromArgb(40, 129, 200);
-            this.BtnWindows.BackColor = Color.FromArgb(40, 129, 150);
-            progressBar1.Increment(50);
-
-            ListInterNetExplorer = new CheckedListBox();
-            ChkListApplication = new CheckedListBox();
+            _AllCollectionProgressBar.Increment(50);
+            //this.BtnApplication.BackColor = Color.FromArgb(40, 129, 200);
+            //this.BtnWindows.BackColor = Color.FromArgb(40, 129, 150);
+            //progressBar1.Increment(50);
+            Size tt = _pnlIconContainer.Size;
+            _TopPanel.BackColor = Color.FromArgb(40, 129, 187);
             BindChkWindowsList();
 
 
@@ -35,20 +31,17 @@ namespace syscleaner
         private void BindChkWindowsList()
         {
 
-            if (ListInterNetExplorer.Items.Count == CommonFunction.Zero())
+            if (ChkWindowsList.Items.Count == CommonFunction.Zero())
             {
                 foreach (_Windows item in _Windows.ListOfWindwosProgram())
                 {
                     if (item.Value != null)
                     {
-                        ListInterNetExplorer.Items.Add(item.Value);
+                        ChkWindowsList.Items.Add(item.Value);
                     }
                 }
-                ListInterNetExplorer.Dock = DockStyle.Fill;
-                Panel _TempLeft = new Panel();
-                _TempLeft.Dock = DockStyle.Fill;
-                _TempLeft.Controls.Add(ListInterNetExplorer);
-               
+                ChkWindowsList.Dock = DockStyle.Fill;
+
             }
         }
 
@@ -61,20 +54,21 @@ namespace syscleaner
 
 
 
-        private void BtnApplication_Click(object sender, EventArgs e)
+        private void BindApplicationList()
         {
-            this.pnlWIndows.Visible = false;
-            if (ChkListApplication.Items.Count == CommonFunction.Zero())
+            //this.pnlWIndows.Visible = false;
+
+            if (ChkApplicationlist.Items.Count == CommonFunction.Zero())
             {
                 foreach (var item in _Applications.GetApplication())
                 {
                     if (item.Value != null)
                     {
-                        ListInterNetExplorer.Items.Add(item.Value);
+                        ChkApplicationlist.Items.Add(item.Value);
                     }
                 }
             }
-            ChkListApplication.Dock = DockStyle.Fill;
+            ChkApplicationlist.Dock = DockStyle.Fill;
 
 
 
@@ -85,7 +79,59 @@ namespace syscleaner
             Application.Exit();
         }
 
-        
+        private void TabWindowsAndApplication_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var temp = sender as TabControl;
+            TabPage PP = temp.SelectedTab;
+            if (PP.Text == "Application")
+            {
+                BindApplicationList();
+            }
+            else
+            {
+                BindChkWindowsList();
 
+            }
+        }
+
+        private void _PictureCleaner_Click(object sender, EventArgs e)
+        {
+
+            dataGridView1.Show();
+
+
+        }
+
+        private void _PictureBoxStartup_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Hide();
+            DataGridView _Datagridview = new DataGridView();
+            _pnlHome.Controls.Add(_Datagridview);
+
+
+        }
+
+        private void btnScan_Click(object sender, EventArgs e)
+        {
+            foreach (string item in ChkWindowsList.CheckedItems)
+            {
+                foreach (var CollectionOfItem in _Windows.ListOfWindwosProgram())
+                {
+                   if( CollectionOfItem.Value.ToLower()==item)
+                   {
+
+                   }
+
+                }
+
+
+            }
+
+        }
+
+        private void btnClean_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
