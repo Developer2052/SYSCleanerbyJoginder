@@ -6,10 +6,71 @@ using System.Linq;
 using System.Management;
 using System.Text;
 using System.Data;
+using System.ComponentModel;
+using System.Reflection;
 namespace Common
 {
+
     public class CommonFunction
     {
+        #region Exception Handle....
+
+        public static int HandleExption(Exception e)
+        {
+
+
+            string ErrorNumberOfException = System.Runtime.InteropServices.Marshal.GetHRForException(e).ToString();
+
+            return (int)ThrowException(ErrorNumberOfException);
+        }
+        private static List<string> ErrorNumbers()
+        {
+            List<string> localErrorNumber = new List<string> { "-2147024864","-2147024891" };
+            return localErrorNumber;
+
+
+        }
+
+        private static CommonProperty.IsDefaultValue ThrowException(string errorNumber)
+        {
+            if (!string.IsNullOrEmpty(errorNumber))
+            {
+                var IsThrowExceptionOrHandleOwn = ErrorNumbers().Where(x => x == errorNumber).Select(s => s).FirstOrDefault();
+                if (errorNumber == IsThrowExceptionOrHandleOwn)
+                    return CommonProperty.IsDefaultValue.One;
+                else
+                    return CommonProperty.IsDefaultValue.Zero;
+            }
+            else
+                return CommonProperty.IsDefaultValue.Zero;
+        }
+
+        #endregion
+
+        public static string GetPathBaseOnCondition(string nameOfValueSelectCheckboxList)
+        {
+            return GetPathBasedOnCondtion(nameOfValueSelectCheckboxList);
+
+        }
+        private static string GetPathBasedOnCondtion(string values)
+        {
+            string TempValues = string.Empty;
+            switch (values)
+            {
+                case "Temporary Internet File":
+                    TempValues = AllPath.InernetNetCache;
+                    break;
+                default:
+                    TempValues = CommonProperty.IsDefaultValue.Zero.ToString();
+                    break;
+
+
+            }
+            return TempValues;
+
+        }
+
+
         #region File Status Check Is locked OR Not
         /// <summary>
         /// Develop By Joginder Singh 
@@ -44,9 +105,9 @@ namespace Common
         #region Delete the file after check locked or Not
         static List<string> DeleteListTempFile = null;
         static string TempFilePath = string.Empty;
-        
 
-        public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, ref List<string> deleteFileRecords, ref string sizeOfFile, List<string> ExtensionOfFile=null )
+
+        public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, ref List<string> deleteFileRecords, ref string sizeOfFile, List<string> ExtensionOfFile = null)
         {
             try
             {
@@ -76,7 +137,17 @@ namespace Common
                             if ((!IsFileAvailable(dir)) && (!IsDirectoryAvailable(dir)))
                             {
                                 if (!isScanOnlyForSpaceCount)
-                                    dir.Delete(true);
+                                {
+                                    try
+                                    {
+                                        dir.Delete(true);
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        if (HandleExption(e) == (int)CommonProperty.IsDefaultValue.Zero)
+                                            throw;
+                                    }
+                                }
                             }
                         }
                     }
@@ -84,9 +155,10 @@ namespace Common
                 deleteFileRecords = DeleteListTempFile;
                 sizeOfFile = GetFileSize(CommonInformation.TempraroyFileSpaceCount);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                if (HandleExption(e) == (int)CommonProperty.IsDefaultValue.Zero)
+                    throw;
             }
         }
         private static void IsDeleteFile(DirectoryInfo directoryInfo, bool isScanOnlyForSpaceCount, List<string> ExtensionOfFile = null)
@@ -165,41 +237,59 @@ namespace Common
                                 {
                                     if (File.Exists(file.FullName))
                                     {
-                                        if (ExtensionOfFile!=null)
+                                        if (ExtensionOfFile != null)
                                         {
                                             foreach (string FileExtension in ExtensionOfFile)
                                             {
                                                 if (file.Extension.ToLower() == FileExtension.ToLower())
                                                 {
 
-                                                    DeleteListTempFile.Add(file.Name);
-                                                    CommonInformation.TempraroyFileSpaceCount += file.Length;
-                                                    file.Delete();
+                                                    try
+                                                    {
+                                                        DeleteListTempFile.Add(file.Name);
+                                                        CommonInformation.TempraroyFileSpaceCount += file.Length;
+                                                        file.Delete();
+                                                    }
+                                                    catch (Exception e)
+                                                    {
+
+                                                        if (HandleExption(e) == (int)CommonProperty.IsDefaultValue.Zero)
+                                                            throw;
+                                                    }
                                                 }
                                             }
                                         }
                                         else
                                         {
-                                            DeleteListTempFile.Add(file.Name);
-                                            CommonInformation.TempraroyFileSpaceCount += file.Length;
-                                            file.Delete();
+                                            try
+                                            {
+                                                DeleteListTempFile.Add(file.Name);
+                                                CommonInformation.TempraroyFileSpaceCount += file.Length;
+                                                file.Delete();
+                                            }
+                                            catch (Exception e)
+                                            {
+
+                                                if (HandleExption(e) == (int)CommonProperty.IsDefaultValue.Zero)
+                                                    throw;
+                                            }
 
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    if(ExtensionOfFile!=null)
+                                    if (ExtensionOfFile != null)
                                     {
                                         foreach (string FileExtension in ExtensionOfFile)
                                         {
-                                            if(file.Extension.ToLower()==FileExtension.ToLower())
+                                            if (file.Extension.ToLower() == FileExtension.ToLower())
                                             {
 
                                                 DeleteListTempFile.Add(file.Name);
                                                 CommonInformation.TempraroyFileSpaceCount += file.Length;
                                             }
-                                            
+
                                         }
                                     }
                                     else
@@ -207,7 +297,7 @@ namespace Common
                                         DeleteListTempFile.Add(file.Name);
                                         CommonInformation.TempraroyFileSpaceCount += file.Length;
                                     }
-                                    
+
                                 }
                             }
                         }
@@ -215,8 +305,17 @@ namespace Common
                         {
                             if (Directory.Exists(directoryInfo.FullName))
                             {
-                                directoryInfo.Delete();
-                                IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount,ExtensionOfFile);
+                                try
+                                {
+                                    directoryInfo.Delete();
+                                }
+                                catch (Exception e)
+                                {
+
+                                    if (HandleExption(e) == (int)CommonProperty.IsDefaultValue.Zero)
+                                        throw;
+                                }
+                                IsDeleteFile(directoryInfo.Parent, isScanOnlyForSpaceCount, ExtensionOfFile);
                             }
                         }
                     }
@@ -299,7 +398,7 @@ namespace Common
             CommonInformation.WindowsBit = System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
             CommonInformation.SoftwareVersionNo = "1.K1P1";
         }
-       
+
         #region Split the Control ID for Hide and Show panel...26-10-2016
         public static string[] GetControlId(string controlId)
         {
@@ -385,12 +484,10 @@ namespace Common
                     Temptable.Columns.Add(item.ColumnsName);
                 }
         }
-
         public static DataTable ConvertDictionaryToTable(Dictionary<string, string> ObjDictionary)
         {
             return ConvertDictionaryToDataTable(ObjDictionary);
         }
-
         private static DataTable ConvertDictionaryToDataTable(Dictionary<string, string> ObjDictionary)
         {
             DataTable ReturnDataTable = new DataTable("CreateTempTable");

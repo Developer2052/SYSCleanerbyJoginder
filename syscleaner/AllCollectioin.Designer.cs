@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this._PnlTaskBar = new System.Windows.Forms.Panel();
+            this._PicWindowsClose = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._TopPanel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.LblSoftwareVersion = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.LblSizeOfRam = new System.Windows.Forms.Label();
             this.lblWindowsVersion = new System.Windows.Forms.Label();
@@ -45,23 +48,23 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ChkApplicationlist = new System.Windows.Forms.CheckedListBox();
             this._pnlHome = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnClean = new System.Windows.Forms.Button();
             this.btnScan = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.PicFooter = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.PicClosed = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._pnlIconContainer = new System.Windows.Forms.Panel();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this._PictureCleaner = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this._PictureBoxStartup = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
+            this._PictureCleaner = new System.Windows.Forms.PictureBox();
+            this._PnlTaskBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._PicWindowsClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this._TopPanel.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -69,30 +72,48 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this._pnlHome.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicFooter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicClosed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this._pnlIconContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._PictureCleaner)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBoxStartup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._PictureCleaner)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // _PnlTaskBar
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.PicClosed);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(952, 25);
-            this.panel1.TabIndex = 1;
+            this._PnlTaskBar.BackColor = System.Drawing.Color.White;
+            this._PnlTaskBar.Controls.Add(this._PicWindowsClose);
+            this._PnlTaskBar.Controls.Add(this.pictureBox1);
+            this._PnlTaskBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this._PnlTaskBar.Location = new System.Drawing.Point(0, 0);
+            this._PnlTaskBar.Name = "_PnlTaskBar";
+            this._PnlTaskBar.Size = new System.Drawing.Size(952, 25);
+            this._PnlTaskBar.TabIndex = 1;
+            // 
+            // _PicWindowsClose
+            // 
+            this._PicWindowsClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this._PicWindowsClose.Image = global::syscleaner.Properties.Resources.ClosedButton1;
+            this._PicWindowsClose.Location = new System.Drawing.Point(905, 0);
+            this._PicWindowsClose.Name = "_PicWindowsClose";
+            this._PicWindowsClose.Size = new System.Drawing.Size(47, 25);
+            this._PicWindowsClose.TabIndex = 1;
+            this._PicWindowsClose.TabStop = false;
+            this._PicWindowsClose.Click += new System.EventHandler(this.PicClosed_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = global::syscleaner.Properties.Resources.Logonew;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(19, 25);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // _TopPanel
             // 
@@ -125,6 +146,15 @@
             this.LblSoftwareVersion.Size = new System.Drawing.Size(147, 20);
             this.LblSoftwareVersion.TabIndex = 6;
             this.LblSoftwareVersion.Text = "Software Version";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::syscleaner.Properties.Resources.Sys_Clear_With_White_Name1;
+            this.pictureBox3.Location = new System.Drawing.Point(9, -4);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(130, 37);
+            this.pictureBox3.TabIndex = 5;
+            this.pictureBox3.TabStop = false;
             // 
             // panel3
             // 
@@ -222,12 +252,11 @@
             this.ChkWindowsList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(129)))), ((int)(((byte)(200)))));
             this.ChkWindowsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ChkWindowsList.CheckOnClick = true;
-            this.ChkWindowsList.Dock = System.Windows.Forms.DockStyle.Top;
             this.ChkWindowsList.ForeColor = System.Drawing.Color.White;
             this.ChkWindowsList.FormattingEnabled = true;
             this.ChkWindowsList.Location = new System.Drawing.Point(3, 3);
             this.ChkWindowsList.Name = "ChkWindowsList";
-            this.ChkWindowsList.Size = new System.Drawing.Size(142, 105);
+            this.ChkWindowsList.Size = new System.Drawing.Size(142, 255);
             this.ChkWindowsList.TabIndex = 0;
             // 
             // tabPage2
@@ -264,15 +293,6 @@
             this._pnlHome.Name = "_pnlHome";
             this._pnlHome.Size = new System.Drawing.Size(796, 316);
             this._pnlHome.TabIndex = 7;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(796, 316);
-            this.dataGridView1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -311,6 +331,15 @@
             this.btnScan.UseVisualStyleBackColor = true;
             this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(796, 316);
+            this.dataGridView1.TabIndex = 0;
+            // 
             // PicFooter
             // 
             this.PicFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
@@ -321,36 +350,6 @@
             this.PicFooter.Size = new System.Drawing.Size(952, 50);
             this.PicFooter.TabIndex = 3;
             this.PicFooter.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::syscleaner.Properties.Resources.Sys_Clear_With_White_Name1;
-            this.pictureBox3.Location = new System.Drawing.Point(9, -4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(130, 37);
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
-            // 
-            // PicClosed
-            // 
-            this.PicClosed.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PicClosed.Image = global::syscleaner.Properties.Resources.ClosedButton1;
-            this.PicClosed.Location = new System.Drawing.Point(905, 0);
-            this.PicClosed.Name = "PicClosed";
-            this.PicClosed.Size = new System.Drawing.Size(47, 25);
-            this.PicClosed.TabIndex = 1;
-            this.PicClosed.TabStop = false;
-            this.PicClosed.Click += new System.EventHandler(this.PicClosed_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = global::syscleaner.Properties.Resources.Logonew;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(19, 25);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // _pnlIconContainer
             // 
@@ -377,16 +376,6 @@
             this.pictureBox7.TabIndex = 4;
             this.pictureBox7.TabStop = false;
             // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox5.Image = global::syscleaner.Properties.Resources.quicker;
-            this.pictureBox5.Location = new System.Drawing.Point(318, 0);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(159, 63);
-            this.pictureBox5.TabIndex = 2;
-            this.pictureBox5.TabStop = false;
-            // 
             // pictureBox6
             // 
             this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Left;
@@ -397,16 +386,15 @@
             this.pictureBox6.TabIndex = 3;
             this.pictureBox6.TabStop = false;
             // 
-            // _PictureCleaner
+            // pictureBox5
             // 
-            this._PictureCleaner.Dock = System.Windows.Forms.DockStyle.Left;
-            this._PictureCleaner.Image = global::syscleaner.Properties.Resources.quicker;
-            this._PictureCleaner.Location = new System.Drawing.Point(0, 0);
-            this._PictureCleaner.Name = "_PictureCleaner";
-            this._PictureCleaner.Size = new System.Drawing.Size(159, 63);
-            this._PictureCleaner.TabIndex = 0;
-            this._PictureCleaner.TabStop = false;
-            this._PictureCleaner.Click += new System.EventHandler(this._PictureCleaner_Click);
+            this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox5.Image = global::syscleaner.Properties.Resources.quicker;
+            this.pictureBox5.Location = new System.Drawing.Point(318, 0);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(159, 63);
+            this.pictureBox5.TabIndex = 2;
+            this.pictureBox5.TabStop = false;
             // 
             // _PictureBoxStartup
             // 
@@ -419,6 +407,17 @@
             this._PictureBoxStartup.TabStop = false;
             this._PictureBoxStartup.Click += new System.EventHandler(this._PictureBoxStartup_Click);
             // 
+            // _PictureCleaner
+            // 
+            this._PictureCleaner.Dock = System.Windows.Forms.DockStyle.Left;
+            this._PictureCleaner.Image = global::syscleaner.Properties.Resources.quicker;
+            this._PictureCleaner.Location = new System.Drawing.Point(0, 0);
+            this._PictureCleaner.Name = "_PictureCleaner";
+            this._PictureCleaner.Size = new System.Drawing.Size(159, 63);
+            this._PictureCleaner.TabIndex = 0;
+            this._PictureCleaner.TabStop = false;
+            this._PictureCleaner.Click += new System.EventHandler(this._PictureCleaner_Click);
+            // 
             // AllCollectioin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -430,16 +429,19 @@
             this.Controls.Add(this._AllCollectionProgressBar);
             this.Controls.Add(this.PicFooter);
             this.Controls.Add(this._TopPanel);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this._PnlTaskBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AllCollectioin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AllCollectioin";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.panel1.ResumeLayout(false);
+            this._PnlTaskBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._PicWindowsClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this._TopPanel.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -448,27 +450,24 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this._pnlHome.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicFooter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicClosed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this._pnlIconContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._PictureCleaner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBoxStartup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._PictureCleaner)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel _PnlTaskBar;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox PicClosed;
+        private System.Windows.Forms.PictureBox _PicWindowsClose;
         private System.Windows.Forms.Panel _TopPanel;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;

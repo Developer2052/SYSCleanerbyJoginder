@@ -7,30 +7,48 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Common;
+using System.IO;
+using System.Security.AccessControl;
+
 namespace syscleaner
 {
     public partial class AllCollectioin : Form
     {
+        bool IsSelectedWidowsApplicationValues = false;
+        string SelectedTabPage = string.Empty;
+
         public AllCollectioin()
         {
-
+           
             InitializeComponent();
-            PicFooter.BackColor = Color.FromArgb(40, 129, 187);
-            _AllCollectionProgressBar.Increment(50);
-            //this.BtnApplication.BackColor = Color.FromArgb(40, 129, 200);
-            //this.BtnWindows.BackColor = Color.FromArgb(40, 129, 150);
-            //progressBar1.Increment(50);
-            Size tt = _pnlIconContainer.Size;
-            _TopPanel.BackColor = Color.FromArgb(40, 129, 187);
+            //PicFooter.BackColor = Color.FromArgb(40, 129, 187);
+            //_AllCollectionProgressBar.Increment(50);
+            ////this.BtnApplication.BackColor = Color.FromArgb(40, 129, 200);
+            ////this.BtnWindows.BackColor = Color.FromArgb(40, 129, 150);
+            ////progressBar1.Increment(50);
+            //Size tt = _pnlIconContainer.Size;
+            //_TopPanel.BackColor = Color.FromArgb(40, 129, 187);
+            //string ss = AllPath.IECookies;
+            //BindChkWindowsList();
+
+
+            // string mm=  Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.SystemX86), "calc.exe");
+
+            //// Create a new DirectoryInfo object.
+            //DirectoryInfo dInfo = new DirectoryInfo(mm);
+
+            //// Get a DirectorySecurity object that represents the 
+            //// current security settings.
+            //DirectorySecurity dSecurity = dInfo.GetAccessControl();
+
             BindChkWindowsList();
-
-
+            string test = AllPath.IISLog();
 
         }
 
         private void BindChkWindowsList()
         {
-
+            SelectedTabPage = TabName.Windows.ToString();
             if (ChkWindowsList.Items.Count == CommonFunction.Zero())
             {
                 foreach (_Windows item in _Windows.ListOfWindwosProgram())
@@ -82,13 +100,15 @@ namespace syscleaner
         private void TabWindowsAndApplication_SelectedIndexChanged(object sender, EventArgs e)
         {
             var temp = sender as TabControl;
-            TabPage PP = temp.SelectedTab;
-            if (PP.Text == "Application")
+            TabPage tabPage = temp.SelectedTab;
+            if (tabPage.Text ==TabName.Application.ToString())
             {
+                SelectedTabPage = TabName.Application.ToString();
                 BindApplicationList();
             }
             else
             {
+                SelectedTabPage = TabName.Windows.ToString();
                 BindChkWindowsList();
 
             }
@@ -113,18 +133,30 @@ namespace syscleaner
 
         private void btnScan_Click(object sender, EventArgs e)
         {
-            foreach (string item in ChkWindowsList.CheckedItems)
+            List<string> NameOfValues=new List<string>();
+            string sizeoffile=string.Empty;
+            IsSelectedWidowsApplicationValues = false;
+
+            if (SelectedTabPage == TabName.Windows.ToString())
             {
-                foreach (var CollectionOfItem in _Windows.ListOfWindwosProgram())
+                foreach (string CheckValue in ChkWindowsList.CheckedItems)
                 {
-                   if( CollectionOfItem.Value.ToLower()==item)
-                   {
+                    IsSelectedWidowsApplicationValues = true;
+                    foreach (var CollectionOfItem in _Windows.ListOfWindwosProgram())
+                    {
+                        if (!string.IsNullOrEmpty(CollectionOfItem.Value))
+                            if (string.Equals(CheckValue, CollectionOfItem.Value))
+                            {
+                                // Get the path of windows Based on condition..... Joginder singh 
+                                string GetPath=CommonFunction.GetPathBaseOnCondition(CheckValue); 
+                                if(GetPath!=CommonProperty.IsDefaultValue.Zero.ToString()){
+                                    CommonFunction.DeleteFileGetTheDirecotry(GetPath, false, ref  NameOfValues, ref sizeoffile);
+                                }
 
-                   }
+                            }
 
+                    }
                 }
-
-
             }
 
         }

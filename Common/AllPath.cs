@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using Microsoft.Web.Administration;
 
 namespace Common
 {
     public class AllPath
     {
+
+
+        //****************Thumb Cache  ****************
+       public static readonly string WindowsThumbCache= string.Concat((Environment.GetFolderPath(Environment.SpecialFolder.Windows, Environment.SpecialFolderOption.None)), "\\Prefetch");
+
+
         public static readonly string MemoryDumps = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\CrashDumps";
 
         public static readonly string MemoryDumpsWindows = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
@@ -31,6 +38,15 @@ namespace Common
         public static readonly string IE2 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Windows\History";
         public static readonly string IE3 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Windows\Tempor~1";
         public static readonly string IE4 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Roaming\Microsoft\Windows\Cookies";
+
+        public static readonly string IECookies = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Windows\INetCookies";
+        public static readonly string InernetNetCache = System.Environment.GetFolderPath(Environment.SpecialFolder.InternetCache);
+        public static readonly string InterNetTemparyFile = string.Concat(InernetNetCache, "\\IE");
+        public static string IHisotry = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Intern~1\Recovery\Immersive\Active";
+        
+
+        // *************** END here **********************//
+        
         
         // ********************************* Flash Player *********************//
         public static readonly string Flash = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Roaming\Macromedia\Flashp~1";
@@ -49,8 +65,9 @@ namespace Common
         // ************************************* Temprary folder WINDOWSKEY + R press and then type %TEMP%  ************************ //
         public static readonly string TempraryFolder = Path.GetTempPath();
 
-        // ************************************** Internet Cache *********************** ///
-        public static readonly string InernetNetCache = System.Environment.GetFolderPath(Environment.SpecialFolder.InternetCache);
+       
+
+
 
         // ************************************* Recent Open program Shortcut ****************** //
         public static readonly string RecentItem = Environment.GetFolderPath(Environment.SpecialFolder.Recent);
@@ -67,6 +84,21 @@ namespace Common
         
         //*********************** Desktop Shortcut File ************************//
         string DesktopShortcut = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+
+        string ThumbCache = string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "\\Explorer");
+
+        //************** IIS LOG FILE *************************//
+       
+        public static  string IISLog()
+        {
+
+
+          //  ServerManager manager = new ServerManager();
+          //  Site mySite = manager.Sites["Default Web Site"];
+          //return mySite.LogFile.Directory + "\\W3svc" + mySite.Id.ToString();
+            return "have";
+        }
 
     }
 }

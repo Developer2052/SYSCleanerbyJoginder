@@ -20,7 +20,7 @@ namespace Common
         {
             List<_Windows> ListOfApplication = new List<_Windows>();
             ListOfApplication.Add(new _Windows { Key = "InterNet Explorer", Value = null });
-            ListOfApplication.Add(new _Windows { Key = "InterNet Explorer", Value = "Temporary Internet Files" });
+            ListOfApplication.Add(new _Windows { Key = "InterNet Explorer", Value = "Temporary Internet File" });
             ListOfApplication.Add(new _Windows { Key = "InterNet Explorer", Value = "History" });
             ListOfApplication.Add(new _Windows { Key = "InterNet Explorer", Value = "Cookies" });
             ListOfApplication.Add(new _Windows { Key = "InterNet Explorer", Value = "Recently Typed URLs" });

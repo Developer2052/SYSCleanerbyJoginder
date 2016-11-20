@@ -23,6 +23,17 @@ namespace Common
     {
         public static bool IsEmptyRecycle = false;
     }
+    public enum Extension
+    {
+        Dat,
+        Lnk
+
+    }
+    public enum TabName
+    {
+        Application,
+        Windows
+    }
     public class CommonConstantProperty:ColumnsForDataTable
     {
         public enum IsDefaultValue
@@ -38,5 +49,6 @@ namespace Common
             Beta,
             Final
         }
+       
     }
 }
