@@ -13,8 +13,12 @@ namespace Common
 
     public class CommonFunction
     {
-        #region Exception Handle....
-
+        #region Here we Handle the Exception,based on Error Number
+        /// <summary>
+        /// This HandleException function handle of All type of Excetpion, If we Ignore the exception return One otherwise Zero
+        /// </summary>
+        /// <param name="e">Base Exception class  </param>
+        /// <returns>Handle exception return One otherwise Zero</returns>
         public static int HandleExption(Exception e)
         {
 
@@ -25,12 +29,11 @@ namespace Common
         }
         private static List<string> ErrorNumbers()
         {
-            List<string> localErrorNumber = new List<string> { "-2147024864","-2147024891" };
+            List<string> localErrorNumber = new List<string> { "-2147024864", "-2147024891" };
             return localErrorNumber;
 
 
         }
-
         private static CommonProperty.IsDefaultValue ThrowException(string errorNumber)
         {
             if (!string.IsNullOrEmpty(errorNumber))
@@ -44,7 +47,6 @@ namespace Common
             else
                 return CommonProperty.IsDefaultValue.Zero;
         }
-
         #endregion
 
         public static string GetPathBaseOnCondition(string nameOfValueSelectCheckboxList)
@@ -59,6 +61,9 @@ namespace Common
             {
                 case "Temporary Internet File":
                     TempValues = AllPath.InernetNetCache;
+                    break;
+                case "History":
+                    TempValues = AllPath.IHisotry;
                     break;
                 default:
                     TempValues = CommonProperty.IsDefaultValue.Zero.ToString();
@@ -107,7 +112,7 @@ namespace Common
         static string TempFilePath = string.Empty;
 
 
-        public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, ref List<string> deleteFileRecords, ref string sizeOfFile, List<string> ExtensionOfFile = null)
+        public static void DeleteFileGetTheDirecotry(string filePath, bool isScanOnlyForSpaceCount, ref List<string> fileRecords, ref string sizeOfFile, List<string> ExtensionOfFile = null)
         {
             try
             {
@@ -124,36 +129,49 @@ namespace Common
                 {
                     foreach (DirectoryInfo dir in TempDirectoryInfo.GetDirectories())
                     {
-                        if (IsFileAvailable(dir))
+                        try
                         {
-                            DeleteFiles(dir, isScanOnlyForSpaceCount, ExtensionOfFile);
-                        }
-                        if (IsDirectoryAvailable(dir))
-                        {
-                            IsDeleteFile(dir, isScanOnlyForSpaceCount, ExtensionOfFile);
-                        }
-                        if (Directory.Exists(dir.FullName))
-                        {
-                            if ((!IsFileAvailable(dir)) && (!IsDirectoryAvailable(dir)))
+                            if (IsFileAvailable(dir))
                             {
-                                if (!isScanOnlyForSpaceCount)
+                                DeleteFiles(dir, isScanOnlyForSpaceCount, ExtensionOfFile);
+                            }
+                            if (IsDirectoryAvailable(dir))
+                            {
+                                IsDeleteFile(dir, isScanOnlyForSpaceCount, ExtensionOfFile);
+                            }
+                            if (Directory.Exists(dir.FullName))
+                            {
+                                if ((!IsFileAvailable(dir)) && (!IsDirectoryAvailable(dir)))
                                 {
-                                    try
+                                    if (!isScanOnlyForSpaceCount)
                                     {
-                                        dir.Delete(true);
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        if (HandleExption(e) == (int)CommonProperty.IsDefaultValue.Zero)
-                                            throw;
+                                        try
+                                        {
+                                            dir.Delete(true);
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            if (HandleExption(e) == (int)CommonProperty.IsDefaultValue.Zero)
+                                                throw;
+                                        }
                                     }
                                 }
                             }
                         }
+                        catch (Exception e)
+                        {
+                            if (HandleExption(e) == (int)CommonProperty.IsDefaultValue.Zero)
+                                throw;
+                        }
                     }
                 }
-                deleteFileRecords = DeleteListTempFile;
-                sizeOfFile = GetFileSize(CommonInformation.TempraroyFileSpaceCount);
+                if (fileRecords.Count > (int)CommonProperty.IsDefaultValue.Zero)
+                {
+                    fileRecords.AddRange(DeleteListTempFile);
+                }
+                else
+                    fileRecords = DeleteListTempFile;
+                sizeOfFile = CommonInformation.TempraroyFileSpaceCount.ToString();
             }
             catch (Exception e)
             {
@@ -473,6 +491,9 @@ namespace Common
         {
             return (int)CommonProperty.IsDefaultValue.Zero;
         }
+
+        #region Convert list to DataTable
+
         static DataTable Temptable = null;
         private static void ReturnDataTableWithColumns(List<ColumnsForDataTable> ObjListofColumn)
         {
@@ -513,6 +534,28 @@ namespace Common
                 }
             }
             return Temptable;
+        } 
+
+        #endregion
+
+        public static string ConvertTimeSpanToMinutsAndString(TimeSpan objTimeSpan)
+        {
+            string Min = string.Empty;
+            if(objTimeSpan.Minutes>0)
+            {
+                Min = objTimeSpan.Minutes.ToString() + " Min ";
+
+            }
+            else
+                Min=" 00 Min ";
+            if(objTimeSpan.Seconds>0)
+            {
+                Min += objTimeSpan.Seconds.ToString() + " Sec ";
+            }
+            else
+                Min+="00 Sec ";
+
+            return Min;
         }
 
     }

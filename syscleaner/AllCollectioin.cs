@@ -14,36 +14,33 @@ namespace syscleaner
 {
     public partial class AllCollectioin : Form
     {
+        #region Global Veriable
+		
         bool IsSelectedWidowsApplicationValues = false;
         string SelectedTabPage = string.Empty;
-
+        long sizeOfiles = 0;
+        string sizeoffile;
+        int CountOfFile;
+        TimeSpan DifferenceTimeHold;
+        List<string> listOfFiles = new List<string>(); 
+	#endregion
         public AllCollectioin()
         {
-           
+
             InitializeComponent();
-            //PicFooter.BackColor = Color.FromArgb(40, 129, 187);
-            //_AllCollectionProgressBar.Increment(50);
-            ////this.BtnApplication.BackColor = Color.FromArgb(40, 129, 200);
-            ////this.BtnWindows.BackColor = Color.FromArgb(40, 129, 150);
-            ////progressBar1.Increment(50);
-            //Size tt = _pnlIconContainer.Size;
-            //_TopPanel.BackColor = Color.FromArgb(40, 129, 187);
-            //string ss = AllPath.IECookies;
-            //BindChkWindowsList();
+            lblHeaderName.Text = "Sys Cleaner Software @ " + DateTime.Now.Year;
+            PicFooter.BackColor = Color.FromArgb(40, 129, 187);
+            _TopPanel.BackColor = Color.FromArgb(40, 129, 187);
+             BindChkWindowsList();
+            _pnlDeatilsComplete.Visible = false;
+           
 
-
-            // string mm=  Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.SystemX86), "calc.exe");
-
-            //// Create a new DirectoryInfo object.
-            //DirectoryInfo dInfo = new DirectoryInfo(mm);
-
-            //// Get a DirectorySecurity object that represents the 
-            //// current security settings.
-            //DirectorySecurity dSecurity = dInfo.GetAccessControl();
-
-            BindChkWindowsList();
-            string test = AllPath.IISLog();
-
+        }
+        private void BindFileCountAndTime()
+        {
+            lblSizeOfFile.Text = "scan found " + CountOfFile.ToString() + " file " + sizeoffile + " Total";
+            lblCleaningCompleteTimeSlot.Text = "Cleaning Complete(" + CommonFunction.ConvertTimeSpanToMinutsAndString(DifferenceTimeHold)+ ")";
+            _pnlDeatilsComplete.Visible = true;
         }
 
         private void BindChkWindowsList()
@@ -91,6 +88,10 @@ namespace syscleaner
 
 
         }
+        private void BindGridView()
+        {
+            GrdviewCollection.DataSource = listOfFiles.Select(x => new { Value = x }).ToList(); ;
+        }
 
         private void PicClosed_Click(object sender, EventArgs e)
         {
@@ -101,7 +102,7 @@ namespace syscleaner
         {
             var temp = sender as TabControl;
             TabPage tabPage = temp.SelectedTab;
-            if (tabPage.Text ==TabName.Application.ToString())
+            if (tabPage.Text == TabName.Application.ToString())
             {
                 SelectedTabPage = TabName.Application.ToString();
                 BindApplicationList();
@@ -117,50 +118,83 @@ namespace syscleaner
         private void _PictureCleaner_Click(object sender, EventArgs e)
         {
 
-            dataGridView1.Show();
+            GrdviewCollection.Show();
 
 
         }
 
         private void _PictureBoxStartup_Click(object sender, EventArgs e)
         {
-            dataGridView1.Hide();
+            GrdviewCollection.Hide();
             DataGridView _Datagridview = new DataGridView();
             _pnlHome.Controls.Add(_Datagridview);
 
 
         }
 
+
+        private void BindProcessBar()
+        {
+            int CountofSelectedFile = ChkWindowsList.CheckedItems.Count;
+            if (CountofSelectedFile > 0)
+            {
+                _AllCollectionProgressBar.Increment(100 / CountofSelectedFile);
+
+            }
+        }
+
         private void btnScan_Click(object sender, EventArgs e)
         {
-            List<string> NameOfValues=new List<string>();
-            string sizeoffile=string.Empty;
+            string startingTime = DateTime.Now.ToLongTimeString();
+            
+            List<string> TempValuesFile = new List<string>();
+
+            List<long> listSizeOfFile = new List<long>();
+            sizeoffile = string.Empty;
+
             IsSelectedWidowsApplicationValues = false;
 
             if (SelectedTabPage == TabName.Windows.ToString())
             {
                 foreach (string CheckValue in ChkWindowsList.CheckedItems)
                 {
+                    BindProcessBar();
                     IsSelectedWidowsApplicationValues = true;
                     foreach (var CollectionOfItem in _Windows.ListOfWindwosProgram())
                     {
                         if (!string.IsNullOrEmpty(CollectionOfItem.Value))
                             if (string.Equals(CheckValue, CollectionOfItem.Value))
                             {
-                                // Get the path of windows Based on condition..... Joginder singh 
-                                string GetPath=CommonFunction.GetPathBaseOnCondition(CheckValue); 
-                                if(GetPath!=CommonProperty.IsDefaultValue.Zero.ToString()){
-                                    CommonFunction.DeleteFileGetTheDirecotry(GetPath, false, ref  NameOfValues, ref sizeoffile);
+                                // Get the path of windows Based on condition, GetPathBaseONcodition function return Zero or One. If path are find return One or else return Zero...
+
+                                //Joginder singh Dated : 21/11/2016
+                                string GetPath = CommonFunction.GetPathBaseOnCondition(CheckValue);
+                                if (GetPath != CommonProperty.IsDefaultValue.Zero.ToString())
+                                {
+                                    sizeoffile = string.Empty;
+                                    TempValuesFile.Clear();
+                                    // this function get the details of we can delete are these file and also count the size of file. 
+                                    CommonFunction.DeleteFileGetTheDirecotry(GetPath, true, ref  TempValuesFile, ref sizeoffile);
+                                    listOfFiles.AddRange(TempValuesFile);
+                                    listSizeOfFile.Add(Convert.ToInt64(sizeoffile));
                                 }
-
                             }
-
                     }
                 }
+                CountOfFile = listOfFiles.Count;
+                foreach (var item in listSizeOfFile)
+                {
+                    sizeOfiles = +item;
+                }
+                if (sizeOfiles > 0)
+                    sizeoffile = CommonFunction.GetFileSize(sizeOfiles);
+               string endtime = DateTime.Now.ToLongTimeString();
+               DifferenceTimeHold = DateTime.Parse(endtime).Subtract(DateTime.Parse(startingTime)); 
+                BindFileCountAndTime();
+                BindGridView();
+
             }
-
         }
-
         private void btnClean_Click(object sender, EventArgs e)
         {
 
