@@ -26,6 +26,39 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node1");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node2");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node3");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Node5");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Node6");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Node7");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Node4", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Node9");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Node10");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Node11");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Node8", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Node13");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Node14");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Node15");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Node12", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14,
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Node17");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Node18");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Node16", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18});
             this.panel2 = new System.Windows.Forms.Panel();
             this.LblSizeOfRam = new System.Windows.Forms.Label();
             this.LblSoftwareVersion = new System.Windows.Forms.Label();
@@ -39,34 +72,15 @@
             this.headerControl1 = new CustomControl.HeaderControl();
             this.PnlContainer = new System.Windows.Forms.GroupBox();
             this.CleanProgressbar = new System.Windows.Forms.ProgressBar();
-            this.pnl_left_inner_1 = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pnl_left_inner_2 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
             this.PnlContainer.SuspendLayout();
-            this.pnl_left_inner_1.SuspendLayout();
-            this.pnl_left_inner_2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,9 +198,8 @@
             // PnlContainer
             // 
             this.PnlContainer.BackColor = System.Drawing.Color.White;
+            this.PnlContainer.Controls.Add(this.treeView1);
             this.PnlContainer.Controls.Add(this.CleanProgressbar);
-            this.PnlContainer.Controls.Add(this.pnl_left_inner_1);
-            this.PnlContainer.Controls.Add(this.pnl_left_inner_2);
             this.PnlContainer.Controls.Add(this.pictureBox3);
             this.PnlContainer.Location = new System.Drawing.Point(2, 90);
             this.PnlContainer.Name = "PnlContainer";
@@ -201,186 +214,6 @@
             this.CleanProgressbar.Size = new System.Drawing.Size(721, 21);
             this.CleanProgressbar.TabIndex = 19;
             // 
-            // pnl_left_inner_1
-            // 
-            this.pnl_left_inner_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnl_left_inner_1.Controls.Add(this.label15);
-            this.pnl_left_inner_1.Controls.Add(this.label16);
-            this.pnl_left_inner_1.Controls.Add(this.label13);
-            this.pnl_left_inner_1.Controls.Add(this.label14);
-            this.pnl_left_inner_1.Controls.Add(this.label5);
-            this.pnl_left_inner_1.Controls.Add(this.label6);
-            this.pnl_left_inner_1.Controls.Add(this.label4);
-            this.pnl_left_inner_1.Controls.Add(this.label3);
-            this.pnl_left_inner_1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnl_left_inner_1.Location = new System.Drawing.Point(355, 156);
-            this.pnl_left_inner_1.Name = "pnl_left_inner_1";
-            this.pnl_left_inner_1.Size = new System.Drawing.Size(258, 120);
-            this.pnl_left_inner_1.TabIndex = 17;
-            this.pnl_left_inner_1.Visible = false;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(164, 88);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(44, 13);
-            this.label15.TabIndex = 21;
-            this.label15.Text = "100 MB";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(42, 88);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(71, 13);
-            this.label16.TabIndex = 20;
-            this.label16.Text = "Registry Junk";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(165, 62);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(44, 13);
-            this.label13.TabIndex = 19;
-            this.label13.Text = "100 MB";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(43, 62);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(71, 13);
-            this.label14.TabIndex = 18;
-            this.label14.Text = "Registry Junk";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(168, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 13);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "100 MB";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(43, 36);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Mind Blowing";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(165, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "100 MB";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(43, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 13);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Inneral Registry";
-            // 
-            // pnl_left_inner_2
-            // 
-            this.pnl_left_inner_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnl_left_inner_2.Controls.Add(this.label19);
-            this.pnl_left_inner_2.Controls.Add(this.label20);
-            this.pnl_left_inner_2.Controls.Add(this.label21);
-            this.pnl_left_inner_2.Controls.Add(this.label22);
-            this.pnl_left_inner_2.Controls.Add(this.label23);
-            this.pnl_left_inner_2.Controls.Add(this.label24);
-            this.pnl_left_inner_2.Controls.Add(this.label25);
-            this.pnl_left_inner_2.Controls.Add(this.label26);
-            this.pnl_left_inner_2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnl_left_inner_2.Location = new System.Drawing.Point(355, 299);
-            this.pnl_left_inner_2.Name = "pnl_left_inner_2";
-            this.pnl_left_inner_2.Size = new System.Drawing.Size(258, 120);
-            this.pnl_left_inner_2.TabIndex = 18;
-            this.pnl_left_inner_2.Visible = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(164, 88);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(44, 13);
-            this.label19.TabIndex = 21;
-            this.label19.Text = "100 MB";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(42, 88);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(71, 13);
-            this.label20.TabIndex = 20;
-            this.label20.Text = "Registry Junk";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(165, 62);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(44, 13);
-            this.label21.TabIndex = 19;
-            this.label21.Text = "100 MB";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(43, 62);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(71, 13);
-            this.label22.TabIndex = 18;
-            this.label22.Text = "Registry Junk";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(168, 36);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(44, 13);
-            this.label23.TabIndex = 17;
-            this.label23.Text = "100 MB";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(43, 36);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(70, 13);
-            this.label24.TabIndex = 16;
-            this.label24.Text = "Mind Blowing";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(165, 13);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(44, 13);
-            this.label25.TabIndex = 15;
-            this.label25.Text = "100 MB";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(43, 13);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(80, 13);
-            this.label26.TabIndex = 14;
-            this.label26.Text = "Inneral Registry";
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::syscleaner.Properties.Resources.FooterImage;
@@ -393,6 +226,59 @@
             // toolTip1
             // 
             this.toolTip1.IsBalloon = true;
+            // 
+            // treeView1
+            // 
+            this.treeView1.CheckBoxes = true;
+            this.treeView1.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.treeView1.Location = new System.Drawing.Point(68, 85);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "Node1";
+            treeNode1.Text = "Node1";
+            treeNode2.Name = "Node2";
+            treeNode2.Text = "Node2";
+            treeNode3.Name = "Node3";
+            treeNode3.Text = "Node3";
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Node0";
+            treeNode5.Name = "Node5";
+            treeNode5.Text = "Node5";
+            treeNode6.Name = "Node6";
+            treeNode6.Text = "Node6";
+            treeNode7.Name = "Node7";
+            treeNode7.Text = "Node7";
+            treeNode8.Name = "Node4";
+            treeNode8.Text = "Node4";
+            treeNode9.Name = "Node9";
+            treeNode9.Text = "Node9";
+            treeNode10.Name = "Node10";
+            treeNode10.Text = "Node10";
+            treeNode11.Name = "Node11";
+            treeNode11.Text = "Node11";
+            treeNode12.Name = "Node8";
+            treeNode12.Text = "Node8";
+            treeNode13.Name = "Node13";
+            treeNode13.Text = "Node13";
+            treeNode14.Name = "Node14";
+            treeNode14.Text = "Node14";
+            treeNode15.Name = "Node15";
+            treeNode15.Text = "Node15";
+            treeNode16.Name = "Node12";
+            treeNode16.Text = "Node12";
+            treeNode17.Name = "Node17";
+            treeNode17.Text = "Node17";
+            treeNode18.Name = "Node18";
+            treeNode18.Text = "Node18";
+            treeNode19.Name = "Node16";
+            treeNode19.Text = "Node16";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode8,
+            treeNode12,
+            treeNode16,
+            treeNode19});
+            this.treeView1.Size = new System.Drawing.Size(265, 259);
+            this.treeView1.TabIndex = 20;
             // 
             // CleanAnalyze
             // 
@@ -423,10 +309,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
             this.PnlContainer.ResumeLayout(false);
-            this.pnl_left_inner_1.ResumeLayout(false);
-            this.pnl_left_inner_1.PerformLayout();
-            this.pnl_left_inner_2.ResumeLayout(false);
-            this.pnl_left_inner_2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
@@ -446,24 +328,7 @@
         private CustomControl.HeaderControl headerControl1;
         private System.Windows.Forms.GroupBox PnlContainer;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Panel pnl_left_inner_1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel pnl_left_inner_2;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ProgressBar CleanProgressbar;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }

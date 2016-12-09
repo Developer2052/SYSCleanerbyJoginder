@@ -49,6 +49,7 @@ namespace Common
         }
         #endregion
 
+        #region Get Path based On Condition In below we are using Switch Condition..... JSB 25/11/2016
         public static string GetPathBaseOnCondition(string nameOfValueSelectCheckboxList)
         {
             return GetPathBasedOnCondtion(nameOfValueSelectCheckboxList);
@@ -65,6 +66,105 @@ namespace Common
                 case "History":
                     TempValues = AllPath.IHisotry;
                     break;
+                case "Cookies":
+                    TempValues = AllPath.IECookies;
+                    break;
+                case "Recently Typed URLs":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Index.dat files":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Last Download Location":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Autocomplete Form History":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Saved Passwords":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Recent Documents":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Run( in Start Menu)":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Other Explorer MRUs":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Thumbnail Cache":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Taskbar Jump Lists":
+                    //TempValues = AllPath.IECookies;
+                    break;
+               
+                case "Netwrok Password":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Empty Recycle Bin":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Temporary Files":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Clipboard":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Memory Dumps":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "ChkDisk Files Fragments":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Windows Log Files":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Windows Error Reporting":
+                    //TempValues = AllPath.IECookies;
+                    break;
+              
+                case "DNS Chache":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Font Chache":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Start Menu Shortcuts":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Desktop Shortcuts":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Windows Event Logs":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Old Prefatch data":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Menu Order Cache":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Try Notification cache":
+                    //TempValues = AllPath.IECookies;
+                    break;
+
+                case "Windows Size/ Location Cache":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Environment Path":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "User Assist History":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Custom Files and Folders":
+                    //TempValues = AllPath.IECookies;
+                    break;
+                case "Wipe free Sapce":
+                    //TempValues = AllPath.IECookies;
+                    break;
                 default:
                     TempValues = CommonProperty.IsDefaultValue.Zero.ToString();
                     break;
@@ -73,7 +173,8 @@ namespace Common
             }
             return TempValues;
 
-        }
+        } 
+        #endregion
 
 
         #region File Status Check Is locked OR Not
@@ -380,12 +481,9 @@ namespace Common
                 return false;
         }
         #endregion
-        /// Get Size of RAM 
-        /// 
-        /// </summary>
-        /// <param name="SizeOf"></param>
-        /// <returns></returns>
-        /// 
+
+
+        #region Convert amount of Size in KB,MB and so On ..JSB 25/11/2016
         public static void exectAmountOfData(UInt64 AmountValues)
         {
             if (AmountValues > 1024)
@@ -397,7 +495,15 @@ namespace Common
             {
             }
             CommonInformation.SizeOfRam = AmountValues.ToString();
-        }
+        } 
+        #endregion
+
+        /// Get Size of RAM 
+        /// 
+        /// </summary>
+        /// <param name="SizeOf"></param>
+        /// <returns></returns>
+        /// 
         public static UInt64 SizeOfRam()
         {
             string Query = "SELECT Capacity FROM Win32_PhysicalMemory";
@@ -409,6 +515,7 @@ namespace Common
             }
             return Capacity;
         }
+
         public static void GetAllInforationAboutSystem()
         {
             CommonInformation.MechineName = Environment.MachineName;

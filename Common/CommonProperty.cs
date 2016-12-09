@@ -5,10 +5,19 @@ using System.IO;
 using System.Management;
 namespace Common
 {
+
+    public class BindApplicationAndWindowsUsingGridview
+    {
+       public string NameOfItems { get; set; }
+       public string SizeOfFile { get; set; }
+       public string CountOfFile { get; set; }
+    }
+
     /// <summary>
     /// this class contains Common Property for used further used
     /// </summary>
     /// 
+    
     public class CommonProperty : CommonConstantProperty
     {
         public static int EmptyReceyleBin = (int)IsDefaultValue.Zero;

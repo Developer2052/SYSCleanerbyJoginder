@@ -82,11 +82,6 @@ namespace syscleaner
             picturebox.Size = new System.Drawing.Size(29, 27);
 
 
-            picturebox.Image = Image.FromFile(@"D:\Projects\SYSCleaner\syscleaner\Image\Firefox.png");
-
-
-
-
             Label lblProgramName = new Label();
             lblProgramName.AutoSize = true;
             lblProgramName.Location = new System.Drawing.Point(43, 13);

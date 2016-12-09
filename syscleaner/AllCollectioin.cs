@@ -15,15 +15,17 @@ namespace syscleaner
     public partial class AllCollectioin : Form
     {
         #region Global Veriable
-		
+
         bool IsSelectedWidowsApplicationValues = false;
+
+        List<BindApplicationAndWindowsUsingGridview> ObjbindApplicationAndWindows = null;
         string SelectedTabPage = string.Empty;
         long sizeOfiles = 0;
         string sizeoffile;
         int CountOfFile;
         TimeSpan DifferenceTimeHold;
-        List<string> listOfFiles = new List<string>(); 
-	#endregion
+        List<string> listOfFiles = new List<string>();
+        #endregion
         public AllCollectioin()
         {
 
@@ -31,15 +33,15 @@ namespace syscleaner
             lblHeaderName.Text = "Sys Cleaner Software @ " + DateTime.Now.Year;
             PicFooter.BackColor = Color.FromArgb(40, 129, 187);
             _TopPanel.BackColor = Color.FromArgb(40, 129, 187);
-             BindChkWindowsList();
+            BindChkWindowsList();
             _pnlDeatilsComplete.Visible = false;
-           
+
 
         }
         private void BindFileCountAndTime()
         {
             lblSizeOfFile.Text = "scan found " + CountOfFile.ToString() + " file " + sizeoffile + " Total";
-            lblCleaningCompleteTimeSlot.Text = "Cleaning Complete(" + CommonFunction.ConvertTimeSpanToMinutsAndString(DifferenceTimeHold)+ ")";
+            lblCleaningCompleteTimeSlot.Text = "Cleaning Complete(" + CommonFunction.ConvertTimeSpanToMinutsAndString(DifferenceTimeHold) + ")";
             _pnlDeatilsComplete.Visible = true;
         }
 
@@ -90,7 +92,7 @@ namespace syscleaner
         }
         private void BindGridView()
         {
-            GrdviewCollection.DataSource = listOfFiles.Select(x => new { Value = x }).ToList(); ;
+            GrdviewCollection.DataSource = ObjbindApplicationAndWindows;
         }
 
         private void PicClosed_Click(object sender, EventArgs e)
@@ -117,7 +119,7 @@ namespace syscleaner
 
         private void _PictureCleaner_Click(object sender, EventArgs e)
         {
-
+            AddBorderLine(sender, e);
             GrdviewCollection.Show();
 
 
@@ -125,11 +127,10 @@ namespace syscleaner
 
         private void _PictureBoxStartup_Click(object sender, EventArgs e)
         {
+            AddBorderLine(sender, e);
             GrdviewCollection.Hide();
             DataGridView _Datagridview = new DataGridView();
             _pnlHome.Controls.Add(_Datagridview);
-
-
         }
 
 
@@ -142,11 +143,34 @@ namespace syscleaner
 
             }
         }
+        private void AddBorderLine(object sender, EventArgs e)
+        {
+            PictureBox btn = sender as PictureBox;
+            if (btn != null)
+            {
+                foreach (PictureBox item in _pnlIconContainer.Controls)
+                {
+                    if (item != null)
+                    {
+                        item.BorderStyle = BorderStyle.None;
+                    }
+
+                }
+
+
+
+                btn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            }
+        }
 
         private void btnScan_Click(object sender, EventArgs e)
-        {
+        {   // Add a Border Line.....
+            AddBorderLine(sender, e);
+            ObjbindApplicationAndWindows = new List<BindApplicationAndWindowsUsingGridview>();
+
+            // PicLoadingAndComplete.Image=Image.FromFile(new FileInfo(@"\syscleaner\Image\FINAL-LOADING-2.gif").FullName);
             string startingTime = DateTime.Now.ToLongTimeString();
-            
+
             List<string> TempValuesFile = new List<string>();
 
             List<long> listSizeOfFile = new List<long>();
@@ -176,23 +200,44 @@ namespace syscleaner
                                     // this function get the details of we can delete are these file and also count the size of file. 
                                     CommonFunction.DeleteFileGetTheDirecotry(GetPath, true, ref  TempValuesFile, ref sizeoffile);
                                     listOfFiles.AddRange(TempValuesFile);
+                                    ObjbindApplicationAndWindows.Add(new BindApplicationAndWindowsUsingGridview
+                                    {
+                                        CountOfFile = TempValuesFile.Count.ToString() +"Files",
+                                        SizeOfFile = CommonFunction.GetFileSize(Convert.ToInt64( sizeoffile)),
+                                        NameOfItems = CheckValue
+                                    });
+
                                     listSizeOfFile.Add(Convert.ToInt64(sizeoffile));
                                 }
                             }
                     }
-                }
+                } 
+
+                #region Execute after the complete all thing..
+                // Develop By JSB,23/11/2016
                 CountOfFile = listOfFiles.Count;
+
+                /// Count of File size display on Top Header Display....
+                /// 
                 foreach (var item in listSizeOfFile)
                 {
-                    sizeOfiles = +item;
+                    sizeOfiles += item;
                 }
                 if (sizeOfiles > 0)
                     sizeoffile = CommonFunction.GetFileSize(sizeOfiles);
-               string endtime = DateTime.Now.ToLongTimeString();
-               DifferenceTimeHold = DateTime.Parse(endtime).Subtract(DateTime.Parse(startingTime)); 
-                BindFileCountAndTime();
-                BindGridView();
+                /// Display Time Which...... display on Header....for scanning and display Values....
+                #region Time Subtract.....
+                string endtime = DateTime.Now.ToLongTimeString();
+                DifferenceTimeHold = DateTime.Parse(endtime).Subtract(DateTime.Parse(startingTime)); 
+                #endregion
 
+                BindFileCountAndTime();
+
+
+                BindGridView();
+                // PicLoadingAndComplete.Image = Image.FromFile(new FileInfo("CleanerComplete.PNG").FullName);
+
+                #endregion
             }
         }
         private void btnClean_Click(object sender, EventArgs e)
