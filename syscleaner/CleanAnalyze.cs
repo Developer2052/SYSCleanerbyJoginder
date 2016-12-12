@@ -139,8 +139,52 @@ namespace syscleaner
                 IsButtonClick = false;
             }
         }
+        private TreeNode Searchnode(string nodetext, TreeView trv)
+        {
+            foreach (TreeNode node in trv.Nodes)
+            {
+                if (node.Text == nodetext)
+                {
+                    return node;
+                }
+            }
+            return null;
+        }
+        public void BuildTree(DataTable dt, TreeView trv, Boolean expandAll)
+        {
+            // Clear the TreeView if there are another datas in this TreeView
+            trv.Nodes.Clear();
+            TreeNode node = default(TreeNode);
+            TreeNode subNode = default(TreeNode);
+            foreach (DataRow row in dt.Rows)
+            {
+                //search in the treeview if any country is already present
+                node = Searchnode(row[0].ToString(), trv);
+                if (node != null)
+                {
+                    //Country is already present
+                    subNode = new TreeNode(row[1].ToString());
+                    //Add cities to country
+                    node.Nodes.Add(subNode);
+                }
+                else
+                {
+                    node = new TreeNode(row[0].ToString());
+                    subNode = new TreeNode(row[1].ToString());
+                    //Add cities to country
+                    node.Nodes.Add(subNode);
+                    trv.Nodes.Add(node);
+                }
+            }
+            if (expandAll)
+            {
+                // Expand the TreeView
+                trv.ExpandAll();
+            }
+        }
         private void DisplayOrHideDetails(PictureBox objPictureBox, bool isHide)
         {
+           
             string[] ControlId = CommonFunction.GetControlId(objPictureBox.Name);
             Control ParentControl = objPictureBox.Parent;
             int ID = 0;

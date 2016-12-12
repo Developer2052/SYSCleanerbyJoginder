@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -34,7 +34,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -65,8 +65,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Common\bin\Debug\Common.dll</HintPath>
     </Reference>
-    <Reference Include="CustomControl">
-      <HintPath>..\..\..\syscleaner\syscleaner\bin\Debug\CustomControl.dll</HintPath>
+    <Reference Include="ControlLib">
+      <HintPath>C:\Users\Vimalendu\Desktop\service\New folder (3)\bin\ControlLib.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomControlNew">
+      <HintPath>..\..\CustomControl\CustomControl\bin\Debug\CustomControlNew.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\packages\Microsoft.Windows.Shell.3.0.1.0\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="MyLib">
+      <HintPath>..\..\MyLib\MyLib\bin\Debug\MyLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -81,6 +90,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllCollectioin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllCollectioin.Designer.cs">
+      <DependentUpon>AllCollectioin.cs</DependentUpon>
+    </Compile>
     <Compile Include="CleanAnalyze.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,8 +114,17 @@
     <Compile Include="HomeOLD.Designer.cs">
       <DependentUpon>HomeOLD.cs</DependentUpon>
     </Compile>
+    <Compile Include="Index.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Index.Designer.cs">
+      <DependentUpon>Index.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AllCollectioin.resx">
+      <DependentUpon>AllCollectioin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CleanAnalyze.resx">
       <DependentUpon>CleanAnalyze.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HomeOLD.resx">
       <DependentUpon>HomeOLD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Index.resx">
+      <DependentUpon>Index.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,6 +147,27 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Image\01.jpg" />
+    <None Include="Image\02.jpg" />
+    <None Include="Image\CleanerComplete.PNG" />
+    <None Include="Image\DetailsOfFiles.PNG" />
+    <None Include="Image\Email.png" />
+    <None Include="Image\fwdsysimages.zip" />
+    <None Include="Image\Google Chrome1.png" />
+    <None Include="Image\Icon-RegEntry.png" />
+    <None Include="Image\icon_googleplus.png" />
+    <None Include="Image\JOGIBANGER_1477462856050.pdf" />
+    <None Include="Image\loadingSmall.gif" />
+    <None Include="Image\Logonew.png" />
+    <None Include="Image\NewCleaner.jpg" />
+    <None Include="Image\newcleaner2.jpg" />
+    <None Include="Image\quicker.jpg" />
+    <None Include="Image\Test.png" />
+    <None Include="Image\_registry.jpg" />
+    <None Include="Image\_Setting.jpg" />
+    <None Include="Image\_Tools.jpg" />
+    <None Include="Image\_upgrade.jpg" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -152,11 +200,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Image\01.jpg" />
-    <None Include="Image\02.jpg" />
+    <Content Include="Image\001.png" />
+    <Content Include="Image\002.png" />
+    <Content Include="Image\003.png" />
+    <Content Include="Image\03.jpg" />
+    <Content Include="Image\04.jpg" />
+    <Content Include="Image\05.jpg" />
+    <Content Include="Image\06.jpg" />
     <Content Include="Image\about-banner.jpg" />
     <Content Include="Image\about1.jpg" />
     <Content Include="Image\Application.png" />
+    <Content Include="Image\award.jpg" />
     <Content Include="Image\banner.jpg" />
     <Content Include="Image\buttonclean.png" />
     <Content Include="Image\buttonscan.png" />
@@ -168,29 +222,61 @@
     <Content Include="Image\c5.png" />
     <Content Include="Image\c6.png" />
     <Content Include="Image\CenterCollection.png" />
+    <Content Include="Image\circle1.jpg" />
     <Content Include="Image\Close.png" />
     <Content Include="Image\ClosedButton.png" />
     <Content Include="Image\contact-banner.jpg" />
     <Content Include="Image\Double Circle Loading.gif" />
     <Content Include="Image\download-banner.jpg" />
     <Content Include="Image\download.jpg" />
-    <None Include="Image\Email.png" />
+    <Content Include="Image\faster.jpg" />
     <Content Include="Image\favicon.ico" />
+    <Content Include="Image\FINAL-LOADING-2.gif" />
     <Content Include="Image\Firefox.png" />
+    <Content Include="Image\Folder Utilities White.png" />
     <Content Include="Image\FooterImage.png" />
     <Content Include="Image\full-bg.jpg" />
+    <Content Include="Image\fwdsysimages\dark\001.png" />
+    <Content Include="Image\fwdsysimages\dark\002.png" />
+    <Content Include="Image\fwdsysimages\dark\003.png" />
+    <Content Include="Image\fwdsysimages\dark\01.jpg" />
+    <Content Include="Image\fwdsysimages\dark\01.png" />
+    <Content Include="Image\fwdsysimages\dark\02.png" />
+    <Content Include="Image\fwdsysimages\dark\03.png" />
+    <Content Include="Image\fwdsysimages\dark\04.png" />
+    <Content Include="Image\fwdsysimages\dark\05.png" />
+    <Content Include="Image\fwdsysimages\dark\06.png" />
+    <Content Include="Image\fwdsysimages\dark\award.jpg" />
+    <Content Include="Image\fwdsysimages\dark\circle2.png" />
+    <Content Include="Image\fwdsysimages\dark\faster.jpg" />
+    <Content Include="Image\fwdsysimages\dark\LOGO.png" />
+    <Content Include="Image\fwdsysimages\dark\quicker.jpg" />
+    <Content Include="Image\fwdsysimages\dark\Safer.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\001.png" />
+    <Content Include="Image\fwdsysimages\light\light\002.png" />
+    <Content Include="Image\fwdsysimages\light\light\003.png" />
+    <Content Include="Image\fwdsysimages\light\light\01.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\02.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\03.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\04.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\05.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\06.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\award.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\circle1.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\faster.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\LOGO.png" />
+    <Content Include="Image\fwdsysimages\light\light\quicker.jpg" />
+    <Content Include="Image\fwdsysimages\light\light\Safer.jpg" />
     <Content Include="Image\g1.png" />
     <Content Include="Image\g2.png" />
     <Content Include="Image\g3.png" />
     <Content Include="Image\g4.png" />
     <Content Include="Image\Google Chrome.png" />
-    <None Include="Image\Icon-RegEntry.png" />
-    <None Include="Image\Google Chrome1.png" />
+    <Content Include="Image\GoogleIcrom.png" />
     <Content Include="Image\icon1.jpg" />
     <Content Include="Image\icon2.jpg" />
     <Content Include="Image\icon3.jpg" />
     <Content Include="Image\icon4.jpg" />
-    <None Include="Image\icon_googleplus.png" />
     <Content Include="Image\Internet Explorer.png" />
     <Content Include="Image\Internet.png" />
     <Content Include="Image\l1.png" />
@@ -202,17 +288,23 @@
     <Content Include="Image\logo.png" />
     <Content Include="Image\MechineLoading.gif" />
     <Content Include="Image\Multimedia.png" />
+    <Content Include="Image\Opera.jpg" />
     <Content Include="Image\popup.jpg" />
     <Content Include="Image\price.png" />
+    <Content Include="Image\registry 2.jpg" />
+    <Content Include="Image\Safari.jpg" />
+    <Content Include="Image\Safer.jpg" />
     <Content Include="Image\side-img-1.png" />
     <Content Include="Image\support-banner.jpg" />
     <Content Include="Image\Sys Cleaner Logo.ico" />
     <Content Include="Image\Sys Cleaner Logo.png" />
     <Content Include="Image\Sys Clear With White Name.png" />
     <Content Include="Image\System.png" />
-    <None Include="Image\Test.png" />
+    <Content Include="Image\Tools.jpg" />
     <Content Include="Image\Utilities.png" />
     <Content Include="Image\Window Explorer.png" />
+    <Content Include="Image\_cleaner.jpg" />
+    <Content Include="Image\_finalLoading.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -47,20 +47,18 @@ namespace syscleaner
 
         private void BindChkWindowsList()
         {
+
             SelectedTabPage = TabName.Windows.ToString();
-            if (ChkWindowsList.Items.Count == CommonFunction.Zero())
+            if (TreeWindows.Nodes.Count == CommonFunction.Zero())
             {
-                foreach (_Windows item in _Windows.ListOfWindwosProgram())
-                {
-                    if (item.Value != null)
-                    {
-                        ChkWindowsList.Items.Add(item.Value);
-                    }
-                }
-                ChkWindowsList.Dock = DockStyle.Fill;
+                BuildTreeWindows(_Windows.ListOfWindwosProgram(), TreeWindows, true);
+
 
             }
         }
+
+
+
 
         private void BtnWindows_Click(object sender, EventArgs e)
         {
@@ -68,24 +66,103 @@ namespace syscleaner
 
 
         }
-
-
-
-        private void BindApplicationList()
+        #region BindTreeview Application and Windows
+        public void BuildTreeWindows(List<_Windows> list, TreeView trv, Boolean expandAll)
         {
-            //this.pnlWIndows.Visible = false;
-
-            if (ChkApplicationlist.Items.Count == CommonFunction.Zero())
+            trv.Nodes.Clear();
+            TreeNode tnLib = new TreeNode();
+            trv.BeginUpdate();
+            foreach (var row in list)
             {
-                foreach (var item in _Applications.GetApplication())
+                if (row.Value == null)
                 {
-                    if (item.Value != null)
+                    if (row.Key == "InterNet Explorer")
                     {
-                        ChkApplicationlist.Items.Add(item.Value);
+                        tnLib = trv.Nodes.Add(row.Key, row.Key, 0, 0);
+                    }
+                    if (row.Key == "Windows")
+                    {
+                        tnLib = trv.Nodes.Add(row.Key, row.Key, 1, 1);
+                    }
+                    if (row.Key == "System")
+                    {
+                        tnLib = trv.Nodes.Add(row.Key, row.Key, 2, 2);
+                    }
+                    if (row.Key == "Advanced")
+                    {
+                        tnLib = trv.Nodes.Add(row.Key, row.Key, 3, 3);
+
                     }
                 }
+                else
+                {
+                    tnLib.Nodes.Add(row.Value, row.Value, 7, 7);
+                }
+
             }
-            ChkApplicationlist.Dock = DockStyle.Fill;
+            if (expandAll)
+            {
+                // Expand the TreeView
+                trv.ExpandAll();
+            }
+            trv.EndUpdate();
+
+
+        }
+        public void BuildTreeApplication(List<_Applications> list, TreeView trv, Boolean expandAll)
+        {
+            trv.Nodes.Clear();
+            TreeNode tnLib = null;
+
+            trv.BeginUpdate();
+
+
+            foreach (var row in list)
+            {
+
+                if (row.Value == null)
+                {
+                    if (row.Key == "Opera")
+                    {
+                        tnLib = trv.Nodes.Add(row.Key, row.Key, 0, 0);
+                    }
+                    if (row.Key == "Safari")
+                    {
+                        tnLib = trv.Nodes.Add(row.Key, row.Key, 1, 1);
+                    }
+                    if (row.Key == "Google Chrome")
+                    {
+                        tnLib = trv.Nodes.Add(row.Key, row.Key, 2, 2);
+                    }
+                    if (row.Key == "Utilities")
+                    {
+                        tnLib = trv.Nodes.Add(row.Key, row.Key, 3, 3);
+
+                    }
+                }
+                else
+                {
+                    tnLib.Nodes.Add(row.Value, row.Value, 5, 5);
+                }
+
+            }
+            if (expandAll)
+            {
+                // Expand the TreeView
+                trv.ExpandAll();
+            }
+            trv.EndUpdate();
+        } 
+        #endregion
+        private void BindApplicationList()
+        {
+
+
+            if (TreeApplication.Nodes.Count == CommonFunction.Zero())
+            {
+                BuildTreeApplication(_Applications.GetApplication(), TreeApplication, true);
+            }
+
 
 
 
@@ -136,7 +213,7 @@ namespace syscleaner
 
         private void BindProcessBar()
         {
-            int CountofSelectedFile = ChkWindowsList.CheckedItems.Count;
+            int CountofSelectedFile = 10;
             if (CountofSelectedFile > 0)
             {
                 _AllCollectionProgressBar.Increment(100 / CountofSelectedFile);
@@ -163,37 +240,31 @@ namespace syscleaner
             }
         }
 
-        private void btnScan_Click(object sender, EventArgs e)
-        {   // Add a Border Line.....
-            AddBorderLine(sender, e);
-            ObjbindApplicationAndWindows = new List<BindApplicationAndWindowsUsingGridview>();
 
-            // PicLoadingAndComplete.Image=Image.FromFile(new FileInfo(@"\syscleaner\Image\FINAL-LOADING-2.gif").FullName);
-            string startingTime = DateTime.Now.ToLongTimeString();
-
-            List<string> TempValuesFile = new List<string>();
-
-            List<long> listSizeOfFile = new List<long>();
-            sizeoffile = string.Empty;
-
-            IsSelectedWidowsApplicationValues = false;
-
-            if (SelectedTabPage == TabName.Windows.ToString())
+        private void Cursor(TreeNodeCollection treeNodeCollection)
+        {
+            foreach (TreeNode CheckValue in treeNodeCollection)
             {
-                foreach (string CheckValue in ChkWindowsList.CheckedItems)
+                if(CheckValue.Nodes.Count>0)
+                {
+                    Cursor(CheckValue.Nodes);
+
+                }
+
+                if (CheckValue.Checked)
                 {
                     BindProcessBar();
                     IsSelectedWidowsApplicationValues = true;
                     foreach (var CollectionOfItem in _Windows.ListOfWindwosProgram())
                     {
                         if (!string.IsNullOrEmpty(CollectionOfItem.Value))
-                            if (string.Equals(CheckValue, CollectionOfItem.Value))
+                            if (string.Equals(CheckValue.Text, CollectionOfItem.Value))
                             {
                                 // Get the path of windows Based on condition, GetPathBaseONcodition function return Zero or One. If path are find return One or else return Zero...
 
                                 //Joginder singh Dated : 21/11/2016
-                                string GetPath = CommonFunction.GetPathBaseOnCondition(CheckValue);
-                                if (GetPath != CommonProperty.IsDefaultValue.Zero.ToString())
+                                string GetPath = CommonFunction.GetPathBaseOnCondition(CheckValue.Text);
+                                if (GetPath.Length.ToString() != CommonProperty.IsDefaultValue.Zero.ToString())
                                 {
                                     sizeoffile = string.Empty;
                                     TempValuesFile.Clear();
@@ -202,16 +273,40 @@ namespace syscleaner
                                     listOfFiles.AddRange(TempValuesFile);
                                     ObjbindApplicationAndWindows.Add(new BindApplicationAndWindowsUsingGridview
                                     {
-                                        CountOfFile = TempValuesFile.Count.ToString() +"Files",
-                                        SizeOfFile = CommonFunction.GetFileSize(Convert.ToInt64( sizeoffile)),
-                                        NameOfItems = CheckValue
+                                        CountOfFile = TempValuesFile.Count.ToString() + "Files",
+                                        SizeOfFile = CommonFunction.GetFileSize(Convert.ToInt64(sizeoffile)),
+                                        NameOfItems = CheckValue.Text
                                     });
 
                                     listSizeOfFile.Add(Convert.ToInt64(sizeoffile));
                                 }
                             }
                     }
-                } 
+                }
+            }
+        }
+
+        
+            List<string> TempValuesFile = new List<string>();
+
+            List<long> listSizeOfFile = new List<long>();
+         
+        private void btnScan_Click(object sender, EventArgs e)
+        {   // Add a Border Line.....
+            AddBorderLine(sender, e);
+            ObjbindApplicationAndWindows = new List<BindApplicationAndWindowsUsingGridview>();
+
+            // PicLoadingAndComplete.Image=Image.FromFile(new FileInfo(@"\syscleaner\Image\FINAL-LOADING-2.gif").FullName);
+            string startingTime = DateTime.Now.ToLongTimeString();
+
+            sizeoffile = string.Empty;
+
+            IsSelectedWidowsApplicationValues = false;
+
+            if (SelectedTabPage == TabName.Windows.ToString())
+            {
+
+                Cursor(TreeWindows.Nodes);
 
                 #region Execute after the complete all thing..
                 // Develop By JSB,23/11/2016
@@ -228,7 +323,7 @@ namespace syscleaner
                 /// Display Time Which...... display on Header....for scanning and display Values....
                 #region Time Subtract.....
                 string endtime = DateTime.Now.ToLongTimeString();
-                DifferenceTimeHold = DateTime.Parse(endtime).Subtract(DateTime.Parse(startingTime)); 
+                DifferenceTimeHold = DateTime.Parse(endtime).Subtract(DateTime.Parse(startingTime));
                 #endregion
 
                 BindFileCountAndTime();

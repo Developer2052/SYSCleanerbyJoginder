@@ -51,7 +51,7 @@ namespace syscleaner
                 // We are running as administrator
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new TreeViews());
+                Application.Run(new AllCollectioin());
             //}
 
 

@@ -71,10 +71,10 @@
             this.CloseButton = new System.Windows.Forms.PictureBox();
             this.headerControl1 = new CustomControl.HeaderControl();
             this.PnlContainer = new System.Windows.Forms.GroupBox();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.CleanProgressbar = new System.Windows.Forms.ProgressBar();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -207,26 +207,6 @@
             this.PnlContainer.TabIndex = 5;
             this.PnlContainer.TabStop = false;
             // 
-            // CleanProgressbar
-            // 
-            this.CleanProgressbar.Location = new System.Drawing.Point(2, 7);
-            this.CleanProgressbar.Name = "CleanProgressbar";
-            this.CleanProgressbar.Size = new System.Drawing.Size(721, 21);
-            this.CleanProgressbar.TabIndex = 19;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::syscleaner.Properties.Resources.FooterImage;
-            this.pictureBox3.Location = new System.Drawing.Point(0, 446);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(727, 47);
-            this.pictureBox3.TabIndex = 1;
-            this.pictureBox3.TabStop = false;
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            // 
             // treeView1
             // 
             this.treeView1.CheckBoxes = true;
@@ -279,6 +259,26 @@
             treeNode19});
             this.treeView1.Size = new System.Drawing.Size(265, 259);
             this.treeView1.TabIndex = 20;
+            // 
+            // CleanProgressbar
+            // 
+            this.CleanProgressbar.Location = new System.Drawing.Point(2, 7);
+            this.CleanProgressbar.Name = "CleanProgressbar";
+            this.CleanProgressbar.Size = new System.Drawing.Size(721, 21);
+            this.CleanProgressbar.TabIndex = 19;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::syscleaner.Properties.Resources.FooterImage;
+            this.pictureBox3.Location = new System.Drawing.Point(0, 446);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(727, 47);
+            this.pictureBox3.TabIndex = 1;
+            this.pictureBox3.TabStop = false;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
             // 
             // CleanAnalyze
             // 

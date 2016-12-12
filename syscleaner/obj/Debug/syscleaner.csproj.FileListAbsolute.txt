@@ -54,15 +54,8 @@ F:\cleaner\syscleaner\bin\Debug\Jcleaner.exe.manifest
 F:\cleaner\syscleaner\bin\Debug\Jcleaner.application
 F:\cleaner\syscleaner\obj\Debug\Jcleaner.exe.manifest
 F:\cleaner\syscleaner\obj\Debug\Jcleaner.application
-F:\syscleaner\syscleaner\bin\Debug\Jcleaner.exe.config
 F:\syscleaner\syscleaner\obj\Debug\Jcleaner.exe
 F:\syscleaner\syscleaner\obj\Debug\Jcleaner.pdb
-F:\syscleaner\syscleaner\bin\Debug\Jcleaner.exe.manifest
-F:\syscleaner\syscleaner\bin\Debug\Jcleaner.application
-F:\syscleaner\syscleaner\bin\Debug\Jcleaner.exe
-F:\syscleaner\syscleaner\bin\Debug\Jcleaner.pdb
-F:\syscleaner\syscleaner\bin\Debug\Common.dll
-F:\syscleaner\syscleaner\bin\Debug\Common.pdb
 F:\syscleaner\syscleaner\obj\Debug\syscleaner.csprojResolveAssemblyReference.cache
 F:\syscleaner\syscleaner\obj\Debug\syscleaner.CleanAnalyze.resources
 F:\syscleaner\syscleaner\obj\Debug\syscleaner.Home.resources
@@ -71,3 +64,10 @@ F:\syscleaner\syscleaner\obj\Debug\syscleaner.Properties.Resources.resources
 F:\syscleaner\syscleaner\obj\Debug\syscleaner.csproj.GenerateResource.Cache
 F:\syscleaner\syscleaner\obj\Debug\Jcleaner.exe.manifest
 F:\syscleaner\syscleaner\obj\Debug\Jcleaner.application
+F:\syscleaner\syscleaner\obj\Debug\syscleaner.Index.resources
+F:\syscleaner\syscleaner\obj\Debug\syscleaner.AllCollectioin.resources
+F:\syscleaner\Jcleaner.exe.config
+F:\syscleaner\Jcleaner.exe.manifest
+F:\syscleaner\Jcleaner.application
+F:\syscleaner\Jcleaner.exe
+F:\syscleaner\Jcleaner.pdb

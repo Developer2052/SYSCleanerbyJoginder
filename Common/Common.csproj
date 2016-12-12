@@ -59,6 +59,7 @@
     <Compile Include="CommonFunction.cs" />
     <Compile Include="CommonInformation.cs" />
     <Compile Include="CommonProperty.cs" />
+    <Compile Include="ContainerOfScanOrCleanerFileDetails.cs" />
     <Compile Include="DesktopSortCut.cs" />
     <Compile Include="GetAllApplicationList.cs" />
     <Compile Include="GetRecycleBinFiles.cs" />

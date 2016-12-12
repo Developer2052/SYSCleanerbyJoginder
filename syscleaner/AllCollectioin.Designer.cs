@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllCollectioin));
             this._PnlTaskBar = new System.Windows.Forms.Panel();
             this.lblHeaderName = new System.Windows.Forms.Label();
             this._PicWindowsClose = new System.Windows.Forms.PictureBox();
@@ -49,9 +51,9 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.TabWindowsAndApplication = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ChkWindowsList = new System.Windows.Forms.CheckedListBox();
+            this.TreeWindows = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ChkApplicationlist = new System.Windows.Forms.CheckedListBox();
+            this.TreeApplication = new System.Windows.Forms.TreeView();
             this._pnlHome = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnClean = new System.Windows.Forms.Button();
@@ -64,6 +66,8 @@
             this._PictureBoxStartup = new System.Windows.Forms.PictureBox();
             this._PictureCleaner = new System.Windows.Forms.PictureBox();
             this.PicFooter = new System.Windows.Forms.PictureBox();
+            this.ApplicationList = new System.Windows.Forms.ImageList(this.components);
+            this.Windows = new System.Windows.Forms.ImageList(this.components);
             this._PnlTaskBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._PicWindowsClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -262,7 +266,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.ChkWindowsList);
+            this.tabPage1.Controls.Add(this.TreeWindows);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -271,21 +275,24 @@
             this.tabPage1.Text = "Windows";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // ChkWindowsList
+            // TreeWindows
             // 
-            this.ChkWindowsList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(129)))), ((int)(((byte)(200)))));
-            this.ChkWindowsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ChkWindowsList.CheckOnClick = true;
-            this.ChkWindowsList.ForeColor = System.Drawing.Color.White;
-            this.ChkWindowsList.FormattingEnabled = true;
-            this.ChkWindowsList.Location = new System.Drawing.Point(3, 3);
-            this.ChkWindowsList.Name = "ChkWindowsList";
-            this.ChkWindowsList.Size = new System.Drawing.Size(142, 255);
-            this.ChkWindowsList.TabIndex = 0;
+            this.TreeWindows.CheckBoxes = true;
+            this.TreeWindows.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TreeWindows.ImageIndex = 0;
+            this.TreeWindows.ImageList = this.Windows;
+            this.TreeWindows.Location = new System.Drawing.Point(3, 3);
+            this.TreeWindows.Name = "TreeWindows";
+            this.TreeWindows.SelectedImageIndex = 0;
+            this.TreeWindows.ShowLines = false;
+            this.TreeWindows.ShowPlusMinus = false;
+            this.TreeWindows.ShowRootLines = false;
+            this.TreeWindows.Size = new System.Drawing.Size(142, 355);
+            this.TreeWindows.TabIndex = 1;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.ChkApplicationlist);
+            this.tabPage2.Controls.Add(this.TreeApplication);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -294,18 +301,20 @@
             this.tabPage2.Text = "Application";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // ChkApplicationlist
+            // TreeApplication
             // 
-            this.ChkApplicationlist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(129)))), ((int)(((byte)(187)))));
-            this.ChkApplicationlist.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ChkApplicationlist.CheckOnClick = true;
-            this.ChkApplicationlist.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChkApplicationlist.ForeColor = System.Drawing.Color.White;
-            this.ChkApplicationlist.FormattingEnabled = true;
-            this.ChkApplicationlist.Location = new System.Drawing.Point(3, 3);
-            this.ChkApplicationlist.Name = "ChkApplicationlist";
-            this.ChkApplicationlist.Size = new System.Drawing.Size(142, 355);
-            this.ChkApplicationlist.TabIndex = 0;
+            this.TreeApplication.CheckBoxes = true;
+            this.TreeApplication.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TreeApplication.ImageIndex = 0;
+            this.TreeApplication.ImageList = this.ApplicationList;
+            this.TreeApplication.Location = new System.Drawing.Point(3, 3);
+            this.TreeApplication.Name = "TreeApplication";
+            this.TreeApplication.SelectedImageIndex = 0;
+            this.TreeApplication.ShowLines = false;
+            this.TreeApplication.ShowPlusMinus = false;
+            this.TreeApplication.ShowRootLines = false;
+            this.TreeApplication.Size = new System.Drawing.Size(142, 355);
+            this.TreeApplication.TabIndex = 1;
             // 
             // _pnlHome
             // 
@@ -361,35 +370,35 @@
             this.GrdviewCollection.AllowUserToDeleteRows = false;
             this.GrdviewCollection.AllowUserToResizeColumns = false;
             this.GrdviewCollection.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.GrdviewCollection.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.GrdviewCollection.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.GrdviewCollection.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.GrdviewCollection.BackgroundColor = System.Drawing.Color.White;
             this.GrdviewCollection.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GrdviewCollection.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.GrdviewCollection.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GrdviewCollection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GrdviewCollection.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.GrdviewCollection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GrdviewCollection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GrdviewCollection.Location = new System.Drawing.Point(0, 0);
             this.GrdviewCollection.Name = "GrdviewCollection";
             this.GrdviewCollection.ReadOnly = true;
             this.GrdviewCollection.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GrdviewCollection.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GrdviewCollection.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.GrdviewCollection.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.GrdviewCollection.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.GrdviewCollection.RowTemplate.ReadOnly = true;
@@ -480,6 +489,24 @@
             this.PicFooter.TabIndex = 3;
             this.PicFooter.TabStop = false;
             // 
+            // ApplicationList
+            // 
+            this.ApplicationList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ApplicationList.ImageStream")));
+            this.ApplicationList.TransparentColor = System.Drawing.Color.Transparent;
+            this.ApplicationList.Images.SetKeyName(0, "Opera.jpg");
+            this.ApplicationList.Images.SetKeyName(1, "GoogleIcrom.png");
+            this.ApplicationList.Images.SetKeyName(2, "Safari.jpg");
+            this.ApplicationList.Images.SetKeyName(3, "Utilities.png");
+            // 
+            // Windows
+            // 
+            this.Windows.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Windows.ImageStream")));
+            this.Windows.TransparentColor = System.Drawing.Color.Transparent;
+            this.Windows.Images.SetKeyName(0, "InternetExplorer.png");
+            this.Windows.Images.SetKeyName(1, "Windows..ico");
+            this.Windows.Images.SetKeyName(2, "System.png");
+            this.Windows.Images.SetKeyName(3, "advanced-search.png");
+            // 
             // AllCollectioin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -545,8 +572,6 @@
         private System.Windows.Forms.TabControl TabWindowsAndApplication;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.CheckedListBox ChkWindowsList;
-        private System.Windows.Forms.CheckedListBox ChkApplicationlist;
         private System.Windows.Forms.DataGridView GrdviewCollection;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnClean;
@@ -562,5 +587,9 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.TreeView TreeWindows;
+        private System.Windows.Forms.TreeView TreeApplication;
+        private System.Windows.Forms.ImageList ApplicationList;
+        private System.Windows.Forms.ImageList Windows;
     }
 }

@@ -49,8 +49,8 @@ namespace Common
         public static readonly string InernetNetCache = System.Environment.GetFolderPath(Environment.SpecialFolder.InternetCache);
         public static readonly string InterNetTemparyFile = string.Concat(InernetNetCache, "\\IE");
         public static string IHisotry = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Intern~1\Recovery\Immersive\Active";
-
-
+        public static string IEInddexDat = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Windows\WebCache";
+ 
         // *************** END here **********************//
 
 

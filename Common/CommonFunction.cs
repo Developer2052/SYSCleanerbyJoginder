@@ -29,7 +29,7 @@ namespace Common
         }
         private static List<string> ErrorNumbers()
         {
-            List<string> localErrorNumber = new List<string> { "-2147024864", "-2147024891" };
+            List<string> localErrorNumber = new List<string> { "-2147024864", "-2147024891","-2147024809" };
             return localErrorNumber;
 
 
@@ -70,16 +70,16 @@ namespace Common
                     TempValues = AllPath.IECookies;
                     break;
                 case "Recently Typed URLs":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = AllPath.RecentlyTypeURLRegistry;
                     break;
                 case "Index.dat files":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = AllPath.IEInddexDat;
                     break;
                 case "Last Download Location":
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Autocomplete Form History":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = AllPath.AutoCompletePasswordRegistry;
                     break;
                 case "Saved Passwords":
                     //TempValues = AllPath.IECookies;
@@ -447,15 +447,26 @@ namespace Common
         }
         public static bool IsFileAvailable(DirectoryInfo direcotoryInfo)
         {
-            if (Directory.Exists(direcotoryInfo.FullName))
+            try
             {
-                if (direcotoryInfo.GetFiles().Length != (int)CommonConstantProperty.IsDefaultValue.Zero)
-                    return true;
+                if (Directory.Exists(direcotoryInfo.FullName))
+                {
+                     if (direcotoryInfo.GetFiles().Length != (int)CommonConstantProperty.IsDefaultValue.Zero)
+                            return true;
+                        else
+                            return false;
+                }
                 else
                     return false;
             }
-            else
-                return false;
+            catch(Exception e)
+            {
+
+                if (HandleExption(e) == (int)CommonProperty.IsDefaultValue.Zero)
+                    throw;
+                else
+                    return false;                
+            }
         }
         private static bool IsDirectoryAvailable(DirectoryInfo direcotoryInfo)
         {
