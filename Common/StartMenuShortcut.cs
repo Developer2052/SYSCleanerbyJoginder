@@ -8,9 +8,9 @@ namespace Common
 {
    public class StartMenuShortcut
     {
-        public static void GetPathOfShortcut()
+        public static string GetPathOfShortcut()
         {
-            DirectoryInfo di = new DirectoryInfo(System.Environment.GetFolderPath(Environment.SpecialFolder.StartMenu));
+            return (System.Environment.GetFolderPath(Environment.SpecialFolder.StartMenu));
         }
     }
 }

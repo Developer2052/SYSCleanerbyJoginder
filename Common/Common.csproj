@@ -70,6 +70,8 @@
     <Compile Include="OwnPanel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecentOpenProgram.cs" />
+    <Compile Include="Recycle-Bin.cs" />
+    <Compile Include="RegistryWorks.cs" />
     <Compile Include="RemotDesktopCache.cs" />
     <Compile Include="StartMenuShortcut.cs" />
     <Compile Include="StringValue.cs" />

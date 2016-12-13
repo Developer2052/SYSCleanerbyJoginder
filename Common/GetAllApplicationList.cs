@@ -9,18 +9,11 @@ namespace Common
   public  class GetAllApplicationLists
     {
         #region Get All Application list Jogi 26-10-2016
-      static List<string> ApplicationList = null;
-        /// Get All Application List
-        /// 
-        /// 
-        /// </summary>
-        /// <returns></returns>
+        static List<string> ApplicationList = null;
         public static List<string> GetAllApplicationList()
         {
             return GetInstalledApps();
         }
-      
-        /// <summary>
         /// Get All Install Apps
         /// Worked By JSB
         /// Dated : 25-10-2016
@@ -37,11 +30,8 @@ namespace Common
                 {
                     GetKey(key);
                 }
-                //using (RegistryKey key = Registry.LocalMachine.OpenSubKey(CurrentUserInLocalMechile))
-                //{
-                //    GetKey(key);
-                //}
-                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(AllPath.INLocalMechile))
+               
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(AllPath.RecentlyTypeURLRegistry))
                 {
                     GetKey(key);
                 }

@@ -50,12 +50,12 @@ namespace Common
         #endregion
 
         #region Get Path based On Condition In below we are using Switch Condition..... JSB 25/11/2016
-        public static string GetPathBaseOnCondition(string nameOfValueSelectCheckboxList)
+        public static string GetPathBaseOnCondition(string nameOfValueSelectCheckboxList,ref List<string> extension)
         {
-            return GetPathBasedOnCondtion(nameOfValueSelectCheckboxList);
+            return GetPathBasedOnCondtion(nameOfValueSelectCheckboxList, ref extension);
 
         }
-        private static string GetPathBasedOnCondtion(string values)
+        private static string GetPathBasedOnCondtion(string values,ref List<string> extension)
         {
             string TempValues = string.Empty;
             switch (values)
@@ -70,7 +70,7 @@ namespace Common
                     TempValues = AllPath.IECookies;
                     break;
                 case "Recently Typed URLs":
-                    TempValues = AllPath.RecentlyTypeURLRegistry;
+                    TempValues =  AppendSpecial(  AllPath.RecentlyTypeURLRegistry);
                     break;
                 case "Index.dat files":
                     TempValues = AllPath.IEInddexDat;
@@ -79,22 +79,22 @@ namespace Common
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Autocomplete Form History":
-                    TempValues = AllPath.AutoCompletePasswordRegistry;
+                    TempValues = AppendSpecial(AllPath.AutoCompletePasswordRegistry);
                     break;
                 case "Saved Passwords":
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Recent Documents":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = AllPath.RecentItem;
                     break;
                 case "Run( in Start Menu)":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = AppendSpecial(AllPath.IECookies);
                     break;
                 case "Other Explorer MRUs":
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Thumbnail Cache":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = AllPath.ThumbCache;
                     break;
                 case "Taskbar Jump Lists":
                     //TempValues = AllPath.IECookies;
@@ -104,21 +104,29 @@ namespace Common
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Empty Recycle Bin":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = "$";
                     break;
                 case "Temporary Files":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = AllPath.TempraryFolder;
                     break;
                 case "Clipboard":
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Memory Dumps":
-                    //TempValues = AllPath.IECookies;
+                    {
+                        TempValues = AllPath.MemoryDumps;
+                        extension.Add(".dmp");
+                    }
                     break;
                 case "ChkDisk Files Fragments":
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Windows Log Files":
+                    {
+                        TempValues = AllPath.WindowsLogUP;
+                        extension.Add(".evtx");
+                        extension.Add(".evt");
+                    }
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Windows Error Reporting":
@@ -126,16 +134,20 @@ namespace Common
                     break;
               
                 case "DNS Chache":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = CommonDllImport.DnsFlushResolverCache().ToString();
                     break;
                 case "Font Chache":
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Start Menu Shortcuts":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = StartMenuShortcut.GetPathOfShortcut();
                     break;
                 case "Desktop Shortcuts":
-                    //TempValues = AllPath.IECookies;
+                    {
+                        TempValues = AllPath.DesktopShortcut;
+                        extension.Add(".LNK");
+                        extension.Add(".URL");
+                    }
                     break;
                 case "Windows Event Logs":
                     //TempValues = AllPath.IECookies;
@@ -174,6 +186,12 @@ namespace Common
             return TempValues;
 
         } 
+
+        public static string AppendSpecial(string path)
+        {
+            return path + "-Registry";
+
+        }
         #endregion
 
 

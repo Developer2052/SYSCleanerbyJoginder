@@ -36,10 +36,12 @@ namespace Common
         public static readonly string Safari1 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Apple Computer\Safari";
         public static readonly string Safari2 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Roaming\Apple Computer\Safari";
         // ****************************** Internet Explorer *******************//
-
-        public static readonly string AutoCompletePasswordRegistry = @"HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\IntelliForms\Storage1";
-        public static readonly string AutoCompletePasswordSecondRegistry = @"HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\IntelliForms\Storage2";
-        public static readonly string RecentlyTypeURLRegistry = @"HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\TypedUrls";
+        // User
+        public static readonly string AutoCompletePasswordRegistry = @"Software\Microsoft\Internet Explorer\IntelliForms\Storage1";
+    // user
+        public static readonly string AutoCompletePasswordSecondRegistry = @"Software\Microsoft\Internet Explorer\IntelliForms\Storage2";
+       // User
+        public static readonly string RecentlyTypeURLRegistry = @"Software\Microsoft\Internet Explorer\TypedUrls";
         public static readonly string IE1 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Intern~1";
         public static readonly string IE2 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Windows\History";
         public static readonly string IE3 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Microsoft\Windows\Tempor~1";
@@ -69,10 +71,19 @@ namespace Common
 
 
         //******************* Windows Media File Recently ************************//
-
-        public static readonly string WindowsMediaFileRecently=@"HKEY_CURRENT_USER\Software\Microsoft\MediaPlayer\Player\RecentFileList";
+        // User..
+        public static readonly string WindowsMediaFileRecently=@"Software\Microsoft\MediaPlayer\Player\RecentFileList";
         // ********************************** User Profile Temprary Folder ************************//
         public static readonly string UserProfileTempFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+
+        //With Server 2008/Vista and up
+        public static readonly string WindowsLogUP = Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\system32\winevt\logs";
+
+
+        // With Windows 2000/Server2003/Windows XP
+        public static readonly string WindowsLogDownload = Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\System32\Config";
+       
+       
         // *********************************** Short Cut Menu *************************************//
         public static readonly string StartMenuShortCut = System.Environment.GetFolderPath(Environment.SpecialFolder.StartMenu);
 
@@ -84,22 +95,24 @@ namespace Common
         public static readonly string NetworkShortcut = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Roaming\Microsoft\Windows\Network Shortcuts";
 
         //******** Get the Recently Type File In RUN **********************//
-
-        public static readonly string RecentlyRunItemRegistry = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU";
+        // Windows/Run Recently
+        // Resitry Type: User
+        public static readonly string RecentlyRunItemRegistry = @"Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU";
 
         // ************************************ Description: ComDlg32 recently opened/saved folders **********************//
 
-
-        public static readonly string RecentlyOpenSavedFolderRegistry=@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU";
+        // User
+        public static readonly string RecentlyOpenSavedFolderRegistry=@"Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU";
 
 
         //********************************* Description: Recent Docs ***************//
-
-        public static readonly string RecentDocs = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs";
+        //User
+        public static readonly string RecentDocs = @"Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs";
 
 
 
         // ************************************* Recent Open program Shortcut ****************** //
+        //Windows\Windows
         public static readonly string RecentItem = Environment.GetFolderPath(Environment.SpecialFolder.Recent);
 
         /// <summary>
@@ -113,10 +126,10 @@ namespace Common
 
 
         //*********************** Desktop Shortcut File ************************//
-        string DesktopShortcut = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        public static readonly string DesktopShortcut = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
 
-        string ThumbCache = string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "\\Explorer");
+       public static readonly string ThumbCache = Environment.GetFolderPath(Environment.SpecialFolder.Windows) + "\\Explorer";
 
         //************** IIS LOG FILE *************************//
 

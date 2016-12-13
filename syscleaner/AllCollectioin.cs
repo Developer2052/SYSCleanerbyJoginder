@@ -152,20 +152,14 @@ namespace syscleaner
                 trv.ExpandAll();
             }
             trv.EndUpdate();
-        } 
+        }
         #endregion
         private void BindApplicationList()
         {
-
-
             if (TreeApplication.Nodes.Count == CommonFunction.Zero())
             {
                 BuildTreeApplication(_Applications.GetApplication(), TreeApplication, true);
             }
-
-
-
-
         }
         private void BindGridView()
         {
@@ -233,19 +227,27 @@ namespace syscleaner
                     }
 
                 }
-
-
-
                 btn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             }
         }
+        private void BindGridViewAndList(string nameOfCheckValues)
+        {
+            listOfFiles.AddRange(TempValuesFile);
+            ObjbindApplicationAndWindows.Add(new BindApplicationAndWindowsUsingGridview
+            {
+                CountOfFile = TempValuesFile.Count.ToString() + " Files",
+                SizeOfFile = CommonFunction.GetFileSize(Convert.ToInt64(sizeoffile == "" ? null : sizeoffile)),
+                NameOfItems = nameOfCheckValues
+            });
 
+            listSizeOfFile.Add(Convert.ToInt64(sizeoffile == "" ? null : sizeoffile));
+        }
 
         private void Cursor(TreeNodeCollection treeNodeCollection)
         {
             foreach (TreeNode CheckValue in treeNodeCollection)
             {
-                if(CheckValue.Nodes.Count>0)
+                if (CheckValue.Nodes.Count > 0)
                 {
                     Cursor(CheckValue.Nodes);
 
@@ -261,38 +263,62 @@ namespace syscleaner
                             if (string.Equals(CheckValue.Text, CollectionOfItem.Value))
                             {
                                 // Get the path of windows Based on condition, GetPathBaseONcodition function return Zero or One. If path are find return One or else return Zero...
+                                List<string> Extension = new List<string>();
 
                                 //Joginder singh Dated : 21/11/2016
-                                string GetPath = CommonFunction.GetPathBaseOnCondition(CheckValue.Text);
-                                if (GetPath.Length.ToString() != CommonProperty.IsDefaultValue.Zero.ToString())
-                                {
-                                    sizeoffile = string.Empty;
-                                    TempValuesFile.Clear();
-                                    // this function get the details of we can delete are these file and also count the size of file. 
-                                    CommonFunction.DeleteFileGetTheDirecotry(GetPath, true, ref  TempValuesFile, ref sizeoffile);
-                                    listOfFiles.AddRange(TempValuesFile);
-                                    ObjbindApplicationAndWindows.Add(new BindApplicationAndWindowsUsingGridview
-                                    {
-                                        CountOfFile = TempValuesFile.Count.ToString() + "Files",
-                                        SizeOfFile = CommonFunction.GetFileSize(Convert.ToInt64(sizeoffile)),
-                                        NameOfItems = CheckValue.Text
-                                    });
+                                string GetPath = CommonFunction.GetPathBaseOnCondition(CheckValue.Text, ref Extension);
 
-                                    listSizeOfFile.Add(Convert.ToInt64(sizeoffile));
+                                if (GetPath.Contains('$'))
+                                {
+                                    Recycle_Bin OBJ = new Recycle_Bin();
+                                    OBJ.GetPath(ref TempValuesFile, ref sizeoffile);
+                                    BindGridViewAndList(CheckValue.Text);
+
                                 }
+                                else
+
+                                    if (GetPath.Contains('-'))
+                                    {
+
+                                        sizeoffile = string.Empty;
+                                        TempValuesFile.Clear();
+                                        RegistryWorks ObjRegistrykey = new RegistryWorks(AllPath.RecentlyTypeURLRegistry.Split('-')[0], "CurrentUser");
+                                        ObjRegistrykey.Read(ref  TempValuesFile);
+                                        BindGridViewAndList(CheckValue.Text);
+
+                                    }
+                                    else
+
+                                        if (GetPath.Length.ToString() != CommonProperty.IsDefaultValue.Zero.ToString())
+                                        {
+                                            sizeoffile = string.Empty;
+                                            TempValuesFile.Clear();
+                                            // this function get the details of we can delete are these file and also count the size of file. 
+                                            if (Extension.Count > 0)
+                                                CommonFunction.DeleteFileGetTheDirecotry(GetPath, true, ref  TempValuesFile, ref sizeoffile, Extension);
+                                            else
+                                                CommonFunction.DeleteFileGetTheDirecotry(GetPath, true, ref  TempValuesFile, ref sizeoffile);
+
+                                            BindGridViewAndList(CheckValue.Text);
+                                        }
                             }
                     }
                 }
             }
         }
 
-        
-            List<string> TempValuesFile = new List<string>();
 
-            List<long> listSizeOfFile = new List<long>();
-         
+        List<string> TempValuesFile = new List<string>();
+
+        List<long> listSizeOfFile = new List<long>();
+
         private void btnScan_Click(object sender, EventArgs e)
-        {   // Add a Border Line.....
+        {
+
+
+
+
+            // Add a Border Line.....
             AddBorderLine(sender, e);
             ObjbindApplicationAndWindows = new List<BindApplicationAndWindowsUsingGridview>();
 
