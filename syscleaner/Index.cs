@@ -20,5 +20,12 @@ namespace syscleaner
         {
 
         }
+
+        private void btnClean_Click(object sender, EventArgs e)
+        {
+            AllCollectioin ObjCollection = new AllCollectioin();
+            ObjCollection.Show();
+            this.Hide();
+        }
     }
 }

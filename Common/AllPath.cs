@@ -90,6 +90,7 @@ namespace Common
         // ************************************* Temprary folder WINDOWSKEY + R press and then type %TEMP%  ************************ //
         public static readonly string TempraryFolder = Path.GetTempPath();
 
+        public static readonly string OldPrefetch = Environment.GetFolderPath(Environment.SpecialFolder.Windows) + "\\Prefetch";
 
         //**********************Network shortcut ************//
         public static readonly string NetworkShortcut = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Roaming\Microsoft\Windows\Network Shortcuts";

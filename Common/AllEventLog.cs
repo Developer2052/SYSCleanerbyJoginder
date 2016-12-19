@@ -14,10 +14,9 @@ namespace Common
         static int sizeKB = 0;
 
 
-        public static void GetEventLogsSize(ref int countOfLogDelete, ref long sizeOfLogsFile)
+        public static void GetEventLogsSize(ref List<string> countOfLogDelete, ref string sizeOfLogsFile)
         {
-            sizeOfLogsFile = 0;
-            countOfLogDelete = 0;
+           long Tempvalues = 0;
             try
             {
 
@@ -31,14 +30,15 @@ namespace Common
                             byte[] bt = entry.Data;
                             if (bt.Count() > 0)
                             {
-                                countOfLogDelete += 1;
-                                sizeOfLogsFile += bt.Count();
+
+                                countOfLogDelete.Add("1");
+                               Tempvalues += bt.Count();
 
                             }
                         }
                     }
                 }
-
+                sizeOfLogsFile = Tempvalues.ToString();
             }
             catch (Exception EX)
             {

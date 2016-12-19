@@ -104,7 +104,7 @@ namespace Common
                     //TempValues = AllPath.IECookies;
                     break;
                 case "Empty Recycle Bin":
-                    TempValues = "$";
+                    TempValues = "i";
                     break;
                 case "Temporary Files":
                     TempValues = AllPath.TempraryFolder;
@@ -150,10 +150,13 @@ namespace Common
                     }
                     break;
                 case "Windows Event Logs":
-                    //TempValues = AllPath.IECookies;
+                    TempValues = "Event";
                     break;
                 case "Old Prefatch data":
-                    //TempValues = AllPath.IECookies;
+                    {
+                        TempValues = AllPath.OldPrefetch;
+                        extension.Add(".pf");
+                    }
                     break;
                 case "Menu Order Cache":
                     //TempValues = AllPath.IECookies;
@@ -530,7 +533,7 @@ namespace Common
         /// Get Size of RAM 
         /// 
         /// </summary>
-        /// <param name="SizeOf"></param>
+        /// <param name="SizeOf"></param>switch
         /// <returns></returns>
         /// 
         public static UInt64 SizeOfRam()

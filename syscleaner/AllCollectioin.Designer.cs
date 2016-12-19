@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllCollectioin));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllCollectioin));
             this._PnlTaskBar = new System.Windows.Forms.Panel();
             this.lblHeaderName = new System.Windows.Forms.Label();
             this._PicWindowsClose = new System.Windows.Forms.PictureBox();
@@ -52,8 +52,10 @@
             this.TabWindowsAndApplication = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.TreeWindows = new System.Windows.Forms.TreeView();
+            this.Windows = new System.Windows.Forms.ImageList(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.TreeApplication = new System.Windows.Forms.TreeView();
+            this.ApplicationList = new System.Windows.Forms.ImageList(this.components);
             this._pnlHome = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnClean = new System.Windows.Forms.Button();
@@ -66,8 +68,6 @@
             this._PictureBoxStartup = new System.Windows.Forms.PictureBox();
             this._PictureCleaner = new System.Windows.Forms.PictureBox();
             this.PicFooter = new System.Windows.Forms.PictureBox();
-            this.ApplicationList = new System.Windows.Forms.ImageList(this.components);
-            this.Windows = new System.Windows.Forms.ImageList(this.components);
             this._PnlTaskBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._PicWindowsClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -203,7 +203,7 @@
             this.lblSizeOfFile.ForeColor = System.Drawing.Color.White;
             this.lblSizeOfFile.Location = new System.Drawing.Point(13, 28);
             this.lblSizeOfFile.Name = "lblSizeOfFile";
-            this.lblSizeOfFile.Size = new System.Drawing.Size(385, 26);
+            this.lblSizeOfFile.Size = new System.Drawing.Size(491, 26);
             this.lblSizeOfFile.TabIndex = 1;
             this.lblSizeOfFile.Text = "Cleaning Complete";
             // 
@@ -213,15 +213,15 @@
             this.lblCleaningCompleteTimeSlot.ForeColor = System.Drawing.Color.White;
             this.lblCleaningCompleteTimeSlot.Location = new System.Drawing.Point(11, 7);
             this.lblCleaningCompleteTimeSlot.Name = "lblCleaningCompleteTimeSlot";
-            this.lblCleaningCompleteTimeSlot.Size = new System.Drawing.Size(387, 26);
+            this.lblCleaningCompleteTimeSlot.Size = new System.Drawing.Size(521, 26);
             this.lblCleaningCompleteTimeSlot.TabIndex = 0;
             // 
             // PicLoadingAndComplete
             // 
             this.PicLoadingAndComplete.Image = global::syscleaner.Properties.Resources.CleanerComplete;
-            this.PicLoadingAndComplete.Location = new System.Drawing.Point(9, 4);
+            this.PicLoadingAndComplete.Location = new System.Drawing.Point(9, 1);
             this.PicLoadingAndComplete.Name = "PicLoadingAndComplete";
-            this.PicLoadingAndComplete.Size = new System.Drawing.Size(55, 44);
+            this.PicLoadingAndComplete.Size = new System.Drawing.Size(55, 50);
             this.PicLoadingAndComplete.TabIndex = 0;
             this.PicLoadingAndComplete.TabStop = false;
             // 
@@ -290,6 +290,15 @@
             this.TreeWindows.Size = new System.Drawing.Size(142, 355);
             this.TreeWindows.TabIndex = 1;
             // 
+            // Windows
+            // 
+            this.Windows.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Windows.ImageStream")));
+            this.Windows.TransparentColor = System.Drawing.Color.Transparent;
+            this.Windows.Images.SetKeyName(0, "InternetExplorer.png");
+            this.Windows.Images.SetKeyName(1, "Windows..ico");
+            this.Windows.Images.SetKeyName(2, "System.png");
+            this.Windows.Images.SetKeyName(3, "advanced-search.png");
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.TreeApplication);
@@ -315,6 +324,15 @@
             this.TreeApplication.ShowRootLines = false;
             this.TreeApplication.Size = new System.Drawing.Size(142, 355);
             this.TreeApplication.TabIndex = 1;
+            // 
+            // ApplicationList
+            // 
+            this.ApplicationList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ApplicationList.ImageStream")));
+            this.ApplicationList.TransparentColor = System.Drawing.Color.Transparent;
+            this.ApplicationList.Images.SetKeyName(0, "Opera.jpg");
+            this.ApplicationList.Images.SetKeyName(1, "GoogleIcrom.png");
+            this.ApplicationList.Images.SetKeyName(2, "Safari.jpg");
+            this.ApplicationList.Images.SetKeyName(3, "Utilities.png");
             // 
             // _pnlHome
             // 
@@ -488,24 +506,6 @@
             this.PicFooter.Size = new System.Drawing.Size(952, 50);
             this.PicFooter.TabIndex = 3;
             this.PicFooter.TabStop = false;
-            // 
-            // ApplicationList
-            // 
-            this.ApplicationList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ApplicationList.ImageStream")));
-            this.ApplicationList.TransparentColor = System.Drawing.Color.Transparent;
-            this.ApplicationList.Images.SetKeyName(0, "Opera.jpg");
-            this.ApplicationList.Images.SetKeyName(1, "GoogleIcrom.png");
-            this.ApplicationList.Images.SetKeyName(2, "Safari.jpg");
-            this.ApplicationList.Images.SetKeyName(3, "Utilities.png");
-            // 
-            // Windows
-            // 
-            this.Windows.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Windows.ImageStream")));
-            this.Windows.TransparentColor = System.Drawing.Color.Transparent;
-            this.Windows.Images.SetKeyName(0, "InternetExplorer.png");
-            this.Windows.Images.SetKeyName(1, "Windows..ico");
-            this.Windows.Images.SetKeyName(2, "System.png");
-            this.Windows.Images.SetKeyName(3, "advanced-search.png");
             // 
             // AllCollectioin
             // 

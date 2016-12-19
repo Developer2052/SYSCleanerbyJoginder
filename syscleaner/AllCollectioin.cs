@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using Common;
 using System.IO;
 using System.Security.AccessControl;
+using System.Threading;
+using System.Reflection;
 
 namespace syscleaner
 {
@@ -35,34 +37,6 @@ namespace syscleaner
             _TopPanel.BackColor = Color.FromArgb(40, 129, 187);
             BindChkWindowsList();
             _pnlDeatilsComplete.Visible = false;
-
-
-        }
-        private void BindFileCountAndTime()
-        {
-            lblSizeOfFile.Text = "scan found " + CountOfFile.ToString() + " file " + sizeoffile + " Total";
-            lblCleaningCompleteTimeSlot.Text = "Cleaning Complete(" + CommonFunction.ConvertTimeSpanToMinutsAndString(DifferenceTimeHold) + ")";
-            _pnlDeatilsComplete.Visible = true;
-        }
-
-        private void BindChkWindowsList()
-        {
-
-            SelectedTabPage = TabName.Windows.ToString();
-            if (TreeWindows.Nodes.Count == CommonFunction.Zero())
-            {
-                BuildTreeWindows(_Windows.ListOfWindwosProgram(), TreeWindows, true);
-
-
-            }
-        }
-
-
-
-
-        private void BtnWindows_Click(object sender, EventArgs e)
-        {
-            BindChkWindowsList();
 
 
         }
@@ -154,6 +128,62 @@ namespace syscleaner
             trv.EndUpdate();
         }
         #endregion
+        #region Control Set Text using Threading
+        delegate void SetTextCallback(Form f, Control ctrl, string text);
+        /// <summary>
+        /// Set text property of various controls
+        /// </summary>
+        /// <param name="form">The calling form</param>
+        /// <param name="ctrl"></param>
+        /// <param name="text"></param>
+        public void SetText(Form form, Control ctrl, string text)
+        {
+            // InvokeRequired required compares the thread ID of the 
+            // calling thread to the thread ID of the creating thread. 
+            // If these threads are different, it returns true. 
+            if (ctrl.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                form.Invoke(d, new object[] { form, ctrl, text });
+            }
+            else
+            {
+                ctrl.Visible = true;
+                ctrl.Text = text;
+            }
+        }
+        
+        #endregion
+
+        private void BindFileCountAndTime()
+        {
+            SetText(this,lblSizeOfFile, "scan found " + CountOfFile.ToString() + " file " + sizeoffile + " Total");
+            SetText(this, lblCleaningCompleteTimeSlot, "Cleaning Complete(" + CommonFunction.ConvertTimeSpanToMinutsAndString(DifferenceTimeHold) + ")");
+
+            SetText(this, _pnlDeatilsComplete, "s");
+           // _pnlDeatilsComplete.Visible = true;
+        }
+
+        private void BindChkWindowsList()
+        {
+
+            SelectedTabPage = TabName.Windows.ToString();
+            if (TreeWindows.Nodes.Count == CommonFunction.Zero())
+            {
+                BuildTreeWindows(_Windows.ListOfWindwosProgram(), TreeWindows, true);
+            }
+        }
+
+
+
+
+        private void BtnWindows_Click(object sender, EventArgs e)
+        {
+            BindChkWindowsList();
+
+
+        }
+       
         private void BindApplicationList()
         {
             if (TreeApplication.Nodes.Count == CommonFunction.Zero())
@@ -161,10 +191,26 @@ namespace syscleaner
                 BuildTreeApplication(_Applications.GetApplication(), TreeApplication, true);
             }
         }
+
+
+        #region Bind Grid View after the Process Complete Using thread
+
+        private void Bind()
+        {
+
+            GrdviewCollection.DataSource = ObjbindApplicationAndWindows;
+
+        }
+
         private void BindGridView()
         {
-            GrdviewCollection.DataSource = ObjbindApplicationAndWindows;
-        }
+            if (GrdviewCollection.InvokeRequired)
+            {
+                //Invoke only the ui-interaction code
+                GrdviewCollection.Invoke(new MethodInvoker(this.Bind));
+            }
+        } 
+        #endregion
 
         private void PicClosed_Click(object sender, EventArgs e)
         {
@@ -205,44 +251,51 @@ namespace syscleaner
         }
 
 
+        #region Set the Values using Thread
+        delegate void SetControlValueCallback(Control oControl, string propName, object propValue);
+        private void SetControlPropertyValue(Control oControl, string propName, object propValue)
+        {
+            if (oControl.InvokeRequired)
+            {
+                SetControlValueCallback d = new SetControlValueCallback(SetControlPropertyValue);
+                oControl.Invoke(d, new object[] { oControl, propName, propValue });
+            }
+            else
+            {
+                Type t = oControl.GetType();
+                PropertyInfo[] props = t.GetProperties();
+                foreach (PropertyInfo p in props)
+                {
+                    if (p.Name.ToUpper() == propName.ToUpper())
+                    {
+                        p.SetValue(oControl, propValue, null);
+                    }
+                }
+            }
+        }
+        int IncreementsValues = 0;
+        int TempValues = 0;
         private void BindProcessBar()
         {
-            int CountofSelectedFile = 10;
+            int CountofSelectedFile =100/ TotalCountCheckValue;
+            TempValues += 1;
+
+            IncreementsValues += CountofSelectedFile;
+            if (TotalCountCheckValue == TempValues)
+                IncreementsValues = 100;
+
+
             if (CountofSelectedFile > 0)
             {
-                _AllCollectionProgressBar.Increment(100 / CountofSelectedFile);
+                SetControlPropertyValue(_AllCollectionProgressBar, "value", IncreementsValues);
 
             }
-        }
-        private void AddBorderLine(object sender, EventArgs e)
-        {
-            PictureBox btn = sender as PictureBox;
-            if (btn != null)
-            {
-                foreach (PictureBox item in _pnlIconContainer.Controls)
-                {
-                    if (item != null)
-                    {
-                        item.BorderStyle = BorderStyle.None;
-                    }
+        } 
+        #endregion
 
-                }
-                btn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            }
-        }
-        private void BindGridViewAndList(string nameOfCheckValues)
-        {
-            listOfFiles.AddRange(TempValuesFile);
-            ObjbindApplicationAndWindows.Add(new BindApplicationAndWindowsUsingGridview
-            {
-                CountOfFile = TempValuesFile.Count.ToString() + " Files",
-                SizeOfFile = CommonFunction.GetFileSize(Convert.ToInt64(sizeoffile == "" ? null : sizeoffile)),
-                NameOfItems = nameOfCheckValues
-            });
 
-            listSizeOfFile.Add(Convert.ToInt64(sizeoffile == "" ? null : sizeoffile));
-        }
 
+       
         private void Cursor(TreeNodeCollection treeNodeCollection)
         {
             foreach (TreeNode CheckValue in treeNodeCollection)
@@ -256,6 +309,7 @@ namespace syscleaner
                 if (CheckValue.Checked)
                 {
                     BindProcessBar();
+
                     IsSelectedWidowsApplicationValues = true;
                     foreach (var CollectionOfItem in _Windows.ListOfWindwosProgram())
                     {
@@ -268,9 +322,20 @@ namespace syscleaner
                                 //Joginder singh Dated : 21/11/2016
                                 string GetPath = CommonFunction.GetPathBaseOnCondition(CheckValue.Text, ref Extension);
 
+                                if (GetPath == "Event")
+                                {
+                                    TempValuesFile.Clear();
+                                    AllEventLog.GetEventLogsSize(ref TempValuesFile, ref sizeoffile);
+                                    BindGridViewAndList(CheckValue.Text);
+
+                                }
+                                
+                                else
+
                                 if (GetPath.Contains('$'))
                                 {
                                     Recycle_Bin OBJ = new Recycle_Bin();
+                                    TempValuesFile.Clear();
                                     OBJ.GetPath(ref TempValuesFile, ref sizeoffile);
                                     BindGridViewAndList(CheckValue.Text);
 
@@ -311,15 +376,55 @@ namespace syscleaner
         List<string> TempValuesFile = new List<string>();
 
         List<long> listSizeOfFile = new List<long>();
+        private void ChangeImageOfLoding()
+        {
+            PicLoadingAndComplete.Image = null;
+            PicLoadingAndComplete.Image = Image.FromFile(@"F:\syscleaner\syscleaner\Image\loading02.gif");
+
+        }
+        Thread thread,threadProcess;   // Reference create
+
+        int TotalCountCheckValue = 0;
+        private void GetCheckCheckedTreeValues(TreeNodeCollection Collection)
+        {
+            foreach (TreeNode CheckValue in Collection)
+                {
+                    if (CheckValue.Nodes.Count > 0)
+                    {
+                        GetCheckCheckedTreeValues(CheckValue.Nodes);
+
+                    }
+                    else
+                    {
+                        if (CheckValue.Checked)
+                            TotalCountCheckValue += 1;
+                    }
+                }
+           
+        }
 
         private void btnScan_Click(object sender, EventArgs e)
         {
+            TotalCountCheckValue = 0;
+             IncreementsValues = 0;
+             TempValues = 0;
+            ThreadStart threadStart = new ThreadStart(ChangeImageOfLoding);
+            ThreadStart threadStartProcess = new ThreadStart(BindAndProcess);
+            thread = new Thread(threadStart);
+            threadProcess = new Thread(threadStartProcess);
+            if (thread.ThreadState != ThreadState.Running || thread.ThreadState != ThreadState.WaitSleepJoin)
+            {
+                thread.Start();
+                threadProcess.Start();
+               
+            }
 
-
-
-
+          
+        }
+        private void BindAndProcess()
+        {
             // Add a Border Line.....
-            AddBorderLine(sender, e);
+            //AddBorderLine(sender, e);
             ObjbindApplicationAndWindows = new List<BindApplicationAndWindowsUsingGridview>();
 
             // PicLoadingAndComplete.Image=Image.FromFile(new FileInfo(@"\syscleaner\Image\FINAL-LOADING-2.gif").FullName);
@@ -331,7 +436,7 @@ namespace syscleaner
 
             if (SelectedTabPage == TabName.Windows.ToString())
             {
-
+                GetCheckCheckedTreeValues(TreeWindows.Nodes);
                 Cursor(TreeWindows.Nodes);
 
                 #region Execute after the complete all thing..
@@ -360,10 +465,43 @@ namespace syscleaner
 
                 #endregion
             }
+            PicLoadingAndComplete.Image = Image.FromFile(@"F:\syscleaner\syscleaner\Image\CleanerComplete.PNG");
+
+        
         }
         private void btnClean_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void AddBorderLine(object sender, EventArgs e)
+        {
+            PictureBox btn = sender as PictureBox;
+            if (btn != null)
+            {
+                foreach (PictureBox item in _pnlIconContainer.Controls)
+                {
+                    if (item != null)
+                    {
+                        item.BorderStyle = BorderStyle.None;
+                    }
+
+                }
+                btn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            }
+        }
+        private void BindGridViewAndList(string nameOfCheckValues)
+        {
+            listOfFiles.AddRange(TempValuesFile);
+            ObjbindApplicationAndWindows.Add(new BindApplicationAndWindowsUsingGridview
+            {
+                CountOfFile = TempValuesFile.Count.ToString() + " Files",
+                SizeOfFile = CommonFunction.GetFileSize(Convert.ToInt64(sizeoffile == "" ? null : sizeoffile)),
+                NameOfItems = nameOfCheckValues
+            });
+
+            listSizeOfFile.Add(Convert.ToInt64(sizeoffile == "" ? null : sizeoffile));
+        }
+
     }
 }
