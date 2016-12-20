@@ -26,9 +26,16 @@ namespace Common
 
         //**********************Google Chrome Path***********************//
         public static readonly string GooglePath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Google\Chrome\User Data\Default\";
+        public static readonly string GooglePathAllDirectroy = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Google\Chrome\User Data";
+        public static readonly string GooglePathCache = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Google\Chrome\User Data\Default\Cache";
+        
+
+
         //********************** Mozilla Firefox ***********************//
 
-        public static readonly string MozilaPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Roaming\Mozilla\Firefox\";
+        public static readonly string MozilaPathRoaming = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Roaming\Mozilla\Firefox\Profiles";
+        public static readonly string MoziaPathDirecotry = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Mozilla\Firefox\Profiles";
+
         //********************** Opera *********************************//
         public static readonly string Opera1 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Local\Opera\Opera";
         public static readonly string Opera2 = Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Roaming\Opera\Opera";

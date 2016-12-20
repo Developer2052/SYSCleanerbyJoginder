@@ -39,8 +39,13 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlSizeAndCountFile = new System.Windows.Forms.Panel();
+            this.LblCountsOfFile = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.lblSizeOfFile = new System.Windows.Forms.Label();
             this.btnClean = new System.Windows.Forms.Button();
-            this.btnScan = new System.Windows.Forms.Button();
+            this.btnScanIndex = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
@@ -91,16 +96,16 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPercentCount = new System.Windows.Forms.Label();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.PicLoading = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.panel28 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel2.SuspendLayout();
+            this.pnlSizeAndCountFile.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel24.SuspendLayout();
             this.panel25.SuspendLayout();
@@ -126,7 +131,7 @@
             this.panel5.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicLoading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
@@ -235,18 +240,70 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.panel28);
+            this.panel2.Controls.Add(this.pnlSizeAndCountFile);
             this.panel2.Controls.Add(this.btnClean);
-            this.panel2.Controls.Add(this.btnScan);
+            this.panel2.Controls.Add(this.btnScanIndex);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.lblPercentCount);
-            this.panel2.Controls.Add(this.pictureBox9);
+            this.panel2.Controls.Add(this.PicLoading);
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.pictureBox8);
             this.panel2.Location = new System.Drawing.Point(0, 186);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(715, 318);
             this.panel2.TabIndex = 2;
+            // 
+            // pnlSizeAndCountFile
+            // 
+            this.pnlSizeAndCountFile.Controls.Add(this.LblCountsOfFile);
+            this.pnlSizeAndCountFile.Controls.Add(this.label26);
+            this.pnlSizeAndCountFile.Controls.Add(this.label25);
+            this.pnlSizeAndCountFile.Controls.Add(this.lblSizeOfFile);
+            this.pnlSizeAndCountFile.Location = new System.Drawing.Point(365, 144);
+            this.pnlSizeAndCountFile.Name = "pnlSizeAndCountFile";
+            this.pnlSizeAndCountFile.Size = new System.Drawing.Size(349, 57);
+            this.pnlSizeAndCountFile.TabIndex = 11;
+            this.pnlSizeAndCountFile.Visible = false;
+            // 
+            // LblCountsOfFile
+            // 
+            this.LblCountsOfFile.BackColor = System.Drawing.Color.LightGray;
+            this.LblCountsOfFile.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LblCountsOfFile.Location = new System.Drawing.Point(224, 34);
+            this.LblCountsOfFile.Name = "LblCountsOfFile";
+            this.LblCountsOfFile.Size = new System.Drawing.Size(114, 23);
+            this.LblCountsOfFile.TabIndex = 3;
+            // 
+            // label26
+            // 
+            this.label26.BackColor = System.Drawing.Color.LightGray;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(3, 31);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(125, 25);
+            this.label26.TabIndex = 2;
+            this.label26.Text = "Total Files";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label25
+            // 
+            this.label25.BackColor = System.Drawing.Color.LightGray;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(3, -3);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(125, 25);
+            this.label25.TabIndex = 1;
+            this.label25.Text = "Total Sizes";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSizeOfFile
+            // 
+            this.lblSizeOfFile.BackColor = System.Drawing.Color.LightGray;
+            this.lblSizeOfFile.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSizeOfFile.Location = new System.Drawing.Point(224, 3);
+            this.lblSizeOfFile.Name = "lblSizeOfFile";
+            this.lblSizeOfFile.Size = new System.Drawing.Size(114, 23);
+            this.lblSizeOfFile.TabIndex = 0;
             // 
             // btnClean
             // 
@@ -260,17 +317,17 @@
             this.btnClean.UseVisualStyleBackColor = true;
             this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
             // 
-            // btnScan
+            // btnScanIndex
             // 
-            this.btnScan.FlatAppearance.BorderSize = 0;
-            this.btnScan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScan.Image = global::syscleaner.Properties.Resources.buttonscan;
-            this.btnScan.Location = new System.Drawing.Point(13, 164);
-            this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(114, 30);
-            this.btnScan.TabIndex = 9;
-            this.btnScan.UseVisualStyleBackColor = true;
-            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
+            this.btnScanIndex.FlatAppearance.BorderSize = 0;
+            this.btnScanIndex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScanIndex.Image = global::syscleaner.Properties.Resources.buttonscan;
+            this.btnScanIndex.Location = new System.Drawing.Point(13, 164);
+            this.btnScanIndex.Name = "btnScanIndex";
+            this.btnScanIndex.Size = new System.Drawing.Size(114, 30);
+            this.btnScanIndex.TabIndex = 9;
+            this.btnScanIndex.UseVisualStyleBackColor = true;
+            this.btnScanIndex.Click += new System.EventHandler(this.btnScan_Click);
             // 
             // panel3
             // 
@@ -724,15 +781,15 @@
             this.lblPercentCount.Size = new System.Drawing.Size(49, 22);
             this.lblPercentCount.TabIndex = 7;
             this.lblPercentCount.Text = "COP";
+            this.lblPercentCount.Visible = false;
             // 
-            // pictureBox9
+            // PicLoading
             // 
-            this.pictureBox9.Image = global::syscleaner.Properties.Resources.Double_Circle_Loading;
-            this.pictureBox9.Location = new System.Drawing.Point(477, 8);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox9.TabIndex = 6;
-            this.pictureBox9.TabStop = false;
+            this.PicLoading.Location = new System.Drawing.Point(477, 8);
+            this.PicLoading.Name = "PicLoading";
+            this.PicLoading.Size = new System.Drawing.Size(130, 130);
+            this.PicLoading.TabIndex = 6;
+            this.PicLoading.TabStop = false;
             // 
             // pictureBox3
             // 
@@ -751,13 +808,6 @@
             this.pictureBox8.Size = new System.Drawing.Size(366, 154);
             this.pictureBox8.TabIndex = 3;
             this.pictureBox8.TabStop = false;
-            // 
-            // panel28
-            // 
-            this.panel28.Location = new System.Drawing.Point(365, 154);
-            this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(349, 47);
-            this.panel28.TabIndex = 11;
             // 
             // Index
             // 
@@ -779,6 +829,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.pnlSizeAndCountFile.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel24.ResumeLayout(false);
             this.panel24.PerformLayout();
@@ -828,7 +879,7 @@
             this.panel15.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicLoading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
@@ -851,7 +902,7 @@
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lblPercentCount;
-        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox PicLoading;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Panel panel25;
@@ -902,7 +953,11 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClean;
-        private System.Windows.Forms.Button btnScan;
-        private System.Windows.Forms.Panel panel28;
+        private System.Windows.Forms.Button btnScanIndex;
+        private System.Windows.Forms.Panel pnlSizeAndCountFile;
+        private System.Windows.Forms.Label lblSizeOfFile;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label LblCountsOfFile;
     }
 }

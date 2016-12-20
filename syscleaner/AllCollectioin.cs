@@ -22,9 +22,10 @@ namespace syscleaner
 
         List<BindApplicationAndWindowsUsingGridview> ObjbindApplicationAndWindows = null;
         string SelectedTabPage = string.Empty;
+        bool IsIndexCall = false;
         long sizeOfiles = 0;
-        string sizeoffile;
-        int CountOfFile;
+       public string sizeoffile;
+       public int CountOfFile;
         TimeSpan DifferenceTimeHold;
         List<string> listOfFiles = new List<string>();
         #endregion
@@ -129,14 +130,14 @@ namespace syscleaner
         }
         #endregion
         #region Control Set Text using Threading
-        delegate void SetTextCallback(Form f, Control ctrl, string text);
+        delegate void SetTextCallback(Form f, Control ctrl, string text,bool visual);
         /// <summary>
         /// Set text property of various controls
         /// </summary>
         /// <param name="form">The calling form</param>
         /// <param name="ctrl"></param>
         /// <param name="text"></param>
-        public void SetText(Form form, Control ctrl, string text)
+        public void SetText(Form form, Control ctrl, string text,bool visual)
         {
             // InvokeRequired required compares the thread ID of the 
             // calling thread to the thread ID of the creating thread. 
@@ -144,11 +145,11 @@ namespace syscleaner
             if (ctrl.InvokeRequired)
             {
                 SetTextCallback d = new SetTextCallback(SetText);
-                form.Invoke(d, new object[] { form, ctrl, text });
+                form.Invoke(d, new object[] { form, ctrl, text,visual });
             }
             else
             {
-                ctrl.Visible = true;
+                ctrl.Visible = visual;
                 ctrl.Text = text;
             }
         }
@@ -157,14 +158,14 @@ namespace syscleaner
 
         private void BindFileCountAndTime()
         {
-            SetText(this,lblSizeOfFile, "scan found " + CountOfFile.ToString() + " file " + sizeoffile + " Total");
-            SetText(this, lblCleaningCompleteTimeSlot, "Cleaning Complete(" + CommonFunction.ConvertTimeSpanToMinutsAndString(DifferenceTimeHold) + ")");
+            SetText(this,lblSizeOfFile, "scan found " + CountOfFile.ToString() + " file " + sizeoffile + " Total",true);
+            SetText(this, lblCleaningCompleteTimeSlot, "Cleaning Complete(" + CommonFunction.ConvertTimeSpanToMinutsAndString(DifferenceTimeHold) + ")",true);
 
-            SetText(this, _pnlDeatilsComplete, "s");
+            SetText(this, _pnlDeatilsComplete, "s",true);
            // _pnlDeatilsComplete.Visible = true;
         }
 
-        private void BindChkWindowsList()
+        public void BindChkWindowsList()
         {
 
             SelectedTabPage = TabName.Windows.ToString();
@@ -184,7 +185,7 @@ namespace syscleaner
 
         }
        
-        private void BindApplicationList()
+        public void BindApplicationList()
         {
             if (TreeApplication.Nodes.Count == CommonFunction.Zero())
             {
@@ -296,18 +297,24 @@ namespace syscleaner
 
 
        
-        private void Cursor(TreeNodeCollection treeNodeCollection)
+        public void Cursor(TreeNodeCollection treeNodeCollection,bool isIndexCall=false)
         {
+            IsIndexCall = isIndexCall;
             foreach (TreeNode CheckValue in treeNodeCollection)
             {
                 if (CheckValue.Nodes.Count > 0)
                 {
-                    Cursor(CheckValue.Nodes);
+                    Cursor(CheckValue.Nodes, isIndexCall);
 
+                }
+                if(isIndexCall)
+                {
+                    CheckValue.Checked = true;
                 }
 
                 if (CheckValue.Checked)
                 {
+                     if(!isIndexCall)                
                     BindProcessBar();
 
                     IsSelectedWidowsApplicationValues = true;
@@ -326,6 +333,7 @@ namespace syscleaner
                                 {
                                     TempValuesFile.Clear();
                                     AllEventLog.GetEventLogsSize(ref TempValuesFile, ref sizeoffile);
+                                     
                                     BindGridViewAndList(CheckValue.Text);
 
                                 }
@@ -337,6 +345,7 @@ namespace syscleaner
                                     Recycle_Bin OBJ = new Recycle_Bin();
                                     TempValuesFile.Clear();
                                     OBJ.GetPath(ref TempValuesFile, ref sizeoffile);
+                                 
                                     BindGridViewAndList(CheckValue.Text);
 
                                 }
@@ -349,6 +358,7 @@ namespace syscleaner
                                         TempValuesFile.Clear();
                                         RegistryWorks ObjRegistrykey = new RegistryWorks(AllPath.RecentlyTypeURLRegistry.Split('-')[0], "CurrentUser");
                                         ObjRegistrykey.Read(ref  TempValuesFile);
+                                        
                                         BindGridViewAndList(CheckValue.Text);
 
                                     }
@@ -363,7 +373,7 @@ namespace syscleaner
                                                 CommonFunction.DeleteFileGetTheDirecotry(GetPath, true, ref  TempValuesFile, ref sizeoffile, Extension);
                                             else
                                                 CommonFunction.DeleteFileGetTheDirecotry(GetPath, true, ref  TempValuesFile, ref sizeoffile);
-
+                                            
                                             BindGridViewAndList(CheckValue.Text);
                                         }
                             }
@@ -406,8 +416,8 @@ namespace syscleaner
         private void btnScan_Click(object sender, EventArgs e)
         {
             TotalCountCheckValue = 0;
-             IncreementsValues = 0;
-             TempValues = 0;
+            IncreementsValues = 0;
+            TempValues = 0;
             ThreadStart threadStart = new ThreadStart(ChangeImageOfLoding);
             ThreadStart threadStartProcess = new ThreadStart(BindAndProcess);
             thread = new Thread(threadStart);
@@ -420,6 +430,20 @@ namespace syscleaner
             }
 
           
+        }
+       public void GetSizeAndCountOfFile()
+        {
+            // Develop By JSB,23/11/2016
+            CountOfFile = listOfFiles.Count;
+
+            /// Count of File size display on Top Header Display....
+            /// 
+            foreach (var item in listSizeOfFile)
+            {
+                sizeOfiles += item;
+            }
+            if (sizeOfiles > 0)
+                sizeoffile = CommonFunction.GetFileSize(sizeOfiles);
         }
         private void BindAndProcess()
         {
@@ -440,17 +464,9 @@ namespace syscleaner
                 Cursor(TreeWindows.Nodes);
 
                 #region Execute after the complete all thing..
-                // Develop By JSB,23/11/2016
-                CountOfFile = listOfFiles.Count;
 
-                /// Count of File size display on Top Header Display....
-                /// 
-                foreach (var item in listSizeOfFile)
-                {
-                    sizeOfiles += item;
-                }
-                if (sizeOfiles > 0)
-                    sizeoffile = CommonFunction.GetFileSize(sizeOfiles);
+                GetSizeAndCountOfFile();
+
                 /// Display Time Which...... display on Header....for scanning and display Values....
                 #region Time Subtract.....
                 string endtime = DateTime.Now.ToLongTimeString();
@@ -493,12 +509,15 @@ namespace syscleaner
         private void BindGridViewAndList(string nameOfCheckValues)
         {
             listOfFiles.AddRange(TempValuesFile);
-            ObjbindApplicationAndWindows.Add(new BindApplicationAndWindowsUsingGridview
+            if (!IsIndexCall)
             {
-                CountOfFile = TempValuesFile.Count.ToString() + " Files",
-                SizeOfFile = CommonFunction.GetFileSize(Convert.ToInt64(sizeoffile == "" ? null : sizeoffile)),
-                NameOfItems = nameOfCheckValues
-            });
+                ObjbindApplicationAndWindows.Add(new BindApplicationAndWindowsUsingGridview
+                {
+                    CountOfFile = TempValuesFile.Count.ToString() + " Files",
+                    SizeOfFile = CommonFunction.GetFileSize(Convert.ToInt64(sizeoffile == "" ? null : sizeoffile)),
+                    NameOfItems = nameOfCheckValues
+                });
+            }
 
             listSizeOfFile.Add(Convert.ToInt64(sizeoffile == "" ? null : sizeoffile));
         }
